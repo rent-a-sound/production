@@ -6,7 +6,6 @@ function App() {
     <div className="bg-neutral-800">
       <Nav />
       <Hero />
-      <div className="bg-neutral-800 w-full h-screen"></div>
     </div>
   );
 }
