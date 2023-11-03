@@ -1,11 +1,13 @@
 import Nav from "./components/Nav";
+import Hero from "./components/Hero";
 
 function App() {
   return (
-    <>
+    <div className="bg-neutral-800">
       <Nav />
-      <div className="bg-indigo-600 w-full h-screen"></div>
-    </>
+      <Hero />
+      <div className="bg-neutral-800 w-full h-screen"></div>
+    </div>
   );
 }
 

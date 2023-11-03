@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { BsSoundwave } from "react-icons/bs";
+import { CgMusicSpeaker } from "react-icons/cg";
 
 const Nav = () => {
   let Links = [
@@ -8,34 +7,20 @@ const Nav = () => {
     { name: "CONTACT", link: "/" },
   ];
 
-  const [showLinks, setShowLinks] = useState(true);
-
-  const toggleLinks = () => {
-    setShowLinks(!showLinks);
-  };
-
   return (
-    <div className="shadow-md w-full fixed top-0 left-0">
-      <div className="flex flex-col items-center md:flex-row md:justify-between bg-white py-2 md:px-10 px-7">
-        <div
-          className="font-bold text-2xl cursor-pointer flex items-center font-mono text-gray-800"
-          onClick={toggleLinks}
-        >
-          <span className="text-3xl text-indigo-600 mr-3">
-            <BsSoundwave />
+    <div className="w-full sticky top-0 left-0 bg-gray-900 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0 font-montserrat">
+      <div className="flex flex-col items-center md:flex-row md:justify-between">
+        <div className="font-bold p-1.5 pr-2 text-2xl mx-5 my-2 flex items-center text-white">
+          <span className="mr-2 text-3xl text-purple-400">
+            <CgMusicSpeaker />
           </span>
-          Rent a Sound
+          RENT A SOUND
         </div>
-        <ul className="flex flex-col items-center md:flex-row">
+        <ul className="flex flex-col items-center md:flex-row duration-500 pr-10">
           {Links.map((link) => (
-            <li key={link.name} className="md:ml-8 text-xl">
-              <a
-                href={link.link}
-                className={`text-black ${
-                  showLinks ? "block" : "hidden"
-                } hover:text-gray-400 duration-500`}
-              >
-                {link.name}
+            <li key={link.name} className="md:ml-8 text-base">
+              <a href={link.link}  className="text-white hidden md:block hover:text-purple-400 duration-500 ">
+              {link.name}
               </a>
             </li>
           ))}
