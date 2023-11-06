@@ -17,12 +17,15 @@ const Hero = () => {
             </div>
             <div name="contact-title" className="text-4xl font-bold mb-3">CONTACT</div>
             <div name="contact-container" className="flex flex-col justify-center items-start">
-                <div name="instagram" className="bg-neutral-900 h-24 w-80 md:w-96 my-2 rounded-3xl flex items-center font-bold text-2xl tracking-wide">
-                <BsInstagram className="ml-8 text-3xl mr-3"/>INSTAGRAM</div>
-                <div name="phone" className="bg-neutral-900 h-24 w-80 md:w-96 my-2 rounded-3xl flex items-center font-bold text-2xl tracking-wide">
-                  <BsFillTelephoneFill className="ml-8 text-2xl mr-3"/>PHONE</div>
-                <div name="mail" className="bg-neutral-900 h-24 w-80 md:w-96 my-2 rounded-3xl flex items-center font-bold text-2xl tracking-wide">
-                  <HiMail className="ml-8 text-3xl mr-3"/>MAIL</div>
+                <div name="instagram" className="bg-neutral-900 h-24 w-80 md:w-96 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-3">
+                <div className="flex flex-row items-center mt-4 ml-5"><BsInstagram className="text-3xl mr-2 text-pink-500"/>INSTAGRAM</div>
+                <div className="text-xl font-thin ml-5 mt-2">@zvucnici_iznajmljivanje</div></div>
+                <div name="phone" className="bg-neutral-900 h-24 w-80 md:w-96 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-3">
+                <div className="flex flex-row items-center mt-4 ml-5"><BsFillTelephoneFill className="text-2xl mr-2 text-green-500"/>PHONE</div>
+                <div className="text-xl font-thin ml-5 mt-2">061/335599</div></div>
+                <div name="mail" className="bg-neutral-900 h-24 w-80 md:w-96 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide">
+                <div className="flex flex-row items-center mt-4 ml-5"><HiMail className="text-3xl mr-2 text-blue-500"/>MAIL</div>
+                <div className="text-xl font-thin ml-5 mt-2">djura@rentasound.com</div></div>
             </div>
         </div>
             <div name='city-container' className="w-full flex flex-col md:mt-16 md:justify-around items-center text-white mb-10">
