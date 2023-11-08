@@ -29,14 +29,14 @@ const Hero = () => {
             <div className="flex items-center justify-center flex-col bg-neutral-900 p-4 rounded-2xl px-6 mb-12 md:mb-8">
                 <div name="contact-title" className="text-4xl font-bold mb-6 mt-3 tracking-wide">CONTACT</div>
                 <div name="instagram" className="bg-neutral-800 h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6">
-                    <div className="flex flex-row items-center mt-4 ml-4"><BsInstagram className="text-3xl mr-2 text-pink-500"/>INSTAGRAM</div>
+                    <div className="flex flex-row items-center mt-4 ml-4"><BsInstagram className="text-2xl mr-2 text-pink-500"/>INSTAGRAM</div>
                     <div className="text-lg font-thin ml-4 mt-2">@zvucnici_iznajmljivanje</div></div>
                 <div name="phone" className="bg-neutral-800 h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6">
-                    <div className="flex flex-row items-center mt-4 ml-4"><BsFillTelephoneFill className="text-2xl mr-2 text-green-500"/>PHONE</div>
+                    <div className="flex flex-row items-center mt-4 ml-4"><BsFillTelephoneFill className="text-xl mr-2 text-green-500"/>PHONE</div>
                     <div className="text-lg font-thin ml-4 mt-2">061 335599</div>
                     </div>
                 <div name="mail" className="bg-neutral-800 h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6">
-                    <div className="flex flex-row items-center mt-4 ml-4"><HiMail className="text-3xl mr-2 text-blue-500"/>MAIL</div>
+                    <div className="flex flex-row items-center mt-4 ml-4"><HiMail className="text-2xl mr-2 text-blue-500"/>MAIL</div>
                     <div className="text-lg font-thin ml-4 mt-2">djura@rentasound.com</div>
                 </div>
             </div>
