@@ -3,7 +3,7 @@ import Hero from "./components/Hero";
 
 function App() {
   return (
-    <div className="bg-neutral-950">
+    <div className="bg-neutral-950 overflow-hidden">
       <Nav />
       <Hero />
     </div>
