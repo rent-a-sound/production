@@ -47,13 +47,20 @@ export default {
             transform: 'translateY(0)',
             animationTimingFunction: 'ease-out',
           },
-      }
+      },
+        spinle: {
+          '0%': { transform: 'rotateY(360deg)' },
+          '25%': { transform: 'rotateY(0deg)' },
+          '100%': { transform: 'rotateY(0deg)' },
+        }
     },
     animation: {
       nilemation1: 'nilemation 2s ease-in-out',
       nilemation2: 'nilemation 2s 0.2s ease-in-out',
       nilemation3: 'nilemation 2s 0.3s ease-in-out',
-      nilemation4: 'nilemation 2s 0.1s ease-in-out'
+      nilemation4: 'nilemation 2s 0.1s ease-in-out',
+      spinle1: 'spinle 6s 1.5s linear infinite',
+      spinle2: 'spinle 6s linear infinite',
     }
   },
 },

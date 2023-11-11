@@ -6,7 +6,7 @@ import partybox110 from "../public/110.webp"
 import partybox310f from "../public/310.webp"
 import partybox310s from "../public/310.png"
 import partybox710 from "../public/710.webp"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tempus, neque in feugiat scelerisque, elit magna semper nibh, nec vulputate magna sapien tincidunt diam. Fusce ac dui et augue vehic';
 
@@ -44,10 +44,10 @@ const Hero = () => {
             <div className="flex items-center justify-center flex-col bg-neutral-900 p-4 rounded-2xl mb-10 px-6" >
                 <div className="text-4xl font-bold mt-3 tracking-wide">NARUČI</div>
                 <div name='novi-sad' className="bg-neutral-800 w-72 h-24 my-6 rounded-3xl flex flex-col items-center justify-center tracking-wide">
-                   <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between"><FaMapMarkerAlt className="text-red-600 mr-2"/>NOVI SAD<TbArrowBigRightFilled className="ml-5"/></div>
+                   <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between"><FaMapMarkerAlt className="text-red-600 mr-2 animate-spinle2"/>NOVI SAD<TbArrowBigRightFilled className="ml-5"/></div>
                 </div>
                 <div name='beograd' className="bg-neutral-800 w-72 h-24 rounded-3xl flex flex-col items-center justify-center tracking-wide mb-5">
-                   <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between"><FaMapMarkerAlt className="text-red-600 mr-2"/>BEOGRAD<TbArrowBigRightFilled className="ml-5"/></div>
+                   <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between"><FaMapMarkerAlt className="text-red-600 mr-2 animate-spinle1"/>BEOGRAD<TbArrowBigRightFilled className="ml-5"/></div>
                 </div>
             </div>
             <div className="flex items-center justify-center flex-col bg-neutral-900 p-4 rounded-2xl px-6 mb-12 md:mb-8">
