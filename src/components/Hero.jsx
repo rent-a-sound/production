@@ -22,9 +22,15 @@ const Hero = () => {
         }, 2300);
     };
 
+    const [isTranslated, setIsTranslated] = useState(false);
+
+    const translate = () => {
+        setIsTranslated(!isTranslated);
+    };
+
   return (
     <div name="container" className='w-full h-full bg-neutral-950 flex flex-col md:flex-row items-center md:items-start md:justify-between font-montserrat'>
-        <div name="left-half" className='text-white m-8 -mb-10 md:m-16 flex flex-col items-center'>
+        <div name="left-half" className={`text-white m-8 -mb-10 md:m-16 flex flex-col items-center ${isTranslated ? 'opacity-0' : 'opacity-100'} duration-300`}>
         <div>
             <div name="title" className='font-bold text-4xl md:text-6xl mb-3'>LOREM IPSUM</div>
             <div name="subtitle" className='font-thin md:text-xl mb-6'>{lorem}</div>
@@ -43,14 +49,14 @@ const Hero = () => {
         <div name='right-half' className="text-white flex flex-col items-center justify-center md:m-8">
             <div className="flex items-center justify-center flex-col bg-neutral-900 p-4 rounded-2xl mb-10 px-6" >
                 <div className="text-4xl font-bold mt-3 tracking-wide">NARUČI</div>
-                <div name='novi-sad' className="bg-neutral-800 w-72 h-24 my-6 rounded-3xl flex flex-col items-center justify-center tracking-wide">
+                <div onClick={translate} name='novi-sad' className="bg-neutral-800 w-72 h-24 my-6 rounded-3xl flex flex-col items-center justify-center tracking-wide">
                    <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between"><FaMapMarkerAlt className="text-red-600 mr-2 animate-spinle2"/>NOVI SAD<TbArrowBigRightFilled className="ml-5"/></div>
                 </div>
                 <div name='beograd' className="bg-neutral-800 w-72 h-24 rounded-3xl flex flex-col items-center justify-center tracking-wide mb-5">
                    <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between"><FaMapMarkerAlt className="text-red-600 mr-2 animate-spinle1"/>BEOGRAD<TbArrowBigRightFilled className="ml-5"/></div>
                 </div>
             </div>
-            <div className="flex items-center justify-center flex-col bg-neutral-900 p-4 rounded-2xl px-6 mb-12 md:mb-8">
+            <div className={`flex items-center justify-center flex-col bg-neutral-900 p-4 rounded-2xl px-6 mb-12 md:mb-8 ${isTranslated ? 'opacity-0' : 'opacity-100'} duration-300`}>
                 <div name="contact-title" className="text-4xl font-bold mb-6 mt-3 tracking-wide">KONTAKT</div>
                 <div name="instagram" className="bg-neutral-800 h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6">
                     <div className="flex flex-row items-center mt-4 ml-4"><BsInstagram className="text-2xl mr-2 text-pink-500"/>INSTAGRAM</div>
