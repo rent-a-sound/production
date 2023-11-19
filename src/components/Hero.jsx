@@ -96,7 +96,7 @@ const Hero = () => {
         className="text-white flex flex-col items-center justify-center md:m-8"
       >
         <div className="flex items-center justify-center flex-col bg-neutral-900 p-4 rounded-2xl mb-10 px-6">
-          <div className="text-4xl font-bold mt-3 tracking-wide">NARUČI</div>
+          <div className="text-4xl font-bold mt-3 tracking-wide">KATALOG</div>
           <div
             onClick={translate}
             name="novi-sad"
