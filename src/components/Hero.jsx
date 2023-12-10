@@ -1,10 +1,9 @@
-import {
-  BsLightningChargeFill,
-  BsInstagram,
-  BsFillTelephoneFill,
-} from "react-icons/bs";
+import { BsLightningChargeFill } from "react-icons/bs";
+import { RiInstagramFill } from "react-icons/ri";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { TbArrowBigRightFilled } from "react-icons/tb";
+import { CgMusicSpeaker } from "react-icons/cg";
+import { TbPhoneFilled } from "react-icons/tb";
 import { HiMail } from "react-icons/hi";
 import partybox110 from "../public/110.webp";
 import partybox310f from "../public/310.webp";
@@ -35,14 +34,19 @@ const Hero = () => {
   return (
     <div
       name="container"
-      className="w-full h-full bg-neutral-950 flex flex-col md:flex-row items-center md:items-start md:justify-between font-montserrat"
+      className="w-full md:h-screen overflow-hidden bg-neutral-950 flex flex-col md:flex-row items-center md:items-start md:justify-between font-montserrat"
     >
       <div
         name="left-half"
-        className={`text-white m-8 -mb-10 md:m-16 flex flex-col items-center ${
+        className={`text-white m-8 -mb-10 md:mx-36 md:mb-0 flex flex-col items-center ${
           isTranslated ? "opacity-0" : "opacity-100"
         } duration-300`}
       >
+        <div className="w-full font-bold p-1.5 pr-2 text-3xl my-8 flex items-center text-white tracking-wide">
+          RENT
+          <CgMusicSpeaker className="text-4xl mx-2 text-purple-400" />
+          SOUND
+        </div>
         <div>
           <div name="title" className="font-bold text-4xl md:text-6xl mb-3">
             LOREM IPSUM
@@ -93,7 +97,7 @@ const Hero = () => {
       </div>
       <div
         name="right-half"
-        className="text-white flex flex-col items-center justify-center md:m-8"
+        className="text-white flex flex-col items-center justify-center md:mx-16 md:my-14"
       >
         <div className="flex items-center justify-center flex-col bg-neutral-900 p-4 rounded-2xl mb-10 px-6">
           <div className="text-4xl font-bold mt-3 tracking-wide">KATALOG</div>
@@ -120,7 +124,7 @@ const Hero = () => {
           </div>
         </div>
         <div
-          className={`flex items-center justify-center flex-col bg-neutral-900 p-4 rounded-2xl px-6 mb-12 md:mb-8 ${
+          className={`flex items-center justify-center flex-col bg-neutral-900 p-4 rounded-2xl px-6 mb-12 ${
             isTranslated ? "opacity-0" : "opacity-100"
           } duration-300`}
         >
@@ -135,7 +139,7 @@ const Hero = () => {
             className="bg-neutral-800 h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
           >
             <div className="flex flex-row items-center mt-4 ml-4">
-              <BsInstagram className="text-2xl mr-2 text-pink-500" />
+              <RiInstagramFill className="text-2xl mr-2 text-pink-500" />
               INSTAGRAM
             </div>
             <div className="text-lg font-thin ml-4 mt-2">
@@ -147,7 +151,7 @@ const Hero = () => {
             className="bg-neutral-800 h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
           >
             <div className="flex flex-row items-center mt-4 ml-4">
-              <BsFillTelephoneFill className="text-xl mr-2 text-green-500" />
+              <TbPhoneFilled className="text-2xl mr-2 text-green-500" />
               TELEFON
             </div>
             <div className="text-lg font-thin ml-4 mt-2">061 335599</div>
