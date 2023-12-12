@@ -56,40 +56,12 @@ const Catalogue = () => {
     return dateList;
   };
 
-  const calculatePrice = (model, dateRange) => {
-    const priceMap = {
-      "JBL PartyBox 100": {
-        0: 1500,
-        1: 1500,
-        2: 1500,
-        3: 1500,
-        4: 1800,
-        5: 2000,
-        6: 2200,
-      },
-      "JBL PartyBox 310": {
-        0: 2000,
-        1: 2000,
-        2: 2000,
-        3: 2000,
-        4: 2300,
-        5: 2500,
-        6: 2700,
-      },
-      "JBL PartyBox 110": {
-        0: 1200,
-        1: 1200,
-        2: 1200,
-        3: 1200,
-        4: 1500,
-        5: 1700,
-        6: 1900,
-      },
-    };
-
-    return dateRange.length > 6
-      ? priceMap[model][6] + 500 * (dateRange.length - 6)
-      : priceMap[model][dateRange.length];
+  const calculatePrice = (speaker, days) => {
+    const priceObject =
+      days > 6
+        ? speaker.price.find((item) => item.day === 6)
+        : speaker.price.find((item) => item.day === days);
+    return days > 6 ? priceObject.price + 500 * (days - 6) : priceObject.price;
   };
 
   return (
@@ -127,15 +99,15 @@ const Catalogue = () => {
                   key={item.id}
                   className="flex flex-col items-center justify-start bg-neutral-800 md:w-1/3 w-3/4 m-5 rounded-3xl"
                 >
-                  <h1 className="m-3 mt-6 text-3xl font-bold text-white tracking-wider">
+                  <h1 className="m-3 mt-6 md:text-2xl text-xl font-bold text-white tracking-wider">
                     {item.name}
                   </h1>
-                  <p className="font-thin text-white text-xl m-3">
+                  <p className="font-thin text-white text-xl m-3 mt-0">
                     {item.desc}
                   </p>
-                  <img src={item.image} alt={item.name} />
-                  <p className="text-purple-400 font-bold tracking-wider text-3xl">
-                    {calculatePrice(item.name, dates) + "din."}
+                  <img className="max-h-48" src={item.image} alt={item.name} />
+                  <p className="text-purple-400 font-bold tracking-wider text-3xl mt-3">
+                    {calculatePrice(item, dates.length) + "din."}
                   </p>
                   <Link
                     to={
