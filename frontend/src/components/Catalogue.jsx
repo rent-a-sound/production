@@ -9,7 +9,7 @@ import { FaChevronDown } from "react-icons/fa";
 const Catalogue = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [selected, setSelected] = useState(new Date());
+  const [selected, setSelected] = useState();
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
@@ -58,6 +58,30 @@ const Catalogue = () => {
     return dateList;
   };
 
+  const displayDate = (date) => {
+    if (!date || !date.from) {
+      return "No date selected";
+    }
+
+    const fromDate = new Date(date.from);
+
+    if (isNaN(fromDate)) {
+      return "No date selected";
+    }
+
+    if (!date.to) {
+      return format(fromDate, "PPP");
+    }
+
+    const toDate = new Date(date.to);
+
+    if (isNaN(toDate)) {
+      return "No date selected";
+    }
+
+    return format(fromDate, "PPP") + " - " + format(toDate, "PPP");
+  };
+
   const calculatePrice = (speaker, days) => {
     const priceObject =
       days > 6
@@ -84,6 +108,13 @@ const Catalogue = () => {
           },
         }}
       />
+      <p
+        className={`text-neutral-200 text-2xl -mt-2 font-thin ${
+          !clicked ? "-translate-y-[25rem]" : "-translate-y-0"
+        } duration-300`}
+      >
+        {displayDate(selected)}
+      </p>
       <FaChevronDown
         onClick={() => setClicked(!clicked)}
         className={`text-neutral-200 text-3xl ${
