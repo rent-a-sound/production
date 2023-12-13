@@ -4,6 +4,7 @@ import axios from "axios";
 const Form = () => {
   const [info, setInfo] = useState("");
   const [phone, setPhone] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleInfoChange = (e) => {
     setInfo(e.target.value);
@@ -39,8 +40,15 @@ const Form = () => {
       );
 
       console.log(response.data);
+
+      setSuccess(
+        "Rezervacija poslata, bićete kontaktirani radi potvrde porudzbine."
+      );
     } catch (error) {
       console.error("Error submitting form:", error);
+      setSuccess(
+        "Doslo je do greske, molim vas proverite podatke i pokusajte ponovo."
+      );
     }
   };
 
@@ -61,7 +69,15 @@ const Form = () => {
         onChange={handlePhoneChange}
         placeholder="Enter phone..."
       ></textarea>
-      <button className="text-white" onClick={handleSubmit}>
+      <p className="text-white">{success}</p>
+      <button
+        className="text-white"
+        disabled={
+          success ===
+          "Rezervacija poslata, bićete kontaktirani radi potvrde porudzbine."
+        }
+        onClick={handleSubmit}
+      >
         REZ
       </button>
     </div>
