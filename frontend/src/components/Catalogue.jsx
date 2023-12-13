@@ -4,11 +4,13 @@ import axios from "axios";
 import { format } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import { Link } from "react-router-dom";
+import { FaChevronDown } from "react-icons/fa";
 
 const Catalogue = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [selected, setSelected] = useState(new Date());
+  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     const apiUrl = "http://127.0.0.1:5000/data";
@@ -20,7 +22,7 @@ const Catalogue = () => {
       .catch((err) => {
         setError(err.message);
       });
-  }, []);
+  }, [selected]);
 
   const formatDate = (date) => {
     if (!date || !date.from) {
@@ -70,7 +72,9 @@ const Catalogue = () => {
         mode="range"
         selected={selected}
         onSelect={setSelected}
-        className="text-neutral-200 bg-neutral-800 p-8 rounded-3xl"
+        className={`text-neutral-200 bg-neutral-800 p-8 z-10 ${
+          !clicked ? "-translate-y-[25rem]" : "-translate-y-0"
+        } rounded-3xl duration-300`}
         styles={{
           caption: {
             backgroundColor: "RGB(29,29,29)",
@@ -79,6 +83,12 @@ const Catalogue = () => {
             marginBottom: "1rem",
           },
         }}
+      />
+      <FaChevronDown
+        onClick={() => setClicked(!clicked)}
+        className={`text-neutral-200 text-3xl ${
+          !clicked ? "-translate-y-[25rem]" : "-translate-y-0 rotate-180"
+        } duration-300`}
       />
       {data &&
         data.map((item) => {
@@ -97,7 +107,9 @@ const Catalogue = () => {
               return (
                 <div
                   key={item.id}
-                  className="flex flex-col items-center justify-start bg-neutral-800 md:w-1/3 w-3/4 m-5 rounded-3xl"
+                  className={`${
+                    !clicked ? "-translate-y-[25rem]" : ""
+                  } flex flex-col items-center justify-start bg-neutral-800 md:w-1/3 w-3/4 m-5 rounded-3xl duration-300`}
                 >
                   <h1 className="m-3 mt-6 md:text-2xl text-xl font-bold text-white tracking-wider">
                     {item.name}
