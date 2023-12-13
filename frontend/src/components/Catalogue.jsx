@@ -1,10 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import { Link } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
+import { srLatn } from "date-fns/locale";
 
 const Catalogue = () => {
   const [data, setData] = useState(null);
@@ -60,26 +61,38 @@ const Catalogue = () => {
 
   const displayDate = (date) => {
     if (!date || !date.from) {
-      return "No date selected";
+      return "Nije izabran datum";
     }
 
     const fromDate = new Date(date.from);
 
     if (isNaN(fromDate)) {
-      return "No date selected";
+      return "Nije izabran datum";
     }
 
     if (!date.to) {
-      return format(fromDate, "PPP");
+      return (
+        <p>
+          Preuzimanje: {format(fromDate, "PPP", { locale: srLatn })}
+          <br />
+          Povrat: {format(addDays(fromDate, 1), "PPP", { locale: srLatn })}
+        </p>
+      );
     }
 
     const toDate = new Date(date.to);
 
     if (isNaN(toDate)) {
-      return "No date selected";
+      return "Nije izabran datum";
     }
 
-    return format(fromDate, "PPP") + " - " + format(toDate, "PPP");
+    return (
+      <p>
+        Preuzimanje: {format(fromDate, "PPP", { locale: srLatn })}
+        <br />
+        Povrat: {format(addDays(toDate, 1), "PPP", { locale: srLatn })}
+      </p>
+    );
   };
 
   const calculatePrice = (speaker, days) => {
@@ -109,9 +122,10 @@ const Catalogue = () => {
         }}
       />
       <p
-        className={`text-neutral-200 text-2xl -mt-2 font-thin ${
+        className={`text-neutral-200 text-lg -mt-2 font-thin ${
           !clicked ? "-translate-y-[25rem]" : "-translate-y-0"
         } duration-300`}
+        onClick={() => setClicked(!clicked)}
       >
         {displayDate(selected)}
       </p>
@@ -152,8 +166,8 @@ const Catalogue = () => {
                   <p className="text-purple-400 font-bold tracking-wider text-3xl mt-3">
                     {calculatePrice(item, dates.length) + "din."}
                   </p>
-                  <Link
-                    to={
+                  <button
+                    href={
                       "/rez/" +
                       item.id +
                       "/" +
@@ -161,10 +175,22 @@ const Catalogue = () => {
                       "-to-" +
                       dates[dates.length - 1]
                     }
-                    className="mb-6 m-3 px-5 py-2 text-white font-bold tracking-wider text-xl bg-[rgb(29,29,29)] rounded-md"
+                    onClick={() => {
+                      window.location.href =
+                        "/rez/" +
+                        item.id +
+                        "/" +
+                        dates[0] +
+                        "-to-" +
+                        dates[dates.length - 1];
+                    }}
+                    disabled={!selected}
+                    className={` ${
+                      !selected ? "bg-[rgb(29,29,29)]" : "bg-purple-400"
+                    } mb-6 m-3 px-5 py-2 text-white font-bold tracking-wider text-xl duration-300 rounded-md`}
                   >
                     REZERVIŠI
-                  </Link>
+                  </button>
                 </div>
               );
           }
