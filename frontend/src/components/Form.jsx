@@ -5,7 +5,6 @@ import { srLatn } from "date-fns/locale";
 import { FaReceipt } from "react-icons/fa6";
 import { IoPersonSharp } from "react-icons/io5";
 import { TbPhoneFilled } from "react-icons/tb";
-import bg from "../public/bg.png";
 
 const Form = () => {
   const [info, setInfo] = useState("");
@@ -128,19 +127,21 @@ const Form = () => {
 
   return (
     <>
-      <div
-        style={{
-          backgroundImage: `url(${bg})`,
-        }}
-        className="z-0 w-full h-screen absolute animate-pulse"
-      ></div>
       <div className="bg-neutral-950 w-full min-h-screen flex flex-col items-center justify-center duration-300">
         <div
           className={`${
-            success == successString || success == errorString
-              ? "animate-shake animate-duration-300"
+            success == successString
+              ? "animate-jump animate-duration-500"
               : "animate-jump-in animate-duration-500"
-          } flex flex-col items-center justify-start my-24 outline-dashed duration-300 outline-1 outline-white p-10 rounded-xl`}
+          } ${
+            success == errorString ? "animate-shake animate-duration-300" : ""
+          } ${
+            success == ""
+              ? "outline-purple-400"
+              : success == successString
+                ? "outline-green-400"
+                : "outline-red-400"
+          } flex flex-col items-center justify-start my-24 outline-dashed duration-300 outline-1 p-10 rounded-xl`}
         >
           <FaReceipt className="text-white text-6xl font-montserrat mb-6" />
           <p className="text-3xl font-thin text-white m-2">{data.name}</p>
@@ -158,7 +159,13 @@ const Form = () => {
           <textarea
             onFocus={() => setAnimatePerson(true)}
             onBlur={() => setAnimatePerson(false)}
-            className="bg-neutral-950 outline-dashed font-thin outline-purple-400 outline-1 text-center placeholder-neutral-500 w-full mb-3 resize-none outline-none pl-2 pt-2 h-10 rounded-xl text-white"
+            className={`bg-neutral-950 outline-dashed font-thin ${
+              success == ""
+                ? "outline-purple-400"
+                : success == successString
+                  ? "outline-green-400"
+                  : "outline-red-400"
+            } outline-1 text-center placeholder-neutral-500 w-full mb-3 duration-300 resize-none outline-none pl-2 pt-2 h-10 rounded-xl text-white`}
             value={info}
             onChange={handleInfoChange}
             placeholder="Vaše ime i prezime..."
@@ -171,7 +178,13 @@ const Form = () => {
           <textarea
             onFocus={() => setAnimatePhone(true)}
             onBlur={() => setAnimatePhone(false)}
-            className="bg-neutral-950 outline-dashed font-thin outline-1 outline-purple-400 text-center placeholder-neutral-500 mb-2 w-full resize-none outline-none pl-2 pt-2 h-10 rounded-xl text-white"
+            className={`bg-neutral-950 outline-dashed font-thin outline-1 ${
+              success == ""
+                ? "outline-purple-400"
+                : success == successString
+                  ? "outline-green-400"
+                  : "outline-red-400"
+            } text-center placeholder-neutral-500 mb-2 w-full duration-300 resize-none outline-none pl-2 pt-2 h-10 rounded-xl text-white`}
             value={phone}
             onChange={handlePhoneChange}
             placeholder="Vaš broj telefona..."
@@ -188,24 +201,23 @@ const Form = () => {
               : ""}
           </p>
           <button
-            className={`text-white mt-10 duration-300 font-thin text-2xl py-3 px-5 outline-dashed ${
-              success == successString ? "outline-white" : "outline-purple-400"
-            } outline-1 rounded-xl tracking-wide`}
+            className={`text-white mt-10 font-thin text-2xl py-3 px-5 duration-300 outline-dashed outline-1 rounded-xl tracking-wide ${
+              success == ""
+                ? "outline-purple-400"
+                : success == successString
+                  ? "outline-green-400"
+                  : "outline-red-400"
+            }`}
             disabled={success === successString}
             onClick={handleSubmit}
           >
-            POTVRDI
+            {success == ""
+              ? "POTVRDI"
+              : success == successString
+                ? "POTVRDJENO"
+                : "GRESKA"}
           </button>
         </div>
-        <p
-          className={`text-white font-thin text-center mx-8 duration-500 ${
-            success === successString || success === errorString
-              ? "-translate-y-20 opacity-100"
-              : "translate-y-96 opacity-0"
-          }`}
-        >
-          {success}
-        </p>
       </div>
     </>
   );

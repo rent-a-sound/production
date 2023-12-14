@@ -15,7 +15,10 @@ const Catalogue = () => {
   const disabledDays = [{ from: new Date(0), to: subDays(new Date(), 1) }];
 
   useEffect(() => {
-    const apiUrl = "http://127.0.0.1:5000/data";
+    const apiUrl = `http://127.0.0.1:5000/data?city=${location.pathname.replace(
+      "/katalog/",
+      ""
+    )}`;
     axios
       .get(apiUrl)
       .then((response) => {
@@ -74,9 +77,9 @@ const Catalogue = () => {
     if (!date.to) {
       return (
         <p>
-          Preuzimanje: {format(fromDate, "PPP", { locale: srLatn })}
+          Preuzimanje | {format(fromDate, "PPP", { locale: srLatn })}
           <br />
-          Povrat: {format(addDays(fromDate, 1), "PPP", { locale: srLatn })}
+          Povrat | {format(addDays(fromDate, 1), "PPP", { locale: srLatn })}
         </p>
       );
     }
@@ -89,9 +92,9 @@ const Catalogue = () => {
 
     return (
       <p>
-        Preuzimanje: {format(fromDate, "PPP", { locale: srLatn })}
+        Preuzimanje | {format(fromDate, "PPP", { locale: srLatn })}
         <br />
-        Povrat: {format(addDays(toDate, 1), "PPP", { locale: srLatn })}
+        Povrat | {format(addDays(toDate, 1), "PPP", { locale: srLatn })}
       </p>
     );
   };
@@ -109,41 +112,45 @@ const Catalogue = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-neutral-950 flex flex-col items-center justify-start font-montserrat">
-      <DayPicker
-        mode="range"
-        locale={srLatn}
-        selected={selected}
-        onSelect={setSelected}
-        className={`text-neutral-200 bg-neutral-800 p-8 pb-20 z-10 ${
-          !clicked ? "-translate-y-[25rem]" : "-translate-y-0"
-        } rounded-3xl duration-300`}
-        disabled={disabledDays}
-        styles={{
-          caption: {
-            backgroundColor: "RGB(29,29,29)",
-            padding: "0.5rem",
-            borderRadius: "0.5rem",
-            marginBottom: "1rem",
-          },
-        }}
-      />
-      <span
-        className={`text-neutral-200 text-lg -mt-2 font-thin ${
-          !clicked ? "-translate-y-[25rem]" : "-translate-y-0"
-        } duration-300`}
-        onClick={() => setClicked(!clicked)}
+    <div className="w-full min-h-screen bg-neutral-950 flex flex-col items-center justify-start font-montserrat text-center">
+      <div
+        className={`flex flex-col items-center justify-start fixed duration-300 bg-neutral-900 scale-95 rounded-xl p-4 px-0 ${
+          !clicked ? "-translate-y-[26rem]" : "-translate-y-[1.5rem]"
+        }`}
       >
-        {displayDate(selected)}
-      </span>
-      <FaChevronDown
-        onClick={() => setClicked(!clicked)}
-        className={`text-neutral-200 text-3xl ${
-          !clicked ? "-translate-y-[25rem]" : "-translate-y-0 rotate-180"
-        } duration-300`}
-      />
+        <DayPicker
+          mode="range"
+          locale={srLatn}
+          selected={selected}
+          onSelect={setSelected}
+          className={`text-neutral-200 bg-neutral-800 p-8 z-10 rounded-3xl duration-300`}
+          disabled={disabledDays}
+          styles={{
+            caption: {
+              backgroundColor: "RGB(29,29,29)",
+              padding: "0.5rem",
+              borderRadius: "0.5rem",
+              marginBottom: "1rem",
+            },
+          }}
+        />
+        <span
+          onClick={() => setClicked(!clicked)}
+          className={`text-neutral-200 text-lg mt-6 font-thin ${
+            !clicked ? "-" : "-translate-y-0"
+          } duration-300`}
+        >
+          {displayDate(selected)}
+        </span>
+        <FaChevronDown
+          onClick={() => setClicked(!clicked)}
+          className={`text-neutral-200 text-3xl ${
+            !clicked ? "" : "-translate-y-0 rotate-180"
+          } duration-300 mt-2`}
+        />
+      </div>
       {data &&
-        data.map((item) => {
+        data.map((item, index) => {
           {
             const unavailableDates = item.unavailable || [];
 
@@ -152,15 +159,12 @@ const Catalogue = () => {
             const isDateUnavailable = formatDate(selected).some((date) =>
               unavailableDates.includes(date)
             );
-            if (
-              !isDateUnavailable &&
-              item.city === location.pathname.replace("/katalog/", "")
-            )
+            if (!isDateUnavailable)
               return (
                 <div
-                  key={item.id}
+                  key={index}
                   className={`${
-                    !clicked ? "-translate-y-[25rem]" : ""
+                    index == 0 ? "mt-36" : "mt-0"
                   } flex flex-col items-center justify-start bg-neutral-800 md:w-1/3 w-3/4 m-5 rounded-3xl duration-300`}
                 >
                   <h1 className="m-3 mt-6 md:text-2xl text-xl font-bold text-white tracking-wider">

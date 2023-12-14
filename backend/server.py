@@ -15,14 +15,21 @@ def load_config():
 
 @app.route('/data', methods=['GET'])
 def get_data():
-    return load_config()
+    city_param = request.args.get('city')
+    config = load_config()
+
+    if city_param:
+        filtered_data = [item for item in config if item.get('city') == city_param]
+        return json.dumps(filtered_data)
+    else:
+        return json.dumps(config)
 
 @app.route('/single', methods=['GET'])
 def get_single():
     config = load_config()
 
     item_id = request.args.get('id')
-                               
+
     result = next((item for item in config if item['id'] == item_id), None)
 
     if result:
