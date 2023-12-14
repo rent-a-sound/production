@@ -98,10 +98,13 @@ const Catalogue = () => {
 
   const calculatePrice = (speaker, days) => {
     const priceObject =
-      days > 6
-        ? speaker.price.find((item) => item.day === 6)
+      days > speaker.price.length
+        ? speaker.price.find((item) => item.day === speaker.price.length - 1)
         : speaker.price.find((item) => item.day === days);
-    return days > 6 ? priceObject.price + 500 * (days - 6) : priceObject.price;
+    return days > speaker.price.length
+      ? priceObject.price +
+          speaker.overdraft * (days - speaker.price.length + 1)
+      : priceObject.price;
   };
 
   return (
@@ -124,14 +127,14 @@ const Catalogue = () => {
           },
         }}
       />
-      <p
+      <span
         className={`text-neutral-200 text-lg -mt-2 font-thin ${
           !clicked ? "-translate-y-[25rem]" : "-translate-y-0"
         } duration-300`}
         onClick={() => setClicked(!clicked)}
       >
         {displayDate(selected)}
-      </p>
+      </span>
       <FaChevronDown
         onClick={() => setClicked(!clicked)}
         className={`text-neutral-200 text-3xl ${
@@ -170,14 +173,6 @@ const Catalogue = () => {
                     {calculatePrice(item, dates.length) + "din."}
                   </p>
                   <button
-                    href={
-                      "/rez/" +
-                      item.id +
-                      "/" +
-                      dates[0] +
-                      "-to-" +
-                      dates[dates.length - 1]
-                    }
                     onClick={() => {
                       window.location.href =
                         "/rez/" +

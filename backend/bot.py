@@ -69,7 +69,7 @@ async def remove_speaker(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def add_speaker(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
-        id, name, desc, battery, city, price, image = update.message.text.lstrip('/add ').split(';')
+        id, name, desc, battery, city, price, overdraft, image = update.message.text.lstrip('/add ').split(';')
 
         new_speaker = {
             "id": id,
@@ -87,6 +87,7 @@ async def add_speaker(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 {"day": 5, "price": 2500},
                 {"day": 6, "price": 2600}
             ],
+            "overdraft": overdraft,
             "image": image
         }
 
