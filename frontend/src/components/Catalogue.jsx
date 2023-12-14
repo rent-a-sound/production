@@ -1,9 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { format, addDays } from "date-fns";
+import { format, addDays, subDays } from "date-fns";
 import { DayPicker } from "react-day-picker";
-import { Link } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
 import { srLatn } from "date-fns/locale";
 
@@ -12,6 +11,8 @@ const Catalogue = () => {
   const [error, setError] = useState(null);
   const [selected, setSelected] = useState();
   const [clicked, setClicked] = useState(false);
+
+  const disabledDays = [{ from: new Date(0), to: subDays(new Date(), 1) }];
 
   useEffect(() => {
     const apiUrl = "http://127.0.0.1:5000/data";
@@ -107,11 +108,13 @@ const Catalogue = () => {
     <div className="w-full min-h-screen bg-neutral-950 flex flex-col items-center justify-start font-montserrat">
       <DayPicker
         mode="range"
+        locale={srLatn}
         selected={selected}
         onSelect={setSelected}
-        className={`text-neutral-200 bg-neutral-800 p-8 z-10 ${
+        className={`text-neutral-200 bg-neutral-800 p-8 pb-20 z-10 ${
           !clicked ? "-translate-y-[25rem]" : "-translate-y-0"
         } rounded-3xl duration-300`}
+        disabled={disabledDays}
         styles={{
           caption: {
             backgroundColor: "RGB(29,29,29)",

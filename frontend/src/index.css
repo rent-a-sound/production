@@ -272,7 +272,7 @@
 }
 
 .rdp-day_today:not(.rdp-day_outside) {
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .rdp-day_selected,
