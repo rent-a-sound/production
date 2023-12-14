@@ -97,8 +97,9 @@ const Catalogue = () => {
   };
 
   const calculatePrice = (speaker, days) => {
+    console.log(speaker.price.length);
     const priceObject =
-      days > speaker.price.length
+      days > speaker.price.length - 1
         ? speaker.price.find((item) => item.day === speaker.price.length - 1)
         : speaker.price.find((item) => item.day === days);
     return days > speaker.price.length
