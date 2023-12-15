@@ -18,12 +18,7 @@ export default {
             transform: "translateY(0)",
             opacity: "1",
           },
-          "38%": {
-            transform: "translateY(0)",
-            animationTimingFunction: "ease-out",
-            opacity: "1",
-          },
-          "50%": {
+          "45%": {
             transform: "translateY(500px)",
             opacity: "0",
           },

@@ -137,7 +137,7 @@ const Catalogue = () => {
   return (
     <div className="flex flex-col items-center">
       <div
-        className={`flex flex-col items-center justify-start fixed duration-300 bg-neutral-800 outline outline-[1px] outline-neutral-400 scale-95 rounded-xl p-4 z-10 ${
+        className={`flex flex-col items-center justify-start fixed duration-300 bg-gradient-to-t from-neutral-800 to-neutral-950 shadow-[0_0_30px_black] outline outline-[1px] outline-neutral-400 rounded-xl p-4 z-10 ${
           !clicked ? "-translate-y-[24rem]" : "-translate-y-[1.5rem]"
         }`}
       >
@@ -146,7 +146,7 @@ const Catalogue = () => {
           locale={srLatn}
           selected={selected}
           onSelect={setSelected}
-          className={`text-neutral-200 bg-neutral-800 p-8 z-10 rounded-3xl duration-300`}
+          className={`text-neutral-200 py-8 z-10 font-thin rounded-3xl duration-300`}
           disabled={disabledDays}
         />
         <span
@@ -195,7 +195,7 @@ const Catalogue = () => {
                     style={{ animationDelay: `${index * 50}ms` }}
                     className={`${
                       index in itemsPerRow ? "mt-36" : "mt-0"
-                    } flex flex-col items-center justify-start mx-5 my-10 h-fit bg-gradient-to-b from-neutral-800 rounded-3xl duration-500 animate-fade-down`}
+                    } flex flex-col items-center justify-start mx-5 my-10 h-fit bg-gradient-to-b outline outline-[0.5px] outline-neutral-400 from-neutral-800 rounded-3xl duration-500 animate-fade-down`}
                   >
                     <h1 className="m-3 mt-6 md:text-2xl text-xl font-bold text-white tracking-wider">
                       {item.name}
