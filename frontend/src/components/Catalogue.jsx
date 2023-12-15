@@ -189,6 +189,8 @@ const Catalogue = () => {
                           dates[0] +
                           "-to-" +
                           dates[dates.length - 1];
+                      } else {
+                        setClicked(!clicked);
                       }
                     }}
                     key={index}
