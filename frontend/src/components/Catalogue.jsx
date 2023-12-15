@@ -5,14 +5,38 @@ import { format, addDays, subDays } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import { FaChevronDown } from "react-icons/fa";
 import { srLatn } from "date-fns/locale";
+import { FaBookmark } from "react-icons/fa6";
 
 const Catalogue = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [selected, setSelected] = useState();
   const [clicked, setClicked] = useState(false);
+  const [itemsPerRow, setItemsPerRow] = useState([]);
 
   const disabledDays = [{ from: new Date(0), to: subDays(new Date(), 1) }];
+
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+
+      if (screenWidth >= 1024) {
+        setItemsPerRow([0, 1, 2]);
+      } else if (screenWidth >= 768) {
+        setItemsPerRow([0, 1]);
+      } else {
+        setItemsPerRow([0]);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const apiUrl = `http://127.0.0.1:5000/data?city=${location.pathname.replace(
@@ -100,7 +124,6 @@ const Catalogue = () => {
   };
 
   const calculatePrice = (speaker, days) => {
-    console.log(speaker.price.length);
     const priceObject =
       days > speaker.price.length - 1
         ? speaker.price.find((item) => item.day === speaker.price.length - 1)
@@ -112,10 +135,10 @@ const Catalogue = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-neutral-950 flex flex-col items-center justify-start font-montserrat text-center">
+    <div className="flex flex-col items-center">
       <div
-        className={`flex flex-col items-center justify-start fixed duration-300 bg-neutral-900 scale-95 rounded-xl p-4 px-0 ${
-          !clicked ? "-translate-y-[26rem]" : "-translate-y-[1.5rem]"
+        className={`flex flex-col items-center justify-start fixed duration-300 bg-neutral-800 outline outline-[1px] outline-neutral-400 scale-95 rounded-xl p-4 z-10 ${
+          !clicked ? "-translate-y-[24rem]" : "-translate-y-[1.5rem]"
         }`}
       >
         <DayPicker
@@ -125,14 +148,6 @@ const Catalogue = () => {
           onSelect={setSelected}
           className={`text-neutral-200 bg-neutral-800 p-8 z-10 rounded-3xl duration-300`}
           disabled={disabledDays}
-          styles={{
-            caption: {
-              backgroundColor: "RGB(29,29,29)",
-              padding: "0.5rem",
-              borderRadius: "0.5rem",
-              marginBottom: "1rem",
-            },
-          }}
         />
         <span
           onClick={() => setClicked(!clicked)}
@@ -149,55 +164,68 @@ const Catalogue = () => {
           } duration-300 mt-2`}
         />
       </div>
-      {data &&
-        data.map((item, index) => {
-          {
-            const unavailableDates = item.unavailable || [];
+      <div
+        className={`w-full min-h-screen bg-neutral-950 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 p-6 py-5 font-montserrat text-center`}
+      >
+        {data &&
+          data.map((item, index) => {
+            {
+              const unavailableDates = item.unavailable || [];
 
-            const dates = formatDate(selected);
+              const dates = formatDate(selected);
 
-            const isDateUnavailable = formatDate(selected).some((date) =>
-              unavailableDates.includes(date)
-            );
-            if (!isDateUnavailable)
-              return (
-                <div
-                  key={index}
-                  className={`${
-                    index == 0 ? "mt-36" : "mt-0"
-                  } flex flex-col items-center justify-start bg-neutral-800 md:w-1/3 w-3/4 m-5 rounded-3xl duration-300`}
-                >
-                  <h1 className="m-3 mt-6 md:text-2xl text-xl font-bold text-white tracking-wider">
-                    {item.name}
-                  </h1>
-                  <p className="font-thin text-white text-xl m-3 mt-0">
-                    {item.desc}
-                  </p>
-                  <img className="max-h-48" src={item.image} alt={item.name} />
-                  <p className="text-purple-400 font-bold tracking-wider text-3xl mt-3">
-                    {calculatePrice(item, dates.length) + "din."}
-                  </p>
-                  <button
-                    onClick={() => {
-                      window.location.href =
-                        "/rez/" +
-                        item.id +
-                        "/" +
-                        dates[0] +
-                        "-to-" +
-                        dates[dates.length - 1];
-                    }}
-                    disabled={!selected}
-                    className={` ${
-                      !selected ? "bg-[rgb(29,29,29)]" : "bg-purple-400"
-                    } mb-6 m-3 px-5 py-2 text-white font-bold tracking-wider text-xl duration-300 rounded-md`}
-                  >
-                    REZERVIŠI
-                  </button>
-                </div>
+              const isDateUnavailable = formatDate(selected).some((date) =>
+                unavailableDates.includes(date)
               );
-          }
-        })}
+              if (!isDateUnavailable)
+                return (
+                  <div
+                    onClick={() => {
+                      if (selected) {
+                        window.location.href =
+                          "/rez/" +
+                          item.id +
+                          "/" +
+                          dates[0] +
+                          "-to-" +
+                          dates[dates.length - 1];
+                      }
+                    }}
+                    key={index}
+                    style={{ animationDelay: `${index * 50}ms` }}
+                    className={`${
+                      index in itemsPerRow ? "mt-36" : "mt-0"
+                    } flex flex-col items-center justify-start mx-5 my-10 h-fit bg-gradient-to-b from-neutral-800 rounded-3xl duration-500 animate-fade-down`}
+                  >
+                    <h1 className="m-3 mt-6 md:text-2xl text-xl font-bold text-white tracking-wider">
+                      {item.name}
+                    </h1>
+                    <p className="font-thin text-white text-xl m-3 mt-0">
+                      {item.battery
+                        ? "Ugradjena Baterija"
+                        : "Bez Ugradjene Baterije"}
+                    </p>
+                    <p className="font-thin text-white text-xl m-3 mt-0">
+                      {item.desc}
+                    </p>
+                    <img
+                      className="max-h-48"
+                      src={item.image}
+                      alt={item.name}
+                    />
+                    <p
+                      className={`${
+                        selected ? "opacity-100 mb-10" : "opacity-0 -mb-10"
+                      } text-purple-400 tracking-wider text-4xl font-thin mt-8 duration-300`}
+                    >
+                      {calculatePrice(item, dates.length) + "din."}
+                    </p>
+                  </div>
+                );
+              return null;
+            }
+          })}
+      </div>
     </div>
   );
 };
