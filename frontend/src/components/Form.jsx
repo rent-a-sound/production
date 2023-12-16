@@ -5,6 +5,7 @@ import { srLatn } from "date-fns/locale";
 import { FaReceipt } from "react-icons/fa6";
 import { IoPersonSharp } from "react-icons/io5";
 import { TbPhoneFilled } from "react-icons/tb";
+import { IoMdMicrophone } from "react-icons/io";
 
 const Form = () => {
   const [info, setInfo] = useState("");
@@ -15,6 +16,11 @@ const Form = () => {
   const [animatePerson, setAnimatePerson] = useState(false);
   const [animatePhone, setAnimatePhone] = useState(false);
 
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
   const successString =
     "Rezervacija poslata, bićete kontaktirani radi potvrde porudzbine.";
   const errorString = "Doslo je do greske, molim vas pokusajte ponovo.";
@@ -75,12 +81,17 @@ const Form = () => {
     );
   }
 
-  function calculatePrice(data, days) {
-    return data.price[days]
-      ? data.price[days].price
-      : data.price[data.price.length - 1].price +
-          (days - data.price.length + 1) * data.overdraft;
-  }
+  const calculatePrice = (speaker, days) => {
+    const priceObject =
+      days > speaker.price.length
+        ? speaker.price.find((item) => item.day === speaker.price.length)
+        : speaker.price.find((item) => item.day === days);
+    return days == 0
+      ? 0
+      : days > speaker.price.length
+        ? priceObject.price + speaker.overdraft * (days - speaker.price.length)
+        : priceObject.price;
+  };
 
   const handleSubmit = async () => {
     try {
@@ -189,6 +200,63 @@ const Form = () => {
             onChange={handlePhoneChange}
             placeholder="Vaš broj telefona..."
           ></textarea>
+          <IoMdMicrophone
+            className={`text-white text-4xl font-montserrat mt-8 mb-3`}
+          />
+          <div className="flex flex-col items-start justify-start">
+            <label className="text-white font-thin text-xl">
+              <input
+                type="radio"
+                value="option1"
+                checked={selectedOption === "option1"}
+                onChange={handleOptionChange}
+                disabled={success == successString}
+                className={`mr-2 appearance-none outline-dashed outline-white p-2 rounded-xl ${
+                  success == ""
+                    ? "checked:outline-purple-400"
+                    : success == successString
+                      ? "checked:outline-green-400"
+                      : "checked:outline-red-400"
+                } checked:animate-rotate-y`}
+              />
+              JBL Žični Mikrofon - 500din.
+            </label>
+            <label className="text-white font-thin text-xl">
+              <input
+                type="radio"
+                value="option2"
+                checked={selectedOption === "option2"}
+                onChange={handleOptionChange}
+                disabled={success == successString}
+                className={`mr-2 appearance-none outline-dashed outline-white p-2 rounded-xl ${
+                  success == ""
+                    ? "checked:outline-purple-400"
+                    : success == successString
+                      ? "checked:outline-green-400"
+                      : "checked:outline-red-400"
+                } checked:animate-rotate-y`}
+              />
+              JBL Bežični Mikrofon - 700din.
+            </label>
+
+            <label className="text-white font-thin text-xl">
+              <input
+                type="radio"
+                value="option3"
+                checked={selectedOption === "option3"}
+                disabled={success == successString}
+                onChange={handleOptionChange}
+                className={`mr-2 appearance-none outline-dashed outline-white p-2 rounded-xl ${
+                  success == ""
+                    ? "checked:outline-purple-400"
+                    : success == successString
+                      ? "checked:outline-green-400"
+                      : "checked:outline-red-400"
+                } checked:animate-rotate-y`}
+              />
+              Bez Mikrofona
+            </label>
+          </div>
           <p className="text-3xl text-white font-thin mt-10">
             {data.price
               ? calculatePrice(
