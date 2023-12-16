@@ -159,7 +159,7 @@ const Catalogue = () => {
     <div className="flex flex-col items-center">
       <div
         onClick={() => setClicked(!clicked)}
-        className={`flex flex-col items-center justify-start fixed duration-300 bg-gradient-to-t from-neutral-800 to-neutral-900 shadow-[0_0_30px_black] outline outline-[1px] outline-neutral-400 rounded-xl p-4 z-10 ${
+        className={`flex flex-col items-center justify-start fixed duration-300 bg-gradient-to-t from-neutral-800 to-neutral-900 shadow-[0_0_30px_black] outline outline-1 outline-neutral-400 rounded-xl p-4 z-10 ${
           !clicked ? "-translate-y-[26rem]" : "-translate-y-[1.5rem]"
         }`}
       >
@@ -177,7 +177,7 @@ const Catalogue = () => {
             disabled={disabledDays}
           />
         </div>
-        <div className="flex flex-row items-center w-3/4 bg-gradient-to-b from-neutral-900 py-2 px-4 outline outline-[0.5px] rounded-md outline-neutral-400 justify-between">
+        <div className="flex flex-row items-center w-3/4 bg-gradient-to-b from-neutral-900 py-2 px-4 outline outline-1 rounded-md outline-neutral-400 justify-between">
           <div
             onClick={(e) => {
               e.stopPropagation();
@@ -241,9 +241,9 @@ const Catalogue = () => {
                     }}
                     key={index}
                     style={{ animationDelay: `${index * 50}ms` }}
-                    className={`flex flex-col items-center justify-start mx-5 my-5 h-fit bg-gradient-to-b outline outline-[0.5px] outline-neutral-400 from-neutral-900 to-neutral-950 rounded-2xl duration-500 animate-fade-down`}
+                    className={`flex flex-col items-center justify-start mx-5 my-5 h-fit bg-gradient-to-b outline outline-1 outline-neutral-400 from-neutral-900 to-neutral-950 rounded-2xl duration-500 animate-fade-down`}
                   >
-                    <div className="bg-gradient-to-b from-neutral-800 to-neutral-900 mt-8 mb-8 w-5/6 rounded-3xl outline outline-[0.5px] outline-neutral-400">
+                    <div className="bg-gradient-to-b from-neutral-800 to-neutral-900 mt-8 mb-8 w-5/6 rounded-3xl outline outline-1 outline-neutral-400">
                       <h1 className="mb-3 mt-5 mx-4 text-2xl font-bold tracking-wider text-white">
                         {item.name}
                       </h1>
@@ -268,7 +268,7 @@ const Catalogue = () => {
                         isDateUnavailable
                           ? "text-neutral-400 outline-neutral-400 from-neutral-800 to-neutral-900"
                           : "text-purple-200 outline-purple-200 from-purple-800 to-violet-900"
-                      } tracking-wider text-3xl font-thin mt-8 duration-300 outline outline-[0.5px] bg-gradient-to-b rounded-3xl py-2 px-6`}
+                      } tracking-wider text-3xl font-thin mt-8 duration-300 outline outline-1 bg-gradient-to-b rounded-3xl py-2 px-6`}
                     >
                       {isDateUnavailable
                         ? "Zauzet"

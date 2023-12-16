@@ -55,7 +55,7 @@ const Hero = () => {
           </div>
           <div
             name="tip-container"
-            className="font-extralight bg-gradient-to-b from-neutral-900 to-neutral-950 p-4 mb-16 text-sm rounded-lg outline-[0.5px] outline-neutral-400 outline text-neutral-400 flex flex-row items-center justify-between animate-fade-down animate-delay-300"
+            className="font-extralight bg-gradient-to-b from-neutral-900 to-neutral-950 p-4 mb-16 text-sm rounded-lg outline-1 outline-neutral-400 outline text-neutral-400 flex flex-row items-center justify-between animate-fade-down animate-delay-300"
           >
             <div name="tip-icon" className="text-3xl pr-4 text-purple-400">
               <BsLightningChargeFill />
@@ -98,12 +98,12 @@ const Hero = () => {
         name="right-half"
         className="text-white flex flex-col items-center justify-center md:mr-32 md:my-14"
       >
-        <div className="flex items-center justify-center flex-col bg-gradient-to-b from-neutral-900 outline-[0.5px] outline-neutral-400 outline p-4 rounded-2xl mb-10 px-6 animate-fade-down animate-delay-500">
+        <div className="flex items-center justify-center flex-col bg-gradient-to-b from-neutral-900 outline-1 outline-neutral-400 outline p-4 rounded-2xl mb-10 px-6 animate-fade-down animate-delay-500">
           <div className="text-4xl font-bold mt-3 tracking-wide">KATALOG</div>
           <Link
             to="/katalog/ns"
             name="novi-sad"
-            className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-[0.5px] outline-neutral-400 outline w-72 h-24 my-6 rounded-3xl flex flex-col items-center justify-center tracking-wide"
+            className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-1 outline-neutral-400 outline w-72 h-24 my-6 rounded-3xl flex flex-col items-center justify-center tracking-wide"
           >
             <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between">
               <FaMapMarkerAlt className="text-red-600 mr-2 animate-spinle2" />
@@ -114,7 +114,7 @@ const Hero = () => {
           <Link
             to="/katalog/bg"
             name="beograd"
-            className="bg-gradient-to-b from-neutral-800 to-neutral-900 w-72 h-24 outline-[0.5px] outline-neutral-400 outline rounded-3xl flex flex-col items-center justify-center tracking-wide mb-5"
+            className="bg-gradient-to-b from-neutral-800 to-neutral-900 w-72 h-24 outline-1 outline-neutral-400 outline rounded-3xl flex flex-col items-center justify-center tracking-wide mb-5"
           >
             <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between">
               <FaMapMarkerAlt className="text-red-600 mr-2 animate-spinle1" />
@@ -124,7 +124,7 @@ const Hero = () => {
           </Link>
         </div>
         <div
-          className={`flex items-center animate-fade-down animate-delay-700 justify-center flex-col bg-gradient-to-b from-neutral-900 p-4 rounded-2xl px-6 mb-12 duration-300 outline-[0.5px] outline-neutral-400 outline`}
+          className={`flex items-center animate-fade-down animate-delay-700 justify-center flex-col bg-gradient-to-b from-neutral-900 p-4 rounded-2xl px-6 mb-12 duration-300 outline-1 outline-neutral-400 outline`}
         >
           <div
             name="contact-title"
@@ -134,7 +134,7 @@ const Hero = () => {
           </div>
           <div
             name="instagram"
-            className="bg-gradient-to-b outline-[0.5px] outline-neutral-400 outline from-neutral-800 to-neutral-900 h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
+            className="bg-gradient-to-b outline-1 outline-neutral-400 outline from-neutral-800 to-neutral-900 h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
           >
             <div className="flex flex-row items-center mt-4 ml-4">
               <RiInstagramFill className="text-2xl mr-2 text-pink-500" />
@@ -146,7 +146,7 @@ const Hero = () => {
           </div>
           <div
             name="phone"
-            className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-[0.5px] outline-neutral-400 outline h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
+            className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-1 outline-neutral-400 outline h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
           >
             <div className="flex flex-row items-center mt-4 ml-4">
               <TbPhoneFilled className="text-2xl mr-2 text-green-500" />
@@ -156,7 +156,7 @@ const Hero = () => {
           </div>
           <div
             name="mail"
-            className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-[0.5px] outline-neutral-400 outline h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
+            className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-1 outline-neutral-400 outline h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
           >
             <div className="flex flex-row items-center mt-4 ml-4">
               <HiMail className="text-2xl mr-2 text-blue-500" />
