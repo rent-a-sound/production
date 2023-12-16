@@ -8,6 +8,7 @@ import { srLatn } from "date-fns/locale";
 import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
 import { HiArrowDown } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
 const Catalogue = () => {
   const [data, setData] = useState(null);
@@ -20,10 +21,9 @@ const Catalogue = () => {
   const disabledDays = [{ from: new Date(0), to: subDays(new Date(), 1) }];
 
   useEffect(() => {
-    const apiUrl = `http://niledragomirovic.pythonanywhere.com/data?city=${location.pathname.replace(
-      "/katalog/",
-      ""
-    )}`;
+    const apiUrl = `https://niledragomirovic.pythonanywhere.com/data?city=${
+      window.location.href.split("/")[6]
+    }`;
     axios
       .get(apiUrl)
       .then((response) => {
@@ -227,19 +227,15 @@ const Catalogue = () => {
           sortedData.map((item, index) => {
             {
               const { dates, isDateUnavailable } = getAvailabilityInfo(item);
+              const toLink = `/rez/${item.id}/${dates[0]}-to-${
+                dates[dates.length - 1]
+              }`;
               if (!taken || !isDateUnavailable)
                 return (
-                  <div
+                  <Link
+                    to={selected && !isDateUnavailable ? toLink : null}
                     onClick={() => {
-                      if (selected && !isDateUnavailable) {
-                        window.location.href =
-                          "/rez/" +
-                          item.id +
-                          "/" +
-                          dates[0] +
-                          "-to-" +
-                          dates[dates.length - 1];
-                      } else {
+                      if (!(selected && !isDateUnavailable)) {
                         setClicked(!clicked);
                       }
                     }}
@@ -278,7 +274,7 @@ const Catalogue = () => {
                         ? "Zauzet"
                         : calculatePrice(item, dates.length) + "din."}
                     </span>
-                  </div>
+                  </Link>
                 );
               return null;
             }

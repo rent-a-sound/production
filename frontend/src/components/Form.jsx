@@ -18,6 +18,9 @@ const Form = () => {
 
   const [selectedOption, setSelectedOption] = useState(null);
 
+  const id = window.location.href.split("/")[6];
+  const dateRange = window.location.href.split("/")[7];
+
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
@@ -37,8 +40,7 @@ const Form = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://niledragomirovic.pythonanywhere.com/single?id=" +
-            location.pathname.split("/")[2]
+          "https://niledragomirovic.pythonanywhere.com/single?id=" + id
         );
         setData(response.data);
       } catch (error) {
@@ -103,23 +105,23 @@ const Form = () => {
             "\n" +
             phone +
             "\n" +
-            location.pathname.split("/")[2] +
+            id +
             "\n" +
-            (location.pathname.split("/")[3].split("-to-")[0] ===
-            location.pathname.split("/")[3].split("-to-")[1]
-              ? location.pathname.split("/")[3].split("-to-")[0]
-              : location.pathname.split("/")[3].split("-to-")[0] +
+            (dateRange.split("-to-")[0] === dateRange.split("-to-")[1]
+              ? dateRange.split("-to-")[0]
+              : dateRange.split("-to-")[0] +
                 " do " +
-                location.pathname.split("/")[3].split("-to-")[1]) +
+                dateRange.split("-to-")[1]) +
             "\n" +
             calculatePrice(
               data,
               getDatesBetween(
-                location.pathname.split("/")[3].split("-to-")[0],
-                location.pathname.split("/")[3].split("-to-")[1]
+                dateRange.split("-to-")[0],
+                dateRange.split("-to-")[1]
               ).length
             ) +
             "din."
+          //https://nikoladragomirovic.github.io/RentASound/#/rez/pb100-2/21-12-2023-to-23-12-2023
         )}`,
         {
           headers: {
@@ -159,8 +161,8 @@ const Form = () => {
           <p className="text-3xl font-thin text-white m-2">{data.name}</p>
           <span className="text-2xl font-thin text-white text-center m-5 mb-6">
             {displayDates(
-              location.pathname.split("/")[3].split("-to-")[0],
-              location.pathname.split("/")[3].split("-to-")[1]
+              dateRange.split("-to-")[0],
+              dateRange.split("-to-")[1]
             )}
           </span>
           <IoPersonSharp
@@ -263,8 +265,8 @@ const Form = () => {
               ? calculatePrice(
                   data,
                   getDatesBetween(
-                    location.pathname.split("/")[3].split("-to-")[0],
-                    location.pathname.split("/")[3].split("-to-")[1]
+                    dateRange.split("-to-")[0],
+                    dateRange.split("-to-")[1]
                   ).length
                 ) + "din."
               : ""}
