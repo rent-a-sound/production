@@ -20,7 +20,7 @@ const Catalogue = () => {
   const disabledDays = [{ from: new Date(0), to: subDays(new Date(), 1) }];
 
   useEffect(() => {
-    const apiUrl = `http://127.0.0.1:5000/data?city=${location.pathname.replace(
+    const apiUrl = `http://niledragomirovic.pythonanywhere.com/data?city=${location.pathname.replace(
       "/katalog/",
       ""
     )}`;
