@@ -214,7 +214,7 @@ const Form = () => {
                 checked={selectedOption === "option1"}
                 onChange={handleOptionChange}
                 disabled={success == successString}
-                className={`mr-2 appearance-none outline-dashed outline-white p-2 rounded-xl ${
+                className={`mr-2 appearance-none outline-dashed outline-1 outline-white p-2 rounded-xl ${
                   success == ""
                     ? "checked:outline-purple-400"
                     : success == successString
@@ -231,7 +231,7 @@ const Form = () => {
                 checked={selectedOption === "option2"}
                 onChange={handleOptionChange}
                 disabled={success == successString}
-                className={`mr-2 appearance-none outline-dashed outline-white p-2 rounded-xl ${
+                className={`mr-2 appearance-none outline-dashed outline-white p-2 outline-1 rounded-xl ${
                   success == ""
                     ? "checked:outline-purple-400"
                     : success == successString
@@ -249,7 +249,7 @@ const Form = () => {
                 checked={selectedOption === "option3"}
                 disabled={success == successString}
                 onChange={handleOptionChange}
-                className={`mr-2 appearance-none outline-dashed outline-white p-2 rounded-xl ${
+                className={`mr-2 appearance-none outline-dashed outline-1 outline-white p-2 rounded-xl ${
                   success == ""
                     ? "checked:outline-purple-400"
                     : success == successString
