@@ -133,21 +133,31 @@ const Catalogue = () => {
   return (
     <div className="flex flex-col items-center">
       <div
+        onClick={() => setClicked(!clicked)}
         className={`flex flex-col items-center justify-start fixed duration-300 bg-gradient-to-t from-neutral-800 to-neutral-950 shadow-[0_0_30px_black] outline outline-[1px] outline-neutral-400 rounded-xl p-4 z-10 ${
           !clicked ? "-translate-y-[26rem]" : "-translate-y-[1.5rem]"
         }`}
       >
-        <DayPicker
-          mode="range"
-          locale={srLatn}
-          selected={selected}
-          onSelect={setSelected}
-          className={`text-neutral-200 pt-8 z-10 font-thin rounded-3xl duration-300`}
-          disabled={disabledDays}
-        />
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <DayPicker
+            mode="range"
+            locale={srLatn}
+            selected={selected}
+            onSelect={setSelected}
+            className={`text-neutral-200 pt-8 z-10 font-thin rounded-3xl duration-300`}
+            disabled={disabledDays}
+          />
+        </div>
         <div className="flex flex-row items-center w-3/4 bg-gradient-to-b from-neutral-900 py-2 px-4 outline outline-[0.5px] rounded-md outline-neutral-400 justify-between">
           <div
-            onClick={() => setTaken(!taken)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setTaken(!taken);
+            }}
             className="flex flex-row items-center justify-center text-white text-xl font-thin"
           >
             {!taken ? (
@@ -158,7 +168,10 @@ const Catalogue = () => {
             ZAUZETI
           </div>
           <div
-            onClick={() => setPriceLowHigh(!priceLowHigh)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setPriceLowHigh(!priceLowHigh);
+            }}
             className="flex flex-row items-center justify-center text-white text-xl font-thin"
           >
             <HiArrowDown
@@ -170,7 +183,6 @@ const Catalogue = () => {
           </div>
         </div>
         <span
-          onClick={() => setClicked(!clicked)}
           className={`text-neutral-200 text-lg mt-8 font-thin ${
             !clicked ? "-" : "-translate-y-0"
           } duration-300`}
@@ -178,7 +190,6 @@ const Catalogue = () => {
           {displayDate(selected)}
         </span>
         <FaChevronDown
-          onClick={() => setClicked(!clicked)}
           className={`text-neutral-200 text-3xl ${
             !clicked ? "" : "-translate-y-0 rotate-180"
           } duration-300 mt-2 -mb-1`}
