@@ -134,7 +134,7 @@ const Catalogue = () => {
     <div className="flex flex-col items-center">
       <div
         onClick={() => setClicked(!clicked)}
-        className={`flex flex-col items-center justify-start fixed duration-300 bg-gradient-to-t from-neutral-800 to-neutral-950 shadow-[0_0_30px_black] outline outline-[1px] outline-neutral-400 rounded-xl p-4 z-10 ${
+        className={`flex flex-col items-center justify-start fixed duration-300 bg-gradient-to-b from-neutral-800 to-neutral-900 shadow-[0_0_30px_black] outline outline-[1px] outline-neutral-400 rounded-xl p-4 z-10 ${
           !clicked ? "-translate-y-[26rem]" : "-translate-y-[1.5rem]"
         }`}
       >
@@ -196,7 +196,7 @@ const Catalogue = () => {
         />
       </div>
       <div
-        className={`w-full min-h-screen bg-neutral-950 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 p-6 py-5 pt-36 font-montserrat text-center`}
+        className={`w-full min-h-screen bg-neutral-950 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 p-6 py-5 pt-36 pb-16 font-montserrat text-center`}
       >
         {sortedData &&
           sortedData.map((item, index) => {
@@ -226,32 +226,34 @@ const Catalogue = () => {
                     }}
                     key={index}
                     style={{ animationDelay: `${index * 50}ms` }}
-                    className={`flex flex-col items-center justify-start mx-5 my-5 h-fit bg-gradient-to-b outline outline-[0.5px] outline-neutral-400 from-neutral-800 rounded-3xl duration-500 animate-fade-down`}
+                    className={`flex flex-col items-center justify-start mx-5 my-5 h-fit bg-gradient-to-b outline outline-[0.5px] outline-neutral-400 from-neutral-900 to-neutral-950 rounded-2xl duration-500 animate-fade-down`}
                   >
-                    <h1 className="m-3 mt-6 md:text-2xl text-xl font-bold text-white tracking-wider">
-                      {item.name}
-                    </h1>
-                    <p className="font-thin text-white text-xl m-3 mt-0">
-                      {item.battery
-                        ? "Ugradjena Baterija"
-                        : "Bez Ugradjene Baterije"}
-                    </p>
-                    <p className="font-thin text-white text-xl m-3 mt-0">
-                      {item.desc}
-                    </p>
+                    <div className="bg-gradient-to-b from-neutral-800 to-neutral-900 mt-8 mb-8 w-5/6 rounded-3xl outline outline-[0.5px] outline-neutral-400">
+                      <h1 className="mb-3 mt-5 mx-4 text-2xl font-bold tracking-wider text-white">
+                        {item.name}
+                      </h1>
+                      <p className="font-thin text-white text-xl mb-3 mx-4 mt-0">
+                        {item.battery
+                          ? "Ugradjena Baterija"
+                          : "Bez Ugradjene Baterije"}
+                      </p>
+                      <p className="font-thin text-white text-xl m-3 mb-5 mt-0">
+                        {item.desc}
+                      </p>
+                    </div>
                     <img
-                      className="max-h-48"
+                      className="max-h-56"
                       src={item.image}
                       alt={item.name}
                     />
                     <span
                       className={`${
-                        selected ? "opacity-100 mb-10" : "opacity-0 -mb-10"
+                        selected ? "opacity-100 mb-10" : "opacity-0 -mb-16"
                       } ${
                         isDateUnavailable
-                          ? "text-neutral-400"
-                          : "text-purple-400"
-                      } tracking-wider text-4xl font-thin mt-8 duration-300`}
+                          ? "text-neutral-400 outline-neutral-400 from-neutral-800 to-neutral-900"
+                          : "text-purple-200 outline-purple-200 from-purple-800 to-violet-900"
+                      } tracking-wider text-3xl font-thin mt-8 duration-300 outline outline-[0.5px] bg-gradient-to-b rounded-3xl py-2 px-6`}
                     >
                       {isDateUnavailable
                         ? "Zauzet"
