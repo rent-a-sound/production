@@ -116,16 +116,41 @@ const Catalogue = () => {
         : priceObject.price;
   };
 
+  const getAvailabilityInfo = (item) => {
+    const unavailableDates = item.unavailable || [];
+    const dates = formatDate(selected);
+    const isDateUnavailable = dates.some((date) =>
+      unavailableDates.includes(date)
+    );
+
+    return { dates, isDateUnavailable };
+  };
+
   const sortedData = data
     ? data.slice().sort((a, b) => {
-        const priceA = calculatePrice(
-          a,
-          selected ? formatDate(selected).length : 0
-        );
-        const priceB = calculatePrice(
-          b,
-          selected ? formatDate(selected).length : 0
-        );
+        const availabilityInfoA = getAvailabilityInfo(a);
+        const availabilityInfoB = getAvailabilityInfo(b);
+
+        if (
+          availabilityInfoA.isDateUnavailable &&
+          !availabilityInfoB.isDateUnavailable
+        ) {
+          return 1;
+        } else if (
+          !availabilityInfoA.isDateUnavailable &&
+          availabilityInfoB.isDateUnavailable
+        ) {
+          return -1;
+        }
+
+        const priceA = !availabilityInfoA.isDateUnavailable
+          ? calculatePrice(a, selected ? formatDate(selected).length : 0)
+          : 0;
+
+        const priceB = !availabilityInfoB.isDateUnavailable
+          ? calculatePrice(b, selected ? formatDate(selected).length : 0)
+          : 0;
+
         return priceLowHigh ? priceA - priceB : priceB - priceA;
       })
     : "";
@@ -134,7 +159,7 @@ const Catalogue = () => {
     <div className="flex flex-col items-center">
       <div
         onClick={() => setClicked(!clicked)}
-        className={`flex flex-col items-center justify-start fixed duration-300 bg-gradient-to-b from-neutral-800 to-neutral-900 shadow-[0_0_30px_black] outline outline-[1px] outline-neutral-400 rounded-xl p-4 z-10 ${
+        className={`flex flex-col items-center justify-start fixed duration-300 bg-gradient-to-t from-neutral-800 to-neutral-900 shadow-[0_0_30px_black] outline outline-[1px] outline-neutral-400 rounded-xl p-4 z-10 ${
           !clicked ? "-translate-y-[26rem]" : "-translate-y-[1.5rem]"
         }`}
       >
@@ -201,13 +226,7 @@ const Catalogue = () => {
         {sortedData &&
           sortedData.map((item, index) => {
             {
-              const unavailableDates = item.unavailable || [];
-
-              const dates = formatDate(selected);
-
-              const isDateUnavailable = formatDate(selected).some((date) =>
-                unavailableDates.includes(date)
-              );
+              const { dates, isDateUnavailable } = getAvailabilityInfo(item);
               if (!taken || !isDateUnavailable)
                 return (
                   <div
