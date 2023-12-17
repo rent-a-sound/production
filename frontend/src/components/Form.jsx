@@ -208,6 +208,7 @@ const Form = () => {
               } text-white text-3xl font-montserrat mt-2 mb-3`}
             />
             <input
+              autocomplete="off"
               onFocus={() => setAnimatePerson(true)}
               onBlur={() => setAnimatePerson(false)}
               className={`bg-neutral-950 outline-dashed font-thin ${
@@ -229,6 +230,7 @@ const Form = () => {
               } text-white text-3xl font-montserrat mt-5 mb-3`}
             />
             <input
+              autocomplete="off"
               onFocus={() => setAnimatePhone(true)}
               onBlur={() => setAnimatePhone(false)}
               inputMode="numeric"
