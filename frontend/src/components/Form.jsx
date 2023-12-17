@@ -35,7 +35,10 @@ const Form = () => {
   };
 
   const handleInfoChange = (e) => {
-    const formattedValue = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+    const formattedValue = e.target.value.replace(
+      /[^a-zA-Z\u00C0-\u024F\u1E00-\u1EFF\s]/g,
+      ""
+    );
     setInfo(formattedValue);
   };
 
