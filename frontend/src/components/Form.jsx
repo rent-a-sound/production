@@ -6,6 +6,9 @@ import { FaReceipt } from "react-icons/fa6";
 import { IoPersonSharp } from "react-icons/io5";
 import { TbPhoneFilled } from "react-icons/tb";
 import { IoMdMicrophone } from "react-icons/io";
+import { Link } from "react-router-dom";
+import * as htmlToImage from "html-to-image";
+import download from "downloadjs";
 
 const Form = () => {
   const [info, setInfo] = useState("");
@@ -36,6 +39,35 @@ const Form = () => {
   const handlePhoneChange = (e) => {
     const numericValue = e.target.value.replace(/\D/g, "");
     setPhone(numericValue);
+  };
+
+  const generateImage = () => {
+    const linkElement = document.getElementById("link");
+
+    const originalButtonText = linkElement.textContent;
+
+    linkElement.textContent = "POTVRDJENO";
+
+    const receiptDiv = document.getElementById("receipt");
+    const paragraphElement = receiptDiv.querySelector("p.text-lg");
+
+    const originalDisplayStyle = paragraphElement.style.display;
+
+    paragraphElement.style.display = "none";
+
+    htmlToImage
+      .toPng(receiptDiv)
+      .then(function (dataUrl) {
+        download(dataUrl, "račun-rent-a-sound.png");
+
+        paragraphElement.style.display = originalDisplayStyle;
+
+        linkElement.textContent = originalButtonText;
+      })
+      .catch((error) => {
+        paragraphElement.style.display = originalDisplayStyle;
+        linkElement.textContent = originalButtonText;
+      });
   };
 
   useEffect(() => {
@@ -132,8 +164,6 @@ const Form = () => {
         }
       );
 
-      console.log(response.data);
-
       setSuccess(successString);
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -144,159 +174,174 @@ const Form = () => {
   return (
     <>
       <div className="bg-neutral-950 w-full min-h-screen flex flex-col items-center justify-center duration-300">
-        <div
-          className={`${
-            success == successString
-              ? "animate-jump animate-duration-500"
-              : "animate-jump-in animate-duration-500"
-          } ${
-            success == errorString ? "animate-shake animate-duration-300" : ""
-          } ${
-            success == ""
-              ? "outline-purple-400"
-              : success == successString
-                ? "outline-green-400"
-                : "outline-red-400"
-          } flex flex-col items-center justify-start my-24 outline-dashed duration-300 outline-1 p-10 rounded-xl`}
-        >
-          <FaReceipt className="text-white text-6xl font-montserrat mb-6" />
-          <p className="text-3xl font-thin text-white m-2">{data.name}</p>
-          <span className="text-2xl font-thin text-white text-center m-5 mb-6">
-            {displayDates(
-              dateRange.split("-to-")[0],
-              dateRange.split("-to-")[1]
-            )}
-          </span>
-          <IoPersonSharp
+        <div className="p-4 bg-neutral-950 rounded-lg min-h-fit" id="receipt">
+          <div
             className={`${
-              animatePerson ? "animate-shake" : ""
-            } text-white text-3xl font-montserrat mt-2 mb-3`}
-          />
-          <textarea
-            onFocus={() => setAnimatePerson(true)}
-            onBlur={() => setAnimatePerson(false)}
-            className={`bg-neutral-950 outline-dashed font-thin ${
+              success == successString
+                ? "animate-jump animate-duration-500"
+                : "animate-jump-in animate-duration-500"
+            } ${
+              success == errorString ? "animate-shake animate-duration-300" : ""
+            } ${
               success == ""
                 ? "outline-purple-400"
                 : success == successString
                   ? "outline-green-400"
                   : "outline-red-400"
-            } outline-1 text-center placeholder-neutral-500 w-full mb-3 duration-300 resize-none outline-none pl-2 pt-2 h-10 rounded-xl text-white`}
-            value={info}
-            onChange={handleInfoChange}
-            placeholder="Vaše ime i prezime..."
-          ></textarea>
-          <TbPhoneFilled
-            className={`${
-              animatePhone ? "animate-shake" : ""
-            } text-white text-3xl font-montserrat mt-5 mb-3`}
-          />
-          <textarea
-            onFocus={() => setAnimatePhone(true)}
-            onBlur={() => setAnimatePhone(false)}
-            className={`bg-neutral-950 outline-dashed font-thin outline-1 ${
-              success == ""
-                ? "outline-purple-400"
-                : success == successString
-                  ? "outline-green-400"
-                  : "outline-red-400"
-            } text-center placeholder-neutral-500 mb-2 w-full duration-300 resize-none outline-none pl-2 pt-2 h-10 rounded-xl text-white`}
-            value={phone}
-            onChange={handlePhoneChange}
-            placeholder="Vaš broj telefona..."
-          ></textarea>
-          <IoMdMicrophone
-            className={`text-white text-4xl font-montserrat mt-8 mb-3`}
-          />
-          <div className="flex flex-col items-start justify-start">
-            <label className="text-white font-thin text-xl">
-              <input
-                type="radio"
-                value="option1"
-                checked={selectedOption === "option1"}
-                onChange={handleOptionChange}
-                disabled={success == successString}
-                className={`mr-2 appearance-none outline-dashed outline-1 outline-white p-2 rounded-xl ${
-                  success == ""
-                    ? "checked:outline-purple-400"
-                    : success == successString
-                      ? "checked:outline-green-400"
-                      : "checked:outline-red-400"
-                } checked:animate-rotate-y`}
-              />
-              JBL Žični Mikrofon - 500din.
-            </label>
-            <label className="text-white font-thin text-xl">
-              <input
-                type="radio"
-                value="option2"
-                checked={selectedOption === "option2"}
-                onChange={handleOptionChange}
-                disabled={success == successString}
-                className={`mr-2 appearance-none outline-dashed outline-white p-2 outline-1 rounded-xl ${
-                  success == ""
-                    ? "checked:outline-purple-400"
-                    : success == successString
-                      ? "checked:outline-green-400"
-                      : "checked:outline-red-400"
-                } checked:animate-rotate-y`}
-              />
-              JBL Bežični Mikrofon - 700din.
-            </label>
-
-            <label className="text-white font-thin text-xl">
-              <input
-                type="radio"
-                value="option3"
-                checked={selectedOption === "option3"}
-                disabled={success == successString}
-                onChange={handleOptionChange}
-                className={`mr-2 appearance-none outline-dashed outline-1 outline-white p-2 rounded-xl ${
-                  success == ""
-                    ? "checked:outline-purple-400"
-                    : success == successString
-                      ? "checked:outline-green-400"
-                      : "checked:outline-red-400"
-                } checked:animate-rotate-y`}
-              />
-              Bez Mikrofona
-            </label>
-          </div>
-          <p className="text-3xl text-white font-thin mt-10">
-            {data.price
-              ? calculatePrice(
-                  data,
-                  getDatesBetween(
-                    dateRange.split("-to-")[0],
-                    dateRange.split("-to-")[1]
-                  ).length
-                ) + "din."
-              : ""}
-          </p>
-          <button
-            className={`text-white mt-10 font-thin text-2xl py-3 px-5 duration-300 outline-dashed outline-1 rounded-xl tracking-wide ${
-              success == ""
-                ? !info.trim() || !phone.trim() || !selectedOption
-                  ? "outline-neutral-400"
-                  : "outline-purple-400"
-                : success == successString
-                  ? "outline-green-400"
-                  : "outline-red-400"
-            }`}
-            disabled={
-              success === successString ||
-              !info.trim() ||
-              !phone.trim() ||
-              !selectedOption
-            }
-            onClick={handleSubmit}
+            } flex flex-col items-center justify-start my-24 outline-dashed duration-300 outline-1 p-10 rounded-xl`}
           >
-            {success == ""
-              ? "POTVRDI"
-              : success == successString
-                ? "POTVRDJENO"
-                : "GRESKA"}
-          </button>
+            <FaReceipt className="text-white text-6xl font-montserrat mb-6" />
+            <p className="text-3xl font-thin text-white m-2">{data.name}</p>
+            <span className="text-2xl font-thin text-white text-center m-5 mb-6">
+              {displayDates(
+                dateRange.split("-to-")[0],
+                dateRange.split("-to-")[1]
+              )}
+            </span>
+            <IoPersonSharp
+              className={`${
+                animatePerson ? "animate-shake" : ""
+              } text-white text-3xl font-montserrat mt-2 mb-3`}
+            />
+            <textarea
+              onFocus={() => setAnimatePerson(true)}
+              onBlur={() => setAnimatePerson(false)}
+              className={`bg-neutral-950 outline-dashed font-thin ${
+                success == ""
+                  ? "outline-purple-400"
+                  : success == successString
+                    ? "outline-green-400"
+                    : "outline-red-400"
+              } outline-1 text-center placeholder-neutral-500 w-full mb-3 duration-300 resize-none outline-none pl-2 pt-2 h-10 rounded-xl text-white`}
+              value={info}
+              onChange={handleInfoChange}
+              placeholder="Vaše ime i prezime..."
+            ></textarea>
+            <TbPhoneFilled
+              className={`${
+                animatePhone ? "animate-shake" : ""
+              } text-white text-3xl font-montserrat mt-5 mb-3`}
+            />
+            <textarea
+              onFocus={() => setAnimatePhone(true)}
+              onBlur={() => setAnimatePhone(false)}
+              className={`bg-neutral-950 outline-dashed font-thin outline-1 ${
+                success == ""
+                  ? "outline-purple-400"
+                  : success == successString
+                    ? "outline-green-400"
+                    : "outline-red-400"
+              } text-center placeholder-neutral-500 mb-2 w-full duration-300 resize-none outline-none pl-2 pt-2 h-10 rounded-xl text-white`}
+              value={phone}
+              onChange={handlePhoneChange}
+              placeholder="Vaš broj telefona..."
+            ></textarea>
+            <IoMdMicrophone
+              className={`text-white text-4xl font-montserrat mt-8 mb-3`}
+            />
+            <div className="flex flex-col items-start justify-start">
+              <label className="text-white font-thin text-xl">
+                <input
+                  type="radio"
+                  value="option1"
+                  checked={selectedOption === "option1"}
+                  onChange={handleOptionChange}
+                  disabled={success == successString}
+                  className={`mr-2 appearance-none outline-dashed outline-1 outline-white p-2 rounded-xl ${
+                    success == ""
+                      ? "checked:outline-purple-400"
+                      : success == successString
+                        ? "checked:outline-green-400"
+                        : "checked:outline-red-400"
+                  } checked:animate-rotate-y`}
+                />
+                JBL Žični Mikrofon - 500din.
+              </label>
+              <label className="text-white font-thin text-xl">
+                <input
+                  type="radio"
+                  value="option2"
+                  checked={selectedOption === "option2"}
+                  onChange={handleOptionChange}
+                  disabled={success == successString}
+                  className={`mr-2 appearance-none outline-dashed outline-white p-2 outline-1 rounded-xl ${
+                    success == ""
+                      ? "checked:outline-purple-400"
+                      : success == successString
+                        ? "checked:outline-green-400"
+                        : "checked:outline-red-400"
+                  } checked:animate-rotate-y`}
+                />
+                JBL Bežični Mikrofon - 700din.
+              </label>
+
+              <label className="text-white font-thin text-xl">
+                <input
+                  type="radio"
+                  value="option3"
+                  checked={selectedOption === "option3"}
+                  disabled={success == successString}
+                  onChange={handleOptionChange}
+                  className={`mr-2 appearance-none outline-dashed outline-1 outline-white p-2 rounded-xl ${
+                    success == ""
+                      ? "checked:outline-purple-400"
+                      : success == successString
+                        ? "checked:outline-green-400"
+                        : "checked:outline-red-400"
+                  } checked:animate-rotate-y`}
+                />
+                Bez Mikrofona
+              </label>
+            </div>
+            <p className="text-3xl text-white font-thin mt-10">
+              {data.price
+                ? calculatePrice(
+                    data,
+                    getDatesBetween(
+                      dateRange.split("-to-")[0],
+                      dateRange.split("-to-")[1]
+                    ).length
+                  ) + "din."
+                : ""}
+            </p>
+            <Link
+              id="link"
+              className={`text-white mt-10 font-thin text-xl py-3 px-5 duration-300 outline-dashed outline-1 rounded-xl tracking-wide ${
+                success == ""
+                  ? !info.trim() || !phone.trim() || !selectedOption
+                    ? "outline-neutral-400"
+                    : "outline-purple-400"
+                  : success == successString
+                    ? "outline-green-400"
+                    : "outline-red-400"
+              }`}
+              to={success == successString ? "/" : null}
+              onClick={
+                success === successString ||
+                !info.trim() ||
+                !phone.trim() ||
+                !selectedOption
+                  ? null
+                  : handleSubmit
+              }
+            >
+              {success == ""
+                ? "POTVRDI"
+                : success == successString
+                  ? "NAZAD NA POČETNU"
+                  : "GREŠKA"}
+            </Link>
+            {success == successString ? (
+              <p
+                onClick={generateImage}
+                className="text-white text-lg font-thin mt-8 underline underline-offset-2 duration-300"
+              >
+                Sačuvaj Račun
+              </p>
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
       </div>
     </>
