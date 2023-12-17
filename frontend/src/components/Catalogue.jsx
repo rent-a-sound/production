@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { format, addDays, subDays, isDate } from "date-fns";
+import { format, addDays, subDays, parseISO } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import { FaChevronDown } from "react-icons/fa";
 import { srLatn } from "date-fns/locale";
@@ -19,6 +19,29 @@ const Catalogue = () => {
   const [priceLowHigh, setPriceLowHigh] = useState(true);
 
   const disabledDays = [{ from: new Date(0), to: subDays(new Date(), 1) }];
+
+  useEffect(() => {
+    const savedSelected = localStorage.getItem("selected");
+    if (savedSelected) {
+      const parsedSelected = JSON.parse(savedSelected);
+
+      parsedSelected.from = parseISO(parsedSelected.from);
+      parsedSelected.to = parseISO(parsedSelected.to);
+
+      setSelected({
+        from: parsedSelected.from,
+        to: !(parsedSelected.to == "Invalid Date")
+          ? parsedSelected.to
+          : undefined,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (selected) {
+      localStorage.setItem("selected", JSON.stringify(selected));
+    }
+  }, [selected]);
 
   useEffect(() => {
     const apiUrl = `https://niledragomirovic.pythonanywhere.com/data?city=${
