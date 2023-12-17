@@ -248,7 +248,7 @@ const Form = () => {
               className={`text-white text-4xl font-montserrat mt-8 mb-1`}
             />
             <label
-              className={`font-thin flex flex-col items-center duration-300 text-white p-2 justify-center text-lg h-10 w-full text-center rounded-xl m-2 outline-dashed ${
+              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 justify-center text-lg h-10 w-full text-center rounded-xl m-2 outline-dashed ${
                 selectedOption == "500"
                   ? success == null
                     ? "outline-purple-400 "
@@ -269,7 +269,7 @@ const Form = () => {
               JBL Žični Mikrofon
             </label>
             <label
-              className={`font-thin flex flex-col items-center duration-300 p-2 text-white justify-center text-lg h-10 w-full text-center rounded-xl m-2 outline-dashed ${
+              className={`font-thin flex flex-col items-center duration-300 p-2 text-white outline-1 justify-center text-lg h-10 w-full text-center rounded-xl m-2 outline-dashed ${
                 selectedOption == "700"
                   ? success == null
                     ? "outline-purple-400 "
@@ -291,7 +291,7 @@ const Form = () => {
             </label>
 
             <label
-              className={`font-thin flex flex-col p-2 items-center duration-300 text-white justify-center text-lg h-10 w-full text-center rounded-xl m-2 outline-dashed ${
+              className={`font-thin flex flex-col p-2 items-center duration-300 outline-1 text-white justify-center text-lg h-10 w-full text-center rounded-xl m-2 outline-dashed ${
                 selectedOption == "0"
                   ? success == null
                     ? "outline-purple-400 "
