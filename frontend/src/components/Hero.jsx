@@ -12,8 +12,11 @@ import partybox710 from "../public/710.webp";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const lorem =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tempus, neque in feugiat scelerisque, elit magna semper nibh, nec vulputate magna sapien tincidunt diam. Fusce ac dui et augue vehic";
+const lorem1 =
+  "Iznajmljivanje JBL PartyBox zvučnika za nezaboravne trenutke u Novom Sadu i Beogradu. Vrhunski zvuk, jednostavno korišćenje i podrška za savršeno iskustvo. Rezervišite sada i uživajte u muzici!";
+
+const lorem2 =
+  "Nakon ispune forme za naručivanje bićete kontaktirani radi potvrde porudžbine, dogovora o tačnom vremenu preuzimanja i povrata, kao i dodatnim informacijama.";
 
 const Hero = () => {
   const [isAnimating, setIsAnimating] = useState(true);
@@ -51,7 +54,7 @@ const Hero = () => {
             name="subtitle"
             className="font-thin md:text-xl mb-6 animate-fade-down animate-delay-200"
           >
-            {lorem}
+            {lorem1}
           </div>
           <div
             name="tip-container"
@@ -60,7 +63,7 @@ const Hero = () => {
             <div name="tip-icon" className="text-3xl pr-4 text-purple-400">
               <BsLightningChargeFill />
             </div>
-            <div name="tip-text">{lorem}</div>
+            <div name="tip-text">{lorem2}</div>
           </div>
         </div>
         <div
