@@ -24,6 +24,7 @@ const Form = () => {
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
+
   const successString =
     "Rezervacija poslata, bićete kontaktirani radi potvrde porudzbine.";
   const errorString = "Doslo je do greske, molim vas pokusajte ponovo.";
@@ -33,7 +34,8 @@ const Form = () => {
   };
 
   const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
+    const numericValue = e.target.value.replace(/\D/g, "");
+    setPhone(numericValue);
   };
 
   useEffect(() => {
@@ -274,12 +276,19 @@ const Form = () => {
           <button
             className={`text-white mt-10 font-thin text-2xl py-3 px-5 duration-300 outline-dashed outline-1 rounded-xl tracking-wide ${
               success == ""
-                ? "outline-purple-400"
+                ? !info.trim() || !phone.trim() || !selectedOption
+                  ? "outline-neutral-400"
+                  : "outline-purple-400"
                 : success == successString
                   ? "outline-green-400"
                   : "outline-red-400"
             }`}
-            disabled={success === successString}
+            disabled={
+              success === successString ||
+              !info.trim() ||
+              !phone.trim() ||
+              !selectedOption
+            }
             onClick={handleSubmit}
           >
             {success == ""
