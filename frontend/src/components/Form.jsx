@@ -33,12 +33,29 @@ const Form = () => {
   const errorString = "Doslo je do greske, molim vas pokusajte ponovo.";
 
   const handleInfoChange = (e) => {
-    setInfo(e.target.value);
+    const formattedValue = e.target.value.replace(/[^a-zA-Z]/g, "");
+    setInfo(formattedValue);
   };
 
   const handlePhoneChange = (e) => {
-    const numericValue = e.target.value.replace(/\D/g, "");
-    setPhone(numericValue);
+    const formattedValue = e.target.value.replace(/[^\d+]/g, "");
+    let formattedNumber;
+
+    if (formattedValue.startsWith("+")) {
+      formattedNumber = `+${formattedValue.slice(1, 4)} ${formattedValue.slice(
+        4,
+        13
+      )}`;
+    } else {
+      formattedNumber = `${formattedValue.slice(0, 3)} ${formattedValue.slice(
+        3,
+        10
+      )}`;
+    }
+
+    formattedNumber = formattedNumber.replace(/\s+/g, " ");
+
+    setPhone(formattedNumber);
   };
 
   const generateImage = () => {
@@ -218,6 +235,8 @@ const Form = () => {
               placeholder="Vaše ime i prezime..."
             ></textarea>
             <TbPhoneFilled
+              inputMode="numeric"
+              pattern="^[0-9+ ]*$"
               className={`${
                 animatePhone ? "animate-shake" : ""
               } text-white text-3xl font-montserrat mt-5 mb-3`}
@@ -308,7 +327,11 @@ const Form = () => {
               id="link"
               className={`text-white mt-10 font-thin text-xl py-3 px-5 duration-300 outline-dashed outline-1 rounded-xl tracking-wide ${
                 success == ""
-                  ? !info.trim() || !phone.trim() || !selectedOption
+                  ? !info.trim() ||
+                    (phone.startsWith("+")
+                      ? phone.length < 13
+                      : phone.length < 10) ||
+                    !selectedOption
                     ? "outline-neutral-400"
                     : "outline-purple-400"
                   : success == successString
@@ -319,7 +342,9 @@ const Form = () => {
               onClick={
                 success === successString ||
                 !info.trim() ||
-                !phone.trim() ||
+                (phone.startsWith("+")
+                  ? phone.length < 13
+                  : phone.length < 10) ||
                 !selectedOption
                   ? null
                   : handleSubmit
