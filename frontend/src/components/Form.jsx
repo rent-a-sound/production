@@ -15,14 +15,13 @@ const Form = () => {
   const [phone, setPhone] = useState("");
   const [success, setSuccess] = useState(null);
   const [data, setData] = useState({});
-  const [error, setError] = useState(null);
   const [animatePerson, setAnimatePerson] = useState(false);
   const [animatePhone, setAnimatePhone] = useState(false);
 
   const micMap = {
-    0: "",
-    500: "Žični mikrofon\n",
-    700: "Bežični mikrofon\n",
+    "Bez mikrofona": 0,
+    "Žični mikrofon": 500,
+    "Bežični mikrofon": 700,
   };
 
   const [selectedOption, setSelectedOption] = useState(null);
@@ -134,8 +133,8 @@ const Form = () => {
       : days > speaker.price.length
         ? priceObject.price +
           speaker.overdraft * (days - speaker.price.length) +
-          (selectedOption ? parseInt(selectedOption) : 0)
-        : priceObject.price + (selectedOption ? parseInt(selectedOption) : 0);
+          (selectedOption ? micMap[selectedOption] : 0)
+        : priceObject.price + (selectedOption ? micMap[selectedOption] : 0);
   };
 
   const handleSubmit = async () => {
@@ -155,7 +154,8 @@ const Form = () => {
                 " do " +
                 dateRange.split("-to-")[1]) +
             "\n" +
-            micMap[selectedOption] +
+            selectedOption +
+            "\n" +
             calculatePrice(
               data,
               getDatesBetween(
@@ -164,7 +164,6 @@ const Form = () => {
               ).length
             ) +
             "din."
-          //https://nikoladragomirovic.github.io/RentASound/#/rez/pb100-2/21-12-2023-to-23-12-2023
         )}`,
         {
           headers: {
@@ -255,10 +254,10 @@ const Form = () => {
               className={`text-white text-4xl font-montserrat mt-8 mb-1`}
             />
             <label
-              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 justify-center text-lg h-10 w-full text-center rounded-xl m-2 outline-dashed ${
-                selectedOption == "500"
+              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 justify-center h-10 text-lg w-full text-center rounded-xl m-2 outline-dashed ${
+                selectedOption == "Žični mikrofon"
                   ? success == null
-                    ? "outline-purple-400 "
+                    ? "outline-purple-400"
                     : success == true
                       ? "outline-green-400"
                       : "outline-red-400"
@@ -267,8 +266,8 @@ const Form = () => {
             >
               <input
                 type="radio"
-                value="500"
-                checked={selectedOption === "500"}
+                value="Žični mikrofon"
+                checked={selectedOption === "Žični mikrofon"}
                 onChange={handleOptionChange}
                 disabled={success == true}
                 className="appearance-none"
@@ -277,7 +276,7 @@ const Form = () => {
             </label>
             <label
               className={`font-thin flex flex-col items-center duration-300 p-2 text-white outline-1 justify-center text-lg h-10 w-full text-center rounded-xl m-2 outline-dashed ${
-                selectedOption == "700"
+                selectedOption == "Bežični mikrofon"
                   ? success == null
                     ? "outline-purple-400 "
                     : success == true
@@ -288,8 +287,8 @@ const Form = () => {
             >
               <input
                 type="radio"
-                value="700"
-                checked={selectedOption === "700"}
+                value="Bežični mikrofon"
+                checked={selectedOption === "Bežični mikrofon"}
                 onChange={handleOptionChange}
                 disabled={success == true}
                 className="appearance-none"
@@ -299,7 +298,7 @@ const Form = () => {
 
             <label
               className={`font-thin flex flex-col p-2 items-center duration-300 outline-1 text-white justify-center text-lg h-10 w-full text-center rounded-xl m-2 outline-dashed ${
-                selectedOption == "0"
+                selectedOption == "Bez mikrofona"
                   ? success == null
                     ? "outline-purple-400 "
                     : success == true
@@ -310,8 +309,8 @@ const Form = () => {
             >
               <input
                 type="radio"
-                value="0"
-                checked={selectedOption === "0"}
+                value="Bez mikrofona"
+                checked={selectedOption === "Bez mikrofona"}
                 disabled={success == true}
                 onChange={handleOptionChange}
                 className="appearance-none"
