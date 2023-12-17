@@ -209,9 +209,9 @@ const Catalogue = () => {
             className="flex flex-row items-center justify-center text-white text-xl font-thin"
           >
             {!taken ? (
-              <VscEye className="mr-2 text-2xl animate-fade-left" />
+              <VscEye className="mr-2 text-2xl animate-jump-in" />
             ) : (
-              <VscEyeClosed className="mr-2 text-2xl animate-fade-left" />
+              <VscEyeClosed className="mr-2 text-2xl animate-jump-in" />
             )}
             ZAUZETI
           </div>
