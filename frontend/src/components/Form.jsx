@@ -182,7 +182,7 @@ const Form = () => {
   return (
     <>
       <div className="bg-neutral-950 w-full min-h-screen flex flex-col items-center justify-center duration-300">
-        <div className="p-4 bg-neutral-950 rounded-lg min-h-fit" id="receipt">
+        <div className="p-4 bg-neutral-950 rounded-3xl max-h-fit" id="receipt">
           <div
             className={`${
               success == true
@@ -194,7 +194,7 @@ const Form = () => {
                 : success == true
                   ? "outline-green-400"
                   : "outline-red-400"
-            } flex flex-col items-center justify-start my-24 outline-dashed duration-300 outline-1 p-10 rounded-xl`}
+            } flex flex-col items-center justify-start outline-dashed duration-300 my-12 outline-1 p-10 rounded-xl`}
           >
             <FaReceipt className="text-white text-6xl font-montserrat mb-6" />
             <p className="text-3xl font-thin text-white m-2">{data.name}</p>
@@ -210,7 +210,7 @@ const Form = () => {
               } text-white text-3xl font-montserrat mt-2 mb-3`}
             />
             <input
-              autocomplete="off"
+              autoComplete="off"
               onFocus={() => setAnimatePerson(true)}
               onBlur={() => setAnimatePerson(false)}
               className={`bg-neutral-950 outline-dashed font-thin ${
@@ -232,7 +232,7 @@ const Form = () => {
               } text-white text-3xl font-montserrat mt-5 mb-3`}
             />
             <input
-              autocomplete="off"
+              autoComplete="off"
               onFocus={() => setAnimatePhone(true)}
               onBlur={() => setAnimatePhone(false)}
               inputMode="numeric"
