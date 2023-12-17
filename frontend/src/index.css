@@ -54,6 +54,10 @@
   -webkit-appearance: none;
 }
 
+input:-webkit-autofill {
+  background-color: rgb(10 10 10); /* Set the desired background color */
+}
+
 .rdp-button_reset:focus-visible {
   /* Make sure to reset outline only when :focus-visible is supported */
   outline: none;

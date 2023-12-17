@@ -219,6 +219,7 @@ const Form = () => {
               } outline-1 text-center placeholder-neutral-500 w-full mb-3 duration-300 resize-none outline-none h-10 rounded-xl text-white`}
               value={info}
               onChange={handleInfoChange}
+              onInput={handleInfoChange}
               readOnly={success == true}
               placeholder="Vaše ime i prezime..."
             ></input>
@@ -241,6 +242,7 @@ const Form = () => {
               } text-center placeholder-neutral-500 mb-2 w-full duration-300 resize-none outline-none h-10 rounded-xl text-white`}
               value={phone}
               onChange={handlePhoneChange}
+              onInput={handlePhoneChange}
               readOnly={success == true}
               placeholder="Vaš broj telefona..."
             ></input>
