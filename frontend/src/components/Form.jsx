@@ -13,11 +13,17 @@ import download from "downloadjs";
 const Form = () => {
   const [info, setInfo] = useState("");
   const [phone, setPhone] = useState("");
-  const [success, setSuccess] = useState("");
+  const [success, setSuccess] = useState(null);
   const [data, setData] = useState({});
   const [error, setError] = useState(null);
   const [animatePerson, setAnimatePerson] = useState(false);
   const [animatePhone, setAnimatePhone] = useState(false);
+
+  const micMap = {
+    0: "",
+    500: "Žični mikrofon\n",
+    700: "Bežični mikrofon\n",
+  };
 
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -28,34 +34,14 @@ const Form = () => {
     setSelectedOption(event.target.value);
   };
 
-  const successString =
-    "Rezervacija poslata, bićete kontaktirani radi potvrde porudzbine.";
-  const errorString = "Doslo je do greske, molim vas pokusajte ponovo.";
-
   const handleInfoChange = (e) => {
-    const formattedValue = e.target.value.replace(/[^a-zA-Z]/g, "");
+    const formattedValue = e.target.value.replace(/[^a-zA-Z\s]/g, "");
     setInfo(formattedValue);
   };
 
   const handlePhoneChange = (e) => {
     const formattedValue = e.target.value.replace(/[^\d+]/g, "");
-    let formattedNumber;
-
-    if (formattedValue.startsWith("+")) {
-      formattedNumber = `+${formattedValue.slice(1, 4)} ${formattedValue.slice(
-        4,
-        13
-      )}`;
-    } else {
-      formattedNumber = `${formattedValue.slice(0, 3)} ${formattedValue.slice(
-        3,
-        10
-      )}`;
-    }
-
-    formattedNumber = formattedNumber.replace(/\s+/g, " ");
-
-    setPhone(formattedNumber);
+    setPhone(formattedValue.slice(0, 14));
   };
 
   const generateImage = () => {
@@ -143,8 +129,10 @@ const Form = () => {
     return days == 0
       ? 0
       : days > speaker.price.length
-        ? priceObject.price + speaker.overdraft * (days - speaker.price.length)
-        : priceObject.price;
+        ? priceObject.price +
+          speaker.overdraft * (days - speaker.price.length) +
+          (selectedOption ? parseInt(selectedOption) : 0)
+        : priceObject.price + (selectedOption ? parseInt(selectedOption) : 0);
   };
 
   const handleSubmit = async () => {
@@ -164,6 +152,7 @@ const Form = () => {
                 " do " +
                 dateRange.split("-to-")[1]) +
             "\n" +
+            micMap[selectedOption] +
             calculatePrice(
               data,
               getDatesBetween(
@@ -181,10 +170,10 @@ const Form = () => {
         }
       );
 
-      setSuccess(successString);
+      setSuccess(true);
     } catch (error) {
       console.error("Error submitting form:", error);
-      setSuccess(errorString);
+      setSuccess(false);
     }
   };
 
@@ -194,15 +183,13 @@ const Form = () => {
         <div className="p-4 bg-neutral-950 rounded-lg min-h-fit" id="receipt">
           <div
             className={`${
-              success == successString
+              success == true
                 ? "animate-jump animate-duration-500"
                 : "animate-jump-in animate-duration-500"
-            } ${
-              success == errorString ? "animate-shake animate-duration-300" : ""
-            } ${
-              success == ""
+            } ${success == false ? "animate-shake animate-duration-300" : ""} ${
+              success == null
                 ? "outline-purple-400"
-                : success == successString
+                : success == true
                   ? "outline-green-400"
                   : "outline-red-400"
             } flex flex-col items-center justify-start my-24 outline-dashed duration-300 outline-1 p-10 rounded-xl`}
@@ -220,98 +207,110 @@ const Form = () => {
                 animatePerson ? "animate-shake" : ""
               } text-white text-3xl font-montserrat mt-2 mb-3`}
             />
-            <textarea
+            <input
               onFocus={() => setAnimatePerson(true)}
               onBlur={() => setAnimatePerson(false)}
               className={`bg-neutral-950 outline-dashed font-thin ${
-                success == ""
+                success == null
                   ? "outline-purple-400"
-                  : success == successString
+                  : success == true
                     ? "outline-green-400"
                     : "outline-red-400"
-              } outline-1 text-center placeholder-neutral-500 w-full mb-3 duration-300 resize-none outline-none pl-2 pt-2 h-10 rounded-xl text-white`}
+              } outline-1 text-center placeholder-neutral-500 w-full mb-3 duration-300 resize-none outline-none h-10 rounded-xl text-white`}
               value={info}
               onChange={handleInfoChange}
+              readOnly={success == true}
               placeholder="Vaše ime i prezime..."
-            ></textarea>
+            ></input>
             <TbPhoneFilled
-              inputMode="numeric"
-              pattern="^[0-9+ ]*$"
               className={`${
                 animatePhone ? "animate-shake" : ""
               } text-white text-3xl font-montserrat mt-5 mb-3`}
             />
-            <textarea
+            <input
               onFocus={() => setAnimatePhone(true)}
               onBlur={() => setAnimatePhone(false)}
-              className={`bg-neutral-950 outline-dashed font-thin outline-1 ${
-                success == ""
+              inputMode="numeric"
+              type="tel"
+              className={`bg-neutral-950 appearance-none m-0 outline-dashed font-thin outline-1 ${
+                success == null
                   ? "outline-purple-400"
-                  : success == successString
+                  : success == true
                     ? "outline-green-400"
                     : "outline-red-400"
-              } text-center placeholder-neutral-500 mb-2 w-full duration-300 resize-none outline-none pl-2 pt-2 h-10 rounded-xl text-white`}
+              } text-center placeholder-neutral-500 mb-2 w-full duration-300 resize-none outline-none h-10 rounded-xl text-white`}
               value={phone}
               onChange={handlePhoneChange}
+              readOnly={success == true}
               placeholder="Vaš broj telefona..."
-            ></textarea>
+            ></input>
             <IoMdMicrophone
-              className={`text-white text-4xl font-montserrat mt-8 mb-3`}
+              className={`text-white text-4xl font-montserrat mt-8 mb-1`}
             />
-            <div className="flex flex-col items-start justify-start">
-              <label className="text-white font-thin text-xl">
-                <input
-                  type="radio"
-                  value="option1"
-                  checked={selectedOption === "option1"}
-                  onChange={handleOptionChange}
-                  disabled={success == successString}
-                  className={`mr-2 appearance-none outline-dashed outline-1 outline-white p-2 rounded-xl ${
-                    success == ""
-                      ? "checked:outline-purple-400"
-                      : success == successString
-                        ? "checked:outline-green-400"
-                        : "checked:outline-red-400"
-                  } checked:animate-rotate-y`}
-                />
-                JBL Žični Mikrofon - 500din.
-              </label>
-              <label className="text-white font-thin text-xl">
-                <input
-                  type="radio"
-                  value="option2"
-                  checked={selectedOption === "option2"}
-                  onChange={handleOptionChange}
-                  disabled={success == successString}
-                  className={`mr-2 appearance-none outline-dashed outline-white p-2 outline-1 rounded-xl ${
-                    success == ""
-                      ? "checked:outline-purple-400"
-                      : success == successString
-                        ? "checked:outline-green-400"
-                        : "checked:outline-red-400"
-                  } checked:animate-rotate-y`}
-                />
-                JBL Bežični Mikrofon - 700din.
-              </label>
+            <label
+              className={`font-thin flex flex-col items-center duration-300 text-white p-2 justify-center text-lg h-10 w-full text-center rounded-xl m-2 outline-dashed ${
+                selectedOption == "500"
+                  ? success == null
+                    ? "outline-purple-400 "
+                    : success == true
+                      ? "outline-green-400"
+                      : "outline-red-400"
+                  : "outline-white"
+              }`}
+            >
+              <input
+                type="radio"
+                value="500"
+                checked={selectedOption === "500"}
+                onChange={handleOptionChange}
+                disabled={success == true}
+                className="appearance-none"
+              />
+              JBL Žični Mikrofon
+            </label>
+            <label
+              className={`font-thin flex flex-col items-center duration-300 p-2 text-white justify-center text-lg h-10 w-full text-center rounded-xl m-2 outline-dashed ${
+                selectedOption == "700"
+                  ? success == null
+                    ? "outline-purple-400 "
+                    : success == true
+                      ? "outline-green-400"
+                      : "outline-red-400"
+                  : "outline-white"
+              }`}
+            >
+              <input
+                type="radio"
+                value="700"
+                checked={selectedOption === "700"}
+                onChange={handleOptionChange}
+                disabled={success == true}
+                className="appearance-none"
+              />
+              JBL Bežični Mikrofon
+            </label>
 
-              <label className="text-white font-thin text-xl">
-                <input
-                  type="radio"
-                  value="option3"
-                  checked={selectedOption === "option3"}
-                  disabled={success == successString}
-                  onChange={handleOptionChange}
-                  className={`mr-2 appearance-none outline-dashed outline-1 outline-white p-2 rounded-xl ${
-                    success == ""
-                      ? "checked:outline-purple-400"
-                      : success == successString
-                        ? "checked:outline-green-400"
-                        : "checked:outline-red-400"
-                  } checked:animate-rotate-y`}
-                />
-                Bez Mikrofona
-              </label>
-            </div>
+            <label
+              className={`font-thin flex flex-col p-2 items-center duration-300 text-white justify-center text-lg h-10 w-full text-center rounded-xl m-2 outline-dashed ${
+                selectedOption == "0"
+                  ? success == null
+                    ? "outline-purple-400 "
+                    : success == true
+                      ? "outline-green-400"
+                      : "outline-red-400"
+                  : "outline-white"
+              }`}
+            >
+              <input
+                type="radio"
+                value="0"
+                checked={selectedOption === "0"}
+                disabled={success == true}
+                onChange={handleOptionChange}
+                className="appearance-none"
+              />
+              Bez Mikrofona
+            </label>
             <p className="text-3xl text-white font-thin mt-10">
               {data.price
                 ? calculatePrice(
@@ -326,37 +325,37 @@ const Form = () => {
             <Link
               id="link"
               className={`text-white mt-10 font-thin text-xl py-3 px-5 duration-300 outline-dashed outline-1 rounded-xl tracking-wide ${
-                success == ""
+                success == null
                   ? !info.trim() ||
                     (phone.startsWith("+")
-                      ? phone.length < 13
-                      : phone.length < 10) ||
+                      ? phone.length < 12
+                      : phone.length < 9) ||
                     !selectedOption
                     ? "outline-neutral-400"
                     : "outline-purple-400"
-                  : success == successString
+                  : success == true
                     ? "outline-green-400"
                     : "outline-red-400"
               }`}
-              to={success == successString ? "/" : null}
+              to={success == true ? "/" : null}
               onClick={
-                success === successString ||
+                success === true ||
                 !info.trim() ||
                 (phone.startsWith("+")
-                  ? phone.length < 13
-                  : phone.length < 10) ||
+                  ? phone.length < 12
+                  : phone.length < 9) ||
                 !selectedOption
                   ? null
                   : handleSubmit
               }
             >
-              {success == ""
+              {success == null
                 ? "POTVRDI"
-                : success == successString
+                : success == true
                   ? "NAZAD NA POČETNU"
                   : "GREŠKA"}
             </Link>
-            {success == successString ? (
+            {success == true ? (
               <p
                 onClick={generateImage}
                 className="text-white text-lg font-thin mt-8 underline underline-offset-2 duration-300"
