@@ -9,6 +9,7 @@ import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
 import { HiArrowDown } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import { useSwipeable } from "react-swipeable";
 
 const Catalogue = () => {
   const [data, setData] = useState(null);
@@ -178,10 +179,17 @@ const Catalogue = () => {
       })
     : "";
 
+  const handlers = useSwipeable({
+    onSwipedDown: () => setClicked(true),
+    onSwipedUp: () => setClicked(false),
+    preventScrollOnSwipe: true,
+  });
+
   return (
     <div className="flex flex-col items-center">
       <div
         onClick={() => setClicked(!clicked)}
+        {...handlers}
         className={`flex flex-col items-center justify-start fixed duration-300 bg-gradient-to-t from-neutral-800 to-neutral-900 shadow-[0_0_30px_black] outline outline-1 outline-neutral-500 rounded-xl p-4 z-10 ${
           !clicked ? "-translate-y-[26rem]" : "-translate-y-[1.5rem]"
         }`}
