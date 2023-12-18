@@ -269,7 +269,7 @@ const Catalogue = () => {
         />
       </div>
       <div
-        className={`w-full min-h-screen bg-neutral-950 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 p-6 py-5 pt-36 pb-16 font-montserrat text-center`}
+        className={`w-full min-h-screen bg-neutral-950 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 p-6 py-5 pt-56 pb-16 font-montserrat text-center`}
       >
         {sortedData &&
           sortedData.map((item, index) => {
