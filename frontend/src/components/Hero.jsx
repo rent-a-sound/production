@@ -16,7 +16,7 @@ const lorem1 =
   "Iznajmljivanje JBL PartyBox zvučnika za nezaboravne trenutke u Novom Sadu i Beogradu. Vrhunski zvuk, jednostavno korišćenje i podrška za savršeno iskustvo. Rezervišite sada i uživajte u muzici!";
 
 const lorem2 =
-  "Nakon ispune forme za naručivanje bićete kontaktirani radi potvrde porudžbine, dogovora o tačnom vremenu preuzimanja i povrata, kao i dodatnim informacijama.";
+  "Nakon ispune forme za naručivanje bićete kontaktirani radi potvrde porudžbine, dogovora o tačnom vremenu i mestu preuzimanja i povrata, kao i dodatnim informacijama.";
 
 const Hero = () => {
   const [isAnimating, setIsAnimating] = useState(true);

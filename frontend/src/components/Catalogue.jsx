@@ -135,15 +135,17 @@ const Catalogue = () => {
     ];
   };
 
-  const calculatePrice = (speaker, days) => {
+  const calculatePrice = (speaker, dates) => {
+    console.log(dates);
     const priceObject =
-      days > speaker.price.length
+      dates.length > speaker.price.length
         ? speaker.price.find((item) => item.day === speaker.price.length)
-        : speaker.price.find((item) => item.day === days);
-    return days == 0
+        : speaker.price.find((item) => item.day === dates.length);
+    return dates.length == 0
       ? 0
-      : days > speaker.price.length
-        ? priceObject.price + speaker.overdraft * (days - speaker.price.length)
+      : dates.length > speaker.price.length
+        ? priceObject.price +
+          speaker.overdraft * (dates.length - speaker.price.length)
         : priceObject.price;
   };
 
@@ -175,11 +177,11 @@ const Catalogue = () => {
         }
 
         const priceA = !availabilityInfoA.isDateUnavailable
-          ? calculatePrice(a, selected ? formatDate(selected).length : 0)
+          ? calculatePrice(a, formatDate(selected))
           : 0;
 
         const priceB = !availabilityInfoB.isDateUnavailable
-          ? calculatePrice(b, selected ? formatDate(selected).length : 0)
+          ? calculatePrice(b, formatDate(selected))
           : 0;
 
         return priceLowHigh ? priceA - priceB : priceB - priceA;
@@ -320,7 +322,7 @@ const Catalogue = () => {
                     >
                       {isDateUnavailable
                         ? "Zauzet"
-                        : calculatePrice(item, dates.length) + "din."}
+                        : calculatePrice(item, dates) + "din."}
                     </span>
                   </Link>
                 );
