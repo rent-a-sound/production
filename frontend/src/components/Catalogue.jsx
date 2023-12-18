@@ -9,7 +9,7 @@ import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
 import { HiArrowDown } from "react-icons/hi2";
 import { Link } from "react-router-dom";
-import { useSwipeable } from "react-swipeable";
+import { BiSolidRightArrow } from "react-icons/bi";
 
 const Catalogue = () => {
   const [data, setData] = useState(null);
@@ -22,26 +22,39 @@ const Catalogue = () => {
   const disabledDays = [{ from: new Date(0), to: subDays(new Date(), 1) }];
 
   useEffect(() => {
+    const handleScroll = () => {
+      setClicked(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
     const savedSelected = localStorage.getItem("selected");
     if (savedSelected) {
-      const parsedSelected = JSON.parse(savedSelected);
+      if (savedSelected == "undefined") {
+      } else {
+        const parsedSelected = JSON.parse(savedSelected);
 
-      parsedSelected.from = parseISO(parsedSelected.from);
-      parsedSelected.to = parseISO(parsedSelected.to);
+        parsedSelected.from = parseISO(parsedSelected.from);
+        parsedSelected.to = parseISO(parsedSelected.to);
 
-      setSelected({
-        from: parsedSelected.from,
-        to: !(parsedSelected.to == "Invalid Date")
-          ? parsedSelected.to
-          : undefined,
-      });
+        setSelected({
+          from: parsedSelected.from,
+          to: !(parsedSelected.to == "Invalid Date")
+            ? parsedSelected.to
+            : undefined,
+        });
+      }
     }
   }, []);
 
   useEffect(() => {
-    if (selected) {
-      localStorage.setItem("selected", JSON.stringify(selected));
-    }
+    localStorage.setItem("selected", JSON.stringify(selected));
   }, [selected]);
 
   useEffect(() => {
@@ -94,38 +107,32 @@ const Catalogue = () => {
 
   const displayDate = (date) => {
     if (!date || !date.from) {
-      return "Nije izabran datum";
+      return ["Nije izabran", "Nije izabran"];
     }
 
     const fromDate = new Date(date.from);
 
     if (isNaN(fromDate)) {
-      return "Nije izabran datum";
+      return ["Nije izabran", "Nije izabran"];
     }
 
     if (!date.to) {
-      return (
-        <p>
-          Preuzimanje | {format(fromDate, "PPP", { locale: srLatn })}
-          <br />
-          Povrat | {format(addDays(fromDate, 1), "PPP", { locale: srLatn })}
-        </p>
-      );
+      return [
+        format(fromDate, "do MMM yyyy", { locale: srLatn }),
+        format(addDays(fromDate, 1), "do MMM yyyy", { locale: srLatn }),
+      ];
     }
 
     const toDate = new Date(date.to);
 
     if (isNaN(toDate)) {
-      return "Nije izabran datum";
+      return ["Nije izabran", "Nije izabran"];
     }
 
-    return (
-      <p>
-        Preuzimanje | {format(fromDate, "PPP", { locale: srLatn })}
-        <br />
-        Povrat | {format(addDays(toDate, 1), "PPP", { locale: srLatn })}
-      </p>
-    );
+    return [
+      format(fromDate, "do MMM yyyy", { locale: srLatn }),
+      format(addDays(toDate, 1), "do MMM yyyy", { locale: srLatn }),
+    ];
   };
 
   const calculatePrice = (speaker, days) => {
@@ -179,19 +186,12 @@ const Catalogue = () => {
       })
     : "";
 
-  const handlers = useSwipeable({
-    onSwipedDown: () => setClicked(true),
-    onSwipedUp: () => setClicked(false),
-    preventScrollOnSwipe: true,
-  });
-
   return (
     <div className="flex flex-col items-center">
       <div
         onClick={() => setClicked(!clicked)}
-        {...handlers}
         className={`flex flex-col items-center justify-start fixed duration-300 bg-gradient-to-t from-neutral-800 to-neutral-900 shadow-[0_0_30px_black] outline outline-1 outline-neutral-500 rounded-xl p-4 z-10 ${
-          !clicked ? "-translate-y-[26rem]" : "-translate-y-[1.5rem]"
+          !clicked ? "-translate-y-[22rem]" : "-translate-y-[1rem]"
         }`}
       >
         <div
@@ -208,7 +208,7 @@ const Catalogue = () => {
             disabled={disabledDays}
           />
         </div>
-        <div className="flex flex-row items-center w-3/4 bg-gradient-to-b from-neutral-900 py-2 px-4 outline outline-1 rounded-md outline-neutral-500 justify-between">
+        <div className="flex flex-row items-center w-11/12 bg-gradient-to-b mt-2 from-neutral-900 py-2 px-4 outline outline-1 rounded-md outline-neutral-600 justify-around">
           <div
             onClick={(e) => {
               e.stopPropagation();
@@ -239,16 +239,33 @@ const Catalogue = () => {
           </div>
         </div>
         <span
-          className={`text-neutral-200 text-lg mt-8 font-thin ${
+          className={` text-lg mt-3 font-thin flex flex-row items-center justify-start ${
+            selected
+              ? "text-purple-200 from-purple-900 to-violet-900 outline outline-1 outline-purple-400 bg-gradient-to-tr"
+              : "text-neutral-200 from-neutral-900 outline outline-1 outline-neutral-600 bg-gradient-to-b"
+          } py-1 px-3 rounded-md w-11/12 ${
             !clicked ? "-" : "-translate-y-0"
           } duration-300`}
         >
-          {displayDate(selected)}
+          Preuzimanje <BiSolidRightArrow className="mx-2 text-xs" />
+          {displayDate(selected)[0]}
+        </span>
+        <span
+          className={` text-lg mt-3 font-thin flex flex-row items-center justify-start ${
+            selected
+              ? "text-purple-200 from-purple-900 to-violet-900 outline outline-1 outline-purple-400 bg-gradient-to-tr"
+              : "text-neutral-200 from-neutral-900 outline outline-1 outline-neutral-600 bg-gradient-to-b"
+          } py-1 px-3 rounded-md w-11/12 ${
+            !clicked ? "-" : "-translate-y-0"
+          } duration-300`}
+        >
+          Povrat <BiSolidRightArrow className="duration-300 mx-2 text-xs" />
+          {displayDate(selected)[1]}
         </span>
         <FaChevronDown
           className={`text-neutral-200 text-3xl ${
             !clicked ? "" : "-translate-y-0 rotate-180"
-          } duration-300 mt-2 -mb-1`}
+          } duration-300 mt-3 -mb-1`}
         />
       </div>
       <div
