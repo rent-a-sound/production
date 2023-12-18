@@ -165,7 +165,7 @@ const Hero = () => {
           </a>
           <a
             name="mail"
-            href="mailto:djura@rentasound.com"
+            href="mailto:zvucnici.i.ns@gmail.com"
             className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 outline h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
           >
             <div className="flex flex-row items-center mt-4 ml-4">
@@ -173,7 +173,7 @@ const Hero = () => {
               MAIL
             </div>
             <div className="text-lg font-thin ml-4 mt-2">
-              djura@rentasound.com
+              zvucnici.i.ns@gmail.com
             </div>
           </a>
         </div>
