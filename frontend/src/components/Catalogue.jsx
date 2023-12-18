@@ -136,7 +136,6 @@ const Catalogue = () => {
   };
 
   const calculatePrice = (speaker, dates) => {
-    console.log(dates);
     const priceObject =
       dates.length > speaker.price.length
         ? speaker.price.find((item) => item.day === speaker.price.length)
@@ -294,7 +293,7 @@ const Catalogue = () => {
                     className={`flex flex-col items-center justify-start mx-5 my-5 h-fit bg-gradient-to-b outline outline-1 outline-neutral-500 from-neutral-900 to-neutral-950 rounded-2xl duration-500 animate-fade-down`}
                   >
                     <div className="bg-gradient-to-b from-neutral-800 to-neutral-900 mt-8 mb-8 w-5/6 rounded-3xl outline outline-1 outline-neutral-500">
-                      <h1 className="mb-3 mt-5 mx-4 text-2xl font-bold tracking-wider text-white">
+                      <h1 className="mb-3 mt-3 mx-4 text-2xl font-bold tracking-wider text-white">
                         {item.name}
                       </h1>
                       <p className="font-thin text-white text-xl mb-3 mx-4 mt-0">
@@ -302,7 +301,7 @@ const Catalogue = () => {
                           ? "Ugradjena Baterija"
                           : "Bez Ugradjene Baterije"}
                       </p>
-                      <p className="font-thin text-white text-xl m-3 mb-5 mt-0">
+                      <p className="font-thin text-white text-xl m-3 mb-3 mt-0">
                         {item.desc}
                       </p>
                     </div>
@@ -313,7 +312,7 @@ const Catalogue = () => {
                     />
                     <span
                       className={`${
-                        selected ? "opacity-100 mb-10" : "opacity-0 -mb-16"
+                        selected ? "opacity-100 mb-8" : "opacity-0 -mb-16"
                       } ${
                         isDateUnavailable
                           ? "text-neutral-400 outline-neutral-500 from-neutral-800 to-neutral-900"
