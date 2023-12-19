@@ -17,6 +17,7 @@ const Form = () => {
   const [data, setData] = useState({});
   const [animatePerson, setAnimatePerson] = useState(false);
   const [animatePhone, setAnimatePhone] = useState(false);
+  const [animateMic, setAnimateMic] = useState(false);
 
   const micMap = {
     "Bez mikrofona": 0,
@@ -211,8 +212,13 @@ const Form = () => {
             />
             <input
               autoComplete="off"
-              onFocus={() => setAnimatePerson(true)}
-              onBlur={() => setAnimatePerson(false)}
+              onClick={() => {
+                setAnimatePerson(false);
+
+                setTimeout(() => {
+                  setAnimatePerson(true);
+                }, 0);
+              }}
               className={`bg-neutral-950 outline-dashed font-thin ${
                 success == null
                   ? "outline-purple-400"
@@ -233,8 +239,13 @@ const Form = () => {
             />
             <input
               autoComplete="off"
-              onFocus={() => setAnimatePhone(true)}
-              onBlur={() => setAnimatePhone(false)}
+              onClick={() => {
+                setAnimatePhone(false);
+
+                setTimeout(() => {
+                  setAnimatePhone(true);
+                }, 0);
+              }}
               inputMode="numeric"
               type="tel"
               className={`bg-neutral-950 appearance-none m-0 outline-dashed font-thin outline-1 ${
@@ -251,7 +262,9 @@ const Form = () => {
               placeholder="Vaš broj telefona..."
             ></input>
             <IoMdMicrophone
-              className={`text-white text-4xl font-montserrat mt-8 mb-1`}
+              className={`text-white text-4xl font-montserrat mt-8 mb-1 ${
+                animateMic ? "animate-shake" : ""
+              }`}
             />
             <label
               className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 justify-center h-10 text-lg w-full text-center rounded-xl m-2 outline-dashed ${
@@ -267,6 +280,13 @@ const Form = () => {
               <input
                 type="radio"
                 value="Žični mikrofon"
+                onClick={() => {
+                  setAnimateMic(false);
+
+                  setTimeout(() => {
+                    setAnimateMic(true);
+                  }, 0);
+                }}
                 checked={selectedOption === "Žični mikrofon"}
                 onChange={handleOptionChange}
                 disabled={success == true}
@@ -286,6 +306,13 @@ const Form = () => {
               }`}
             >
               <input
+                onClick={() => {
+                  setAnimateMic(false);
+
+                  setTimeout(() => {
+                    setAnimateMic(true);
+                  }, 0);
+                }}
                 type="radio"
                 value="Bežični mikrofon"
                 checked={selectedOption === "Bežični mikrofon"}
@@ -308,6 +335,13 @@ const Form = () => {
               }`}
             >
               <input
+                onClick={() => {
+                  setAnimateMic(false);
+
+                  setTimeout(() => {
+                    setAnimateMic(true);
+                  }, 0);
+                }}
                 type="radio"
                 value="Bez mikrofona"
                 checked={selectedOption === "Bez mikrofona"}
