@@ -276,7 +276,6 @@ const Form = () => {
                   setAnimatePhone(true);
                 }, 0);
               }}
-              inputMode="numeric"
               type="tel"
               className={`bg-neutral-950 appearance-none m-0 outline-dashed font-thin outline-1 ${
                 success == null
