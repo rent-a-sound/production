@@ -282,9 +282,9 @@ input:-webkit-autofill {
 .rdp-day_selected,
 .rdp-day_selected:focus-visible,
 .rdp-day_selected:hover {
-  color: rgb(233 213 255);
+  color: white;
   opacity: 1;
-  background: linear-gradient(to bottom, #6b21a8, #4c1d95);
+  background: linear-gradient(to bottom, #171717, transparent);
   border: 1px solid #c084fc;
 }
 
