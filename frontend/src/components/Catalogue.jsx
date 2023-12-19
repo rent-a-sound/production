@@ -18,6 +18,18 @@ const Catalogue = () => {
   const [clicked, setClicked] = useState(false);
   const [taken, setTaken] = useState(true);
   const [priceLowHigh, setPriceLowHigh] = useState(true);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  const updateScreenWidth = () => {
+    setScreenWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateScreenWidth);
+    return () => {
+      window.removeEventListener("resize", updateScreenWidth);
+    };
+  }, []);
 
   const disabledDays = [{ from: new Date(0), to: subDays(new Date(), 1) }];
 
@@ -195,12 +207,15 @@ const Catalogue = () => {
   return (
     <div className="flex flex-col items-center">
       <div
-        onClick={() => setClicked(!clicked)}
-        className={`flex flex-col items-center justify-start fixed duration-300 w-11/12 xs:w-fit bg-gradient-to-t from-neutral-800 to-neutral-900 shadow-[0_0_30px_black] outline outline-1 outline-neutral-500 rounded-xl p-4 pb-1 z-10 ${
-          !clicked ? "-translate-y-[24.8rem]" : "-translate-y-[1rem]"
+        onClick={() => {
+          setClicked(!clicked);
+        }}
+        className={`flex flex-col items-center justify-start fixed duration-300 w-11/12 sm:w-fit bg-[rgba(0,0,0,0.1)] backdrop-filter rounded-3xl backdrop-blur-lg shadow-[0_0_30px_black] outline outline-1 outline-neutral-500 p-4 pb-1 z-10 ${
+          !clicked ? "-translate-y-[27.5rem]" : "-translate-y-[1rem]"
         }`}
       >
         <div
+          className="w-full flex items-center justify-center"
           onClick={(e) => {
             e.stopPropagation();
           }}
@@ -210,11 +225,12 @@ const Catalogue = () => {
             locale={srLatn}
             selected={selected}
             onSelect={setSelected}
-            className={`text-neutral-200 pt-2 z-10 font-thin rounded-3xl duration-300`}
+            className={`text-neutral-200 p-6 outline-1 sm:px-10 xl:px-16 outline w-11/12 flex items-center justify-center shadow-[0_0_5px_rgba(0,0,0,1)] outline-neutral-500 z-10 font-thin rounded-md duration-300 bg-gradient-to-b from-neutral-800 to-neutral-900`}
             disabled={disabledDays}
+            numberOfMonths={screenWidth < 1280 ? 1 : 2}
           />
         </div>
-        <div className="flex flex-row items-center w-11/12 bg-gradient-to-b mb-5 from-neutral-900 py-2 px-4 outline outline-1 rounded-md outline-neutral-600 justify-around">
+        <div className="flex flex-row items-center w-11/12 bg-gradient-to-b mb-5 from-neutral-800 to-neutral-900 py-2 px-4 outline outline-1 rounded-md shadow-[0_0_5px_rgba(0,0,0,1)] outline-neutral-500 justify-around">
           <div
             onClick={(e) => {
               e.stopPropagation();
@@ -245,27 +261,27 @@ const Catalogue = () => {
           </div>
         </div>
         <span
-          className={` text-lg mt-3 font-thin flex flex-row items-center justify-start bg-gradient-to-b from-neutral-900 ${
+          className={` text-lg mt-3 font-thin flex flex-row items-center justify-start bg-gradient-to-b shadow-[0_0_5px_rgba(0,0,0,1)] from-neutral-800 to-neutral-900 ${
             selected
               ? "text-neutral-200 outline outline-1 outline-neutral-500"
               : "text-neutral-400 outline outline-1 outline-neutral-600"
-          } py-1 px-3 rounded-md w-11/12 duration-300`}
+          } py-1 px-3 rounded-md md:w-11/12 w-11/12 duration-300`}
         >
           Preuzimanje <BiSolidRightArrow className="mx-2 text-xs" />
           {displayDate(selected)[0]}
         </span>
         <span
-          className={` text-lg mt-3 font-thin flex flex-row items-center justify-start bg-gradient-to-b from-neutral-900 ${
+          className={` text-lg mt-3 font-thin flex flex-row items-center justify-start bg-gradient-to-b shadow-[0_0_5px_rgba(0,0,0,1)] from-neutral-800 to-neutral-900 ${
             selected
               ? "text-neutral-200 outline outline-1 outline-neutral-500"
               : "text-neutral-400 outline outline-1 outline-neutral-600"
-          } py-1 px-3 rounded-md w-11/12 duration-300`}
+          } py-1 px-3 rounded-md md:w-11/12 w-11/12 duration-300`}
         >
           Povrat <BiSolidRightArrow className="duration-300 mx-2 text-xs" />
           {displayDate(selected)[1]}
         </span>
         <IoIosArrowUp
-          className={`text-neutral-200 text-3xl ${
+          className={`text-neutral-500 text-3xl ${
             clicked ? "" : "-translate-y-0 rotate-180"
           } duration-300 mt-2`}
         />
@@ -296,7 +312,7 @@ const Catalogue = () => {
                     <div className="px-6 pt-6 w-full">
                       <div
                         style={{ animationDelay: `${index * 200}ms` }}
-                        className="bg-gradient-to-b py-1 from-neutral-800 animate-fade-down to-neutral-900 w-full rounded-3xl outline outline-1 outline-neutral-500"
+                        className="bg-gradient-to-b py-1 from-neutral-800 animate-fade-down to-neutral-900 w-full shadow-[0_0_10px_black] rounded-3xl outline outline-1 outline-neutral-500"
                       >
                         <h1 className="mb-3 mt-3 mx-4 text-2xl font-bold tracking-wider text-white">
                           {item.name}
@@ -321,8 +337,8 @@ const Catalogue = () => {
                         style={{ animationDelay: `${index * 300}ms` }}
                         className={`${
                           isDateUnavailable || !selected
-                            ? "text-neutral-400 outline-neutral-500 from-neutral-800 to-neutral-900"
-                            : "text-purple-200 outline-purple-400 from-purple-700 to-purple-800 shadow-[0_0_15px_#7e22ce]"
+                            ? "text-neutral-400 outline-neutral-500 from-neutral-800 to-neutral-900 shadow-[0_0_10px_black]"
+                            : "text-purple-200 outline-purple-400 from-purple-700 to-purple-800 shadow-[0_0_10px_#7e22ce]"
                         } tracking-wider text-2xl font-thin duration-700 animate-fade-down outline outline-1 rounded-2xl py-2 px-4 bg-gradient-to-tl`}
                       >
                         {isDateUnavailable

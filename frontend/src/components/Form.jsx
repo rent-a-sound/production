@@ -201,7 +201,7 @@ const Form = () => {
 
   return (
     <>
-      <div className="bg-neutral-950 w-full min-h-screen flex flex-col items-center justify-center duration-300">
+      <div className="bg-neutral-950 w-full min-h-screen flex flex-col items-center justify-center duration-300 text-center">
         <div className="p-6 bg-neutral-950 rounded-3xl" id="receipt">
           <div
             className={`${
@@ -240,7 +240,9 @@ const Form = () => {
               }}
               className={`bg-neutral-950 outline-dashed font-thin ${
                 success == null
-                  ? "outline-purple-400"
+                  ? !info.trim()
+                    ? "outline-white"
+                    : "outline-purple-400"
                   : success == true
                     ? "outline-green-400"
                     : !info.trim()
@@ -279,7 +281,13 @@ const Form = () => {
               type="tel"
               className={`bg-neutral-950 appearance-none m-0 outline-dashed font-thin outline-1 ${
                 success == null
-                  ? "outline-purple-400"
+                  ? (
+                      phone.startsWith("+")
+                        ? phone.length < 12
+                        : phone.length < 9
+                    )
+                    ? "outline-white"
+                    : "outline-purple-400"
                   : success == true
                     ? "outline-green-400"
                     : (
@@ -426,7 +434,9 @@ const Form = () => {
               id="link"
               className={`text-white mt-10 font-thin text-xl py-3 px-5 duration-300 outline-dashed outline-1 rounded-xl tracking-wide ${
                 success == null
-                  ? "outline-purple-400"
+                  ? !checkAllInputs()
+                    ? "outline-white"
+                    : "outline-purple-400"
                   : success == true
                     ? "outline-green-400"
                     : "outline-red-400"

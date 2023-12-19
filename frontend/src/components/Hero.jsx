@@ -85,7 +85,7 @@ const Hero = () => {
           <Link
             to="/katalog/ns"
             name="novi-sad"
-            className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 animate-fade-down animate-delay-[600ms] outline w-72 h-24 my-6 rounded-3xl flex flex-col items-center justify-center tracking-wide"
+            className="bg-gradient-to-b shadow-[0_0_10px_black] from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 animate-fade-down animate-delay-[600ms] outline w-72 h-24 my-6 rounded-3xl flex flex-col items-center justify-center tracking-wide"
           >
             <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between">
               <FaMapMarkerAlt className="text-red-600 mr-2 animate-spinle2" />
@@ -96,7 +96,7 @@ const Hero = () => {
           <Link
             to="/katalog/bg"
             name="beograd"
-            className="bg-gradient-to-b from-neutral-800 to-neutral-900 w-72 h-24 outline-1 outline-neutral-500 animate-fade-down animate-delay-[700ms] outline rounded-3xl flex flex-col items-center justify-center tracking-wide mb-5"
+            className="bg-gradient-to-b shadow-[0_0_10px_black] from-neutral-800 to-neutral-900 w-72 h-24 outline-1 outline-neutral-500 animate-fade-down animate-delay-[700ms] outline rounded-3xl flex flex-col items-center justify-center tracking-wide mb-5"
           >
             <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between">
               <FaMapMarkerAlt className="text-red-600 mr-2 animate-spinle1" />
@@ -120,7 +120,7 @@ const Hero = () => {
             target="_blank"
             rel="noopener noreferrer"
             name="instagram"
-            className="bg-gradient-to-b outline-1 outline-neutral-500 outline from-neutral-800 animate-fade-down animate-delay-[800ms] to-neutral-900 h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
+            className="bg-gradient-to-b shadow-[0_0_10px_black] outline-1 outline-neutral-500 outline from-neutral-800 animate-fade-down animate-delay-[800ms] to-neutral-900 h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
           >
             <div className="flex flex-row items-center mt-4 ml-4">
               <RiInstagramFill className="text-2xl mr-2 text-pink-500" />
@@ -134,7 +134,7 @@ const Hero = () => {
           <a
             name="phone"
             href="tel:+381643478060"
-            className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 animate-fade-down animate-delay-[900ms] outline h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
+            className="bg-gradient-to-b shadow-[0_0_10px_black] from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 animate-fade-down animate-delay-[900ms] outline h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
           >
             <div className="flex flex-row items-center mt-4 ml-4">
               <TbPhoneFilled className="text-2xl mr-2 text-green-500" />
@@ -145,7 +145,7 @@ const Hero = () => {
           <a
             name="mail"
             href="mailto:zvucnici.i.ns@gmail.com"
-            className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 outline h-24 w-72 rounded-3xl animate-fade-down animate-delay-[1000ms] flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
+            className="bg-gradient-to-b shadow-[0_0_10px_black] from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 outline h-24 w-72 rounded-3xl animate-fade-down animate-delay-[1000ms] flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
           >
             <div className="flex flex-row items-center mt-4 ml-4">
               <HiMail className="text-2xl mr-2 text-blue-500" />
