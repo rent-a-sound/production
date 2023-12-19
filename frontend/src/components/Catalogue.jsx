@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { format, addDays, subDays, parseISO } from "date-fns";
 import { DayPicker } from "react-day-picker";
-import { FaChevronDown } from "react-icons/fa";
+import { IoIosArrowUp } from "react-icons/io";
 import { srLatn } from "date-fns/locale";
 import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
@@ -196,8 +196,8 @@ const Catalogue = () => {
     <div className="flex flex-col items-center">
       <div
         onClick={() => setClicked(!clicked)}
-        className={`flex flex-col items-center justify-start fixed duration-300 w-11/12 xs:w-fit bg-gradient-to-t from-neutral-800 to-neutral-900 shadow-[0_10px_50px_black] outline outline-1 outline-neutral-500 rounded-xl p-4 z-10 ${
-          !clicked ? "-translate-y-[22rem]" : "-translate-y-[1rem]"
+        className={`flex flex-col items-center justify-start fixed duration-300 w-11/12 xs:w-fit bg-gradient-to-t from-neutral-800 to-neutral-900 shadow-[0_0_30px_black] outline outline-1 outline-neutral-500 rounded-xl p-4 pb-1 z-10 ${
+          !clicked ? "-translate-y-[24.8rem]" : "-translate-y-[1rem]"
         }`}
       >
         <div
@@ -210,11 +210,11 @@ const Catalogue = () => {
             locale={srLatn}
             selected={selected}
             onSelect={setSelected}
-            className={`text-neutral-200 pt-8 z-10 font-thin rounded-3xl duration-300`}
+            className={`text-neutral-200 pt-2 z-10 font-thin rounded-3xl duration-300`}
             disabled={disabledDays}
           />
         </div>
-        <div className="flex flex-row items-center w-11/12 bg-gradient-to-b mt-2 from-neutral-900 py-2 px-4 outline outline-1 rounded-md outline-neutral-600 justify-around">
+        <div className="flex flex-row items-center w-11/12 bg-gradient-to-b mb-5 from-neutral-900 py-2 px-4 outline outline-1 rounded-md outline-neutral-600 justify-around">
           <div
             onClick={(e) => {
               e.stopPropagation();
@@ -249,9 +249,7 @@ const Catalogue = () => {
             selected
               ? "text-purple-200 from-purple-900 to-violet-900 outline outline-1 outline-purple-400 bg-gradient-to-tr"
               : "text-neutral-200 from-neutral-900 outline outline-1 outline-neutral-600 bg-gradient-to-b"
-          } py-1 px-3 rounded-md w-11/12 ${
-            !clicked ? "-" : "-translate-y-0"
-          } duration-300`}
+          } py-1 px-3 rounded-md w-11/12 duration-300`}
         >
           Preuzimanje <BiSolidRightArrow className="mx-2 text-xs" />
           {displayDate(selected)[0]}
@@ -261,21 +259,19 @@ const Catalogue = () => {
             selected
               ? "text-purple-200 from-purple-900 to-violet-900 outline outline-1 outline-purple-400 bg-gradient-to-tr"
               : "text-neutral-200 from-neutral-900 outline outline-1 outline-neutral-600 bg-gradient-to-b"
-          } py-1 px-3 rounded-md w-11/12 ${
-            !clicked ? "-" : "-translate-y-0"
-          } duration-300`}
+          } py-1 px-3 rounded-md w-11/12 duration-300`}
         >
           Povrat <BiSolidRightArrow className="duration-300 mx-2 text-xs" />
           {displayDate(selected)[1]}
         </span>
-        <FaChevronDown
+        <IoIosArrowUp
           className={`text-neutral-200 text-3xl ${
-            !clicked ? "" : "-translate-y-0 rotate-180"
-          } duration-300 mt-3 -mb-1`}
+            clicked ? "" : "-translate-y-0 rotate-180"
+          } duration-300 mt-2`}
         />
       </div>
       <div
-        className={`w-full min-h-screen bg-neutral-950 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 pt-56 pb-16 px-2 md:px-10 font-montserrat text-center`}
+        className={`w-full min-h-screen bg-neutral-950 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 pt-36 pb-16 px-2 md:px-10 font-montserrat text-center`}
       >
         {sortedData &&
           sortedData.map((item, index) => {
