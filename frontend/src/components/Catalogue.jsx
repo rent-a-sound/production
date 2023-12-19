@@ -41,6 +41,11 @@ const Catalogue = () => {
         const parsedSelected = JSON.parse(savedSelected);
 
         parsedSelected.from = parseISO(parsedSelected.from);
+
+        if (parsedSelected.from == subDays(new Date(), 1)) {
+          parsedSelected.from == new Date();
+        }
+
         parsedSelected.to = parseISO(parsedSelected.to);
 
         setSelected({
@@ -289,40 +294,50 @@ const Catalogue = () => {
                       }
                     }}
                     key={index}
-                    style={{ animationDelay: `${index * 50}ms` }}
+                    style={{ animationDelay: `${index * 100}ms` }}
                     className={`flex flex-col items-center justify-start mx-5 my-5 h-fit bg-gradient-to-b outline outline-1 outline-neutral-500 from-neutral-900 to-neutral-950 rounded-2xl duration-500 animate-fade-down`}
                   >
-                    <div className="bg-gradient-to-b from-neutral-800 to-neutral-900 mt-8 mb-8 w-5/6 rounded-3xl outline outline-1 outline-neutral-500">
-                      <h1 className="mb-3 mt-3 mx-4 text-2xl font-bold tracking-wider text-white">
-                        {item.name}
-                      </h1>
-                      <p className="font-thin text-white text-xl mb-3 mx-4 mt-0">
-                        {item.battery
-                          ? "Ugradjena Baterija"
-                          : "Bez Ugradjene Baterije"}
-                      </p>
-                      <p className="font-thin text-white text-xl m-3 mb-3 mt-0">
-                        {item.desc}
-                      </p>
+                    <div className="px-6 pt-6 w-full">
+                      <div
+                        style={{ animationDelay: `${index * 200}ms` }}
+                        className="bg-gradient-to-b py-1 from-neutral-800 animate-fade-down to-neutral-900 w-full rounded-3xl outline outline-1 outline-neutral-500"
+                      >
+                        <h1 className="mb-3 mt-3 mx-4 text-2xl font-bold tracking-wider text-white">
+                          {item.name}
+                        </h1>
+                        <p className="font-thin text-white text-xl mb-3 mx-4 mt-0">
+                          {item.battery
+                            ? "Ugradjena Baterija"
+                            : "Bez Ugradjene Baterije"}
+                        </p>
+                        <p className="font-thin text-white text-xl m-3 mt-0">
+                          {item.desc}
+                        </p>
+                      </div>
                     </div>
                     <img
-                      className="max-h-56"
+                      className="max-h-56 my-6"
                       src={item.image}
                       alt={item.name}
                     />
-                    <span
-                      className={`${
-                        selected ? "opacity-100 mb-8" : "opacity-0 -mb-16"
-                      } ${
-                        isDateUnavailable
-                          ? "text-neutral-400 outline-neutral-500 from-neutral-800 to-neutral-900"
-                          : "text-purple-200 outline-purple-400 from-purple-800 to-violet-900"
-                      } tracking-wider text-3xl font-thin mt-8 duration-300 outline outline-1 bg-gradient-to-b rounded-3xl py-2 px-6`}
-                    >
-                      {isDateUnavailable
-                        ? "Zauzet"
-                        : calculatePrice(item, dates) + "din."}
-                    </span>
+                    <div className="w-full px-6 pb-6">
+                      <div
+                        style={{ animationDelay: `${index * 300}ms` }}
+                        className={`bg-gradient-to-b ${
+                          isDateUnavailable || !selected
+                            ? "text-neutral-400 outline-neutral-500 from-neutral-800 to-neutral-900"
+                            : "text-purple-200 outline-purple-400 from-purple-800 to-violet-900"
+                        } tracking-wider text-2xl font-thin duration-300 animate-fade-down outline outline-1 rounded-2xl py-2`}
+                      >
+                        {isDateUnavailable
+                          ? "Zauzet"
+                          : calculatePrice(item, dates) == 0
+                            ? "Izaberi datum"
+                            : "Rezerviši - " +
+                              calculatePrice(item, dates) +
+                              "din."}
+                      </div>
+                    </div>
                   </Link>
                 );
               return null;

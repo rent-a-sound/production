@@ -9,7 +9,6 @@ import partybox110 from "../public/110.webp";
 import partybox310f from "../public/310.webp";
 import partybox310s from "../public/310.png";
 import partybox710 from "../public/710.webp";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const lorem1 =
@@ -19,16 +18,6 @@ const lorem2 =
   "Nakon ispune forme za naručivanje bićete kontaktirani radi potvrde porudžbine, dogovora o tačnom vremenu i mestu preuzimanja i povrata, kao i dodatnim informacijama.";
 
 const Hero = () => {
-  const [isAnimating, setIsAnimating] = useState(true);
-
-  const handleClick = () => {
-    setIsAnimating(true);
-
-    setTimeout(() => {
-      setIsAnimating(false);
-    }, 2300);
-  };
-
   return (
     <div
       name="container"
@@ -38,12 +27,11 @@ const Hero = () => {
         name="left-half"
         className={`text-white m-8 -mb-10 md:mx-36 md:mb-0 flex flex-col items-center duration-300`}
       >
-        <div className="w-full font-bold p-1.5 pr-2 text-3xl my-8 flex items-center text-white tracking-wide animate-fade-down">
-          RENT
-          <CgMusicSpeaker className="text-4xl mx-2 text-purple-400" />
-          SOUND
-        </div>
         <div>
+          <div className="w-fit font-bold p-4 text-3xl my-6 flex items-center text-white tracking-wide animate-fade-down bg-gradient-to-b from-neutral-900 outline-1 outline-neutral-500 outline rounded-md">
+            RENT <CgMusicSpeaker className="mx-2 text-4xl text-purple-400" />{" "}
+            SOUND
+          </div>
           <div
             name="title"
             className="font-bold text-4xl md:text-6xl mb-3 tracking-wide animate-fade-down animate-delay-100"
@@ -68,32 +56,23 @@ const Hero = () => {
         </div>
         <div
           name="banner-container"
-          onClick={handleClick}
           className="grid grid-cols-1 grid-rows-1 mb-12 lg:mb-0 mr-3 lg:mr-32 lg:mt-12 relative -mt-8"
         >
           <img
             src={partybox110}
-            className={`absolute top-20 left-48 lg:top-24 lg:left-72 max-h-48 lg:max-h-72 ${
-              isAnimating ? "animate-nilemation1" : ""
-            }`}
+            className={`absolute top-20 left-48 lg:top-24 lg:left-72 max-h-48 lg:max-h-72 animate-nilemation1`}
           />
           <img
             src={partybox310f}
-            className={`absolute max-h-72 lg:max-h-96 left-16 lg:left-32 top-2 lg:top-5 ${
-              isAnimating ? "animate-nilemation2" : ""
-            }`}
+            className={`absolute max-h-72 lg:max-h-96 left-16 lg:left-32 top-2 lg:top-5 animate-nilemation2`}
           />
           <img
             src={partybox310s}
-            className={`absolute max-h-72 lg:max-h-96 right-28 lg:right-28 ${
-              isAnimating ? "animate-nilemation3" : ""
-            }`}
+            className={`absolute max-h-72 lg:max-h-96 right-28 lg:right-28 animate-nilemation3`}
           />
           <img
             src={partybox710}
-            className={`max-h-72 lg:max-h-96 mr-12 -ml-6 lg:ml-0 lg:mr-6 mt-12 z-0 lg:mt-16 ${
-              isAnimating ? "animate-nilemation4" : ""
-            }`}
+            className={`max-h-72 lg:max-h-96 mr-12 -ml-6 lg:ml-0 lg:mr-6 mt-12 z-0 lg:mt-16 animate-nilemation4 `}
           />
         </div>
       </div>
@@ -106,7 +85,7 @@ const Hero = () => {
           <Link
             to="/katalog/ns"
             name="novi-sad"
-            className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 outline w-72 h-24 my-6 rounded-3xl flex flex-col items-center justify-center tracking-wide"
+            className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 animate-fade-down animate-delay-[600ms] outline w-72 h-24 my-6 rounded-3xl flex flex-col items-center justify-center tracking-wide"
           >
             <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between">
               <FaMapMarkerAlt className="text-red-600 mr-2 animate-spinle2" />
@@ -117,7 +96,7 @@ const Hero = () => {
           <Link
             to="/katalog/bg"
             name="beograd"
-            className="bg-gradient-to-b from-neutral-800 to-neutral-900 w-72 h-24 outline-1 outline-neutral-500 outline rounded-3xl flex flex-col items-center justify-center tracking-wide mb-5"
+            className="bg-gradient-to-b from-neutral-800 to-neutral-900 w-72 h-24 outline-1 outline-neutral-500 animate-fade-down animate-delay-[700ms] outline rounded-3xl flex flex-col items-center justify-center tracking-wide mb-5"
           >
             <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between">
               <FaMapMarkerAlt className="text-red-600 mr-2 animate-spinle1" />
@@ -141,7 +120,7 @@ const Hero = () => {
             target="_blank"
             rel="noopener noreferrer"
             name="instagram"
-            className="bg-gradient-to-b outline-1 outline-neutral-500 outline from-neutral-800 to-neutral-900 h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
+            className="bg-gradient-to-b outline-1 outline-neutral-500 outline from-neutral-800 animate-fade-down animate-delay-[800ms] to-neutral-900 h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
           >
             <div className="flex flex-row items-center mt-4 ml-4">
               <RiInstagramFill className="text-2xl mr-2 text-pink-500" />
@@ -155,7 +134,7 @@ const Hero = () => {
           <a
             name="phone"
             href="tel:+381643478060"
-            className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 outline h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
+            className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 animate-fade-down animate-delay-[900ms] outline h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
           >
             <div className="flex flex-row items-center mt-4 ml-4">
               <TbPhoneFilled className="text-2xl mr-2 text-green-500" />
@@ -166,7 +145,7 @@ const Hero = () => {
           <a
             name="mail"
             href="mailto:zvucnici.i.ns@gmail.com"
-            className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 outline h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
+            className="bg-gradient-to-b from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 outline h-24 w-72 rounded-3xl animate-fade-down animate-delay-[1000ms] flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
           >
             <div className="flex flex-row items-center mt-4 ml-4">
               <HiMail className="text-2xl mr-2 text-blue-500" />
