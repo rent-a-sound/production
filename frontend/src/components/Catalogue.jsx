@@ -196,7 +196,7 @@ const Catalogue = () => {
     <div className="flex flex-col items-center">
       <div
         onClick={() => setClicked(!clicked)}
-        className={`flex flex-col items-center justify-start fixed duration-300 bg-gradient-to-t from-neutral-800 to-neutral-900 shadow-[0_0_30px_black] outline outline-1 outline-neutral-500 rounded-xl p-4 z-10 ${
+        className={`flex flex-col items-center justify-start fixed duration-300 bg-gradient-to-t from-neutral-800 to-neutral-900 shadow-[0_10px_50px_black] outline outline-1 outline-neutral-500 rounded-xl p-4 z-10 ${
           !clicked ? "-translate-y-[22rem]" : "-translate-y-[1rem]"
         }`}
       >
@@ -275,7 +275,7 @@ const Catalogue = () => {
         />
       </div>
       <div
-        className={`w-full min-h-screen bg-neutral-950 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 p-6 py-5 pt-56 pb-16 font-montserrat text-center`}
+        className={`w-full min-h-screen bg-neutral-950 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 pt-56 pb-16 px-2 md:px-10 font-montserrat text-center`}
       >
         {sortedData &&
           sortedData.map((item, index) => {
@@ -327,7 +327,7 @@ const Catalogue = () => {
                           isDateUnavailable || !selected
                             ? "text-neutral-400 outline-neutral-500 from-neutral-800 to-neutral-900"
                             : "text-purple-200 outline-purple-400 from-purple-800 to-violet-900"
-                        } tracking-wider text-2xl font-thin duration-300 animate-fade-down outline outline-1 rounded-2xl py-2`}
+                        } tracking-wider text-2xl font-thin duration-300 animate-fade-down outline outline-1 rounded-2xl py-2 px-4`}
                       >
                         {isDateUnavailable
                           ? "Zauzet"
