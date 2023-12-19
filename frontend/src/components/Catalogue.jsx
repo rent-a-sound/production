@@ -196,7 +196,7 @@ const Catalogue = () => {
     <div className="flex flex-col items-center">
       <div
         onClick={() => setClicked(!clicked)}
-        className={`flex flex-col items-center justify-start fixed duration-300 bg-gradient-to-t from-neutral-800 to-neutral-900 shadow-[0_10px_50px_black] outline outline-1 outline-neutral-500 rounded-xl p-4 z-10 ${
+        className={`flex flex-col items-center justify-start fixed duration-300 w-11/12 xs:w-fit bg-gradient-to-t from-neutral-800 to-neutral-900 shadow-[0_10px_50px_black] outline outline-1 outline-neutral-500 rounded-xl p-4 z-10 ${
           !clicked ? "-translate-y-[22rem]" : "-translate-y-[1rem]"
         }`}
       >

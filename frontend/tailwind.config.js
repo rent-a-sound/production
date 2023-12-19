@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 export default {
   content: [
     "./index.html",
@@ -6,6 +8,10 @@ export default {
     "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
   ],
   theme: {
+    screens: {
+      ...defaultTheme.screens,
+      xs: "475px",
+    },
     extend: {
       fontFamily: {
         montserrat: ["Montserrat"],
