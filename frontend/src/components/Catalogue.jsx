@@ -210,12 +210,12 @@ const Catalogue = () => {
         onClick={() => {
           setClicked(!clicked);
         }}
-        className={`flex flex-col items-center justify-start fixed duration-300 w-11/12 sm:w-fit bg-[rgba(0,0,0,0.1)] backdrop-filter rounded-3xl backdrop-blur-lg shadow-[0_0_30px_black] outline outline-1 outline-neutral-500 p-4 pb-1 z-10 ${
-          !clicked ? "-translate-y-[27.5rem]" : "-translate-y-[1rem]"
+        className={`flex flex-col items-center justify-start fixed duration-300 w-11/12 sm:w-fit bg-[rgba(0,0,0,0.1)] backdrop-filter rounded-b-3xl backdrop-blur-lg shadow-[0_0_30px_black] outline outline-1 outline-neutral-500 p-4 pb-1 z-10 ${
+          !clicked ? "-translate-y-[26rem]" : "-translate-y-[1rem]"
         }`}
       >
         <div
-          className="w-full flex items-center justify-center"
+          className={`shadow-[0_0_5px_rgba(0,0,0,1) flex items-center w-11/12 justify-center my-4 outline-neutral-500 outline outline-1 bg-gradient-to-b rounded-md from-neutral-800 to-neutral-900`}
           onClick={(e) => {
             e.stopPropagation();
           }}
@@ -225,7 +225,13 @@ const Catalogue = () => {
             locale={srLatn}
             selected={selected}
             onSelect={setSelected}
-            className={`text-neutral-200 p-6 outline-1 sm:px-10 xl:px-16 outline w-11/12 flex items-center justify-center shadow-[0_0_5px_rgba(0,0,0,1)] outline-neutral-500 z-10 font-thin rounded-md duration-300 bg-gradient-to-b from-neutral-800 to-neutral-900`}
+            className={`text-neutral-200 z-10 px-10 font-thin duration-300 ${
+              screenWidth < 400
+                ? screenWidth < 360
+                  ? "scale-75"
+                  : "scale-90"
+                : ""
+            }`}
             disabled={disabledDays}
             numberOfMonths={screenWidth < 1280 ? 1 : 2}
           />
@@ -236,7 +242,7 @@ const Catalogue = () => {
               e.stopPropagation();
               setTaken(!taken);
             }}
-            className="flex flex-row items-center justify-center text-white text-xl font-thin"
+            className="flex flex-row items-center justify-center text-white text-lg font-thin"
           >
             {!taken ? (
               <VscEye className="mr-2 text-2xl animate-jump-in" />
@@ -253,7 +259,7 @@ const Catalogue = () => {
             className="flex flex-row items-center justify-center text-white text-xl font-thin"
           >
             <HiArrowDown
-              className={`mr-2 text-xl duration-300 ${
+              className={`mr-2 text-lg duration-300 ${
                 !priceLowHigh ? "" : "rotate-180"
               }`}
             />{" "}
@@ -287,7 +293,7 @@ const Catalogue = () => {
         />
       </div>
       <div
-        className={`w-full min-h-screen bg-neutral-950 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 pt-36 pb-16 px-2 md:px-10 font-montserrat text-center`}
+        className={`w-full min-h-screen bg-neutral-950 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 pt-40 pb-16 px-2 md:px-10 font-montserrat text-center`}
       >
         {sortedData &&
           sortedData.map((item, index) => {
@@ -307,7 +313,7 @@ const Catalogue = () => {
                     }}
                     key={index}
                     style={{ animationDelay: `${index * 100}ms` }}
-                    className={`flex flex-col items-center justify-start mx-5 my-5 h-fit bg-gradient-to-b outline outline-1 outline-neutral-500 from-neutral-900 to-neutral-950 rounded-2xl duration-500 animate-fade-down`}
+                    className={`flex flex-col items-center justify-start m-4 h-fit bg-gradient-to-b outline outline-1 outline-neutral-500 from-neutral-900 to-neutral-950 rounded-2xl duration-500 animate-fade-down`}
                   >
                     <div className="px-6 pt-6 w-full">
                       <div
@@ -345,9 +351,7 @@ const Catalogue = () => {
                           ? "Zauzet"
                           : calculatePrice(item, dates) == 0
                             ? "Izaberi datum"
-                            : "Rezerviši - " +
-                              calculatePrice(item, dates) +
-                              "din."}
+                            : `Rezerviši - ${calculatePrice(item, dates)} RSD`}
                       </div>
                     </div>
                   </Link>
