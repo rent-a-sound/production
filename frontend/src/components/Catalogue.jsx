@@ -247,8 +247,8 @@ const Catalogue = () => {
         <span
           className={` text-lg mt-3 font-thin flex flex-row items-center justify-start bg-gradient-to-b from-neutral-900 ${
             selected
-              ? "text-white outline outline-1 outline-purple-400"
-              : "text-neutral-200 outline outline-1 outline-neutral-600"
+              ? "text-neutral-200 outline outline-1 outline-neutral-500"
+              : "text-neutral-400 outline outline-1 outline-neutral-600"
           } py-1 px-3 rounded-md w-11/12 duration-300`}
         >
           Preuzimanje <BiSolidRightArrow className="mx-2 text-xs" />
@@ -257,8 +257,8 @@ const Catalogue = () => {
         <span
           className={` text-lg mt-3 font-thin flex flex-row items-center justify-start bg-gradient-to-b from-neutral-900 ${
             selected
-              ? "text-white outline outline-1 outline-purple-400"
-              : "text-neutral-200 outline outline-1 outline-neutral-600"
+              ? "text-neutral-200 outline outline-1 outline-neutral-500"
+              : "text-neutral-400 outline outline-1 outline-neutral-600"
           } py-1 px-3 rounded-md w-11/12 duration-300`}
         >
           Povrat <BiSolidRightArrow className="duration-300 mx-2 text-xs" />
@@ -319,11 +319,11 @@ const Catalogue = () => {
                     <div className="w-full px-6 pb-6">
                       <div
                         style={{ animationDelay: `${index * 300}ms` }}
-                        className={`bg-gradient-to-b ${
+                        className={`${
                           isDateUnavailable || !selected
-                            ? "text-neutral-400 outline-neutral-500 "
-                            : "text-white outline-purple-400"
-                        } tracking-wider text-2xl font-thin duration-300 animate-fade-down outline outline-1 rounded-2xl py-2 px-4 from-neutral-800 to-neutral-900`}
+                            ? "text-neutral-400 outline-neutral-500 from-neutral-800 to-neutral-900"
+                            : "text-purple-200 outline-purple-400 from-purple-700 to-purple-800 shadow-[0_0_15px_#7e22ce]"
+                        } tracking-wider text-2xl font-thin duration-700 animate-fade-down outline outline-1 rounded-2xl py-2 px-4 bg-gradient-to-tl`}
                       >
                         {isDateUnavailable
                           ? "Zauzet"
