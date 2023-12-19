@@ -18,6 +18,7 @@ const Form = () => {
   const [animatePerson, setAnimatePerson] = useState(false);
   const [animatePhone, setAnimatePhone] = useState(false);
   const [animateMic, setAnimateMic] = useState(false);
+  const [error, setError] = useState(false);
 
   const micMap = {
     "Bez mikrofona": 0,
@@ -138,8 +139,22 @@ const Form = () => {
         : priceObject.price + (selectedOption ? micMap[selectedOption] : 0);
   };
 
+  function checkAllInputs() {
+    if (
+      !info.trim() ||
+      (phone.startsWith("+") ? phone.length < 12 : phone.length < 9) ||
+      !selectedOption
+    ) {
+      return false;
+    }
+    return true;
+  }
+
   const handleSubmit = async () => {
     try {
+      if (!checkAllInputs()) {
+        throw new Error("Wrong Inputs");
+      }
       const response = await axios.post(
         "https://api.telegram.org/bot6461461088:AAGWeqWqbFZzLaRsWasiMsR8xNZ3bx2pmXM/sendMessage",
         `chat_id=${encodeURIComponent(5783597838)}&text=${encodeURIComponent(
@@ -176,7 +191,11 @@ const Form = () => {
       setSuccess(true);
     } catch (error) {
       console.error("Error submitting form:", error);
-      setSuccess(false);
+      if (error != "Wrong Inputs") setError(true);
+      setSuccess(null);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 0);
     }
   };
 
@@ -224,14 +243,25 @@ const Form = () => {
                   ? "outline-purple-400"
                   : success == true
                     ? "outline-green-400"
-                    : "outline-red-400"
-              } outline-1 text-center placeholder-neutral-500 w-full mb-3 duration-300 resize-none outline-none h-10 rounded-xl text-white`}
+                    : !info.trim()
+                      ? "outline-red-400"
+                      : "outline-purple-400"
+              } outline-1 text-center placeholder-neutral-500 w-full mb-2 duration-300 resize-none outline-none h-10 rounded-xl text-white`}
               value={info}
               onChange={handleInfoChange}
               onInput={handleInfoChange}
               readOnly={success == true}
               placeholder="Vaše ime i prezime..."
             ></input>
+            <p
+              className={`text-red-400 text-md font-thin duration-300 ${
+                success === false && !info.trim()
+                  ? "opacity-100"
+                  : "opacity-0 -mb-5"
+              }`}
+            >
+              Unesi ime i prezime!
+            </p>
             <TbPhoneFilled
               className={`${
                 animatePhone ? "animate-shake" : ""
@@ -253,7 +283,13 @@ const Form = () => {
                   ? "outline-purple-400"
                   : success == true
                     ? "outline-green-400"
-                    : "outline-red-400"
+                    : (
+                          phone.startsWith("+")
+                            ? phone.length < 12
+                            : phone.length < 9
+                        )
+                      ? "outline-red-400"
+                      : "outline-purple-400"
               } text-center placeholder-neutral-500 mb-2 w-full duration-300 resize-none outline-none h-10 rounded-xl text-white`}
               value={phone}
               onChange={handlePhoneChange}
@@ -261,6 +297,16 @@ const Form = () => {
               readOnly={success == true}
               placeholder="Vaš broj telefona..."
             ></input>
+            <p
+              className={`text-red-400 text-md font-thin duration-300 ${
+                success === false &&
+                (phone.startsWith("+") ? phone.length < 12 : phone.length < 9)
+                  ? "opacity-100 mb-1"
+                  : "opacity-0 -mb-5"
+              }`}
+            >
+              Unesi validan broj telefona!
+            </p>
             <IoMdMicrophone
               className={`text-white text-4xl font-montserrat mt-8 mb-1 ${
                 animateMic ? "animate-shake" : ""
@@ -273,7 +319,9 @@ const Form = () => {
                     ? "outline-purple-400"
                     : success == true
                       ? "outline-green-400"
-                      : "outline-red-400"
+                      : !selectedOption
+                        ? "outline-red-400"
+                        : "outline-purple-400"
                   : "outline-white"
               }`}
             >
@@ -295,13 +343,15 @@ const Form = () => {
               JBL Žični Mikrofon
             </label>
             <label
-              className={`font-thin flex flex-col items-center duration-300 p-2 text-white outline-1 justify-center text-lg h-10 w-full text-center rounded-xl m-2 outline-dashed ${
+              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 justify-center h-10 text-lg w-full text-center rounded-xl m-2 outline-dashed ${
                 selectedOption == "Bežični mikrofon"
                   ? success == null
-                    ? "outline-purple-400 "
+                    ? "outline-purple-400"
                     : success == true
                       ? "outline-green-400"
-                      : "outline-red-400"
+                      : !selectedOption
+                        ? "outline-red-400"
+                        : "outline-purple-400"
                   : "outline-white"
               }`}
             >
@@ -324,13 +374,15 @@ const Form = () => {
             </label>
 
             <label
-              className={`font-thin flex flex-col p-2 items-center duration-300 outline-1 text-white justify-center text-lg h-10 w-full text-center rounded-xl m-2 outline-dashed ${
+              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 justify-center h-10 text-lg w-full text-center rounded-xl m-2 outline-dashed ${
                 selectedOption == "Bez mikrofona"
                   ? success == null
-                    ? "outline-purple-400 "
+                    ? "outline-purple-400"
                     : success == true
                       ? "outline-green-400"
-                      : "outline-red-400"
+                      : !selectedOption
+                        ? "outline-red-400"
+                        : "outline-purple-400"
                   : "outline-white"
               }`}
             >
@@ -351,6 +403,15 @@ const Form = () => {
               />
               Bez Mikrofona
             </label>
+            <p
+              className={`text-red-400 text-md font-thin duration-300 ${
+                success === false && !selectedOption
+                  ? "opacity-100"
+                  : "opacity-0 -mb-4"
+              }`}
+            >
+              Izaberi jednu od opcija!
+            </p>
             <p className="text-3xl text-white font-thin mt-10">
               {data.price
                 ? calculatePrice(
@@ -366,35 +427,25 @@ const Form = () => {
               id="link"
               className={`text-white mt-10 font-thin text-xl py-3 px-5 duration-300 outline-dashed outline-1 rounded-xl tracking-wide ${
                 success == null
-                  ? !info.trim() ||
-                    (phone.startsWith("+")
-                      ? phone.length < 12
-                      : phone.length < 9) ||
-                    !selectedOption
-                    ? "outline-neutral-400"
-                    : "outline-purple-400"
+                  ? "outline-purple-400"
                   : success == true
                     ? "outline-green-400"
                     : "outline-red-400"
               }`}
               to={success == true ? "/" : null}
-              onClick={
-                success === true ||
-                !info.trim() ||
-                (phone.startsWith("+")
-                  ? phone.length < 12
-                  : phone.length < 9) ||
-                !selectedOption
-                  ? null
-                  : handleSubmit
-              }
+              onClick={success === true ? null : handleSubmit}
             >
-              {success == null
-                ? "POTVRDI"
-                : success == true
-                  ? "NAZAD NA POČETNU"
-                  : "GREŠKA"}
+              {success == true ? "NAZAD NA POČETNU" : "POTVRDI"}
             </Link>
+            <p
+              className={`text-red-400 text-md font-thin duration-300 ${
+                success === false && error
+                  ? "opacity-100 mt-2"
+                  : "opacity-0 -mb-5"
+              }`}
+            >
+              Greška, pokušajte ponovo
+            </p>
             {success == true ? (
               <p
                 onClick={generateImage}
