@@ -261,7 +261,7 @@ const Catalogue = () => {
           </div>
         </div>
         <span
-          className={` text-lg mt-3 font-thin flex flex-row items-center justify-start bg-gradient-to-b shadow-[0_0_5px_rgba(0,0,0,1)] from-neutral-800 to-neutral-900 ${
+          className={` text-lg mt-3 font-thin flex flex-row items-center justify-center bg-gradient-to-b shadow-[0_0_5px_rgba(0,0,0,1)] from-neutral-800 to-neutral-900 ${
             selected
               ? "text-neutral-200 outline outline-1 outline-neutral-500"
               : "text-neutral-400 outline outline-1 outline-neutral-600"
@@ -271,7 +271,7 @@ const Catalogue = () => {
           {displayDate(selected)[0]}
         </span>
         <span
-          className={` text-lg mt-3 font-thin flex flex-row items-center justify-start bg-gradient-to-b shadow-[0_0_5px_rgba(0,0,0,1)] from-neutral-800 to-neutral-900 ${
+          className={` text-lg mt-3 font-thin flex flex-row items-center justify-center bg-gradient-to-b shadow-[0_0_5px_rgba(0,0,0,1)] from-neutral-800 to-neutral-900 ${
             selected
               ? "text-neutral-200 outline outline-1 outline-neutral-500"
               : "text-neutral-400 outline outline-1 outline-neutral-600"
