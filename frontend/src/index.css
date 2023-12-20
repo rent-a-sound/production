@@ -27,6 +27,7 @@
   content: "";
   position: absolute;
   border-radius: 2rem;
+  -webkit-border-radius: 50%;
   top: 0px;
   left: 0px;
   background: var(--gradient-shadow);
