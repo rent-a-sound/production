@@ -9,6 +9,7 @@ import { IoMdMicrophone } from "react-icons/io";
 import { Link } from "react-router-dom";
 import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
+import { BiSolidRightArrow } from "react-icons/bi";
 
 const Form = () => {
   const [info, setInfo] = useState("");
@@ -112,16 +113,18 @@ const Form = () => {
     const displayDate2 = parse(date2, "dd-MM-yyyy", new Date());
 
     return (
-      <p>
-        Preuzimanje:
-        <br />
-        {format(displayDate1, "PPP", { locale: srLatn })}
-        <br />
-        <br />
-        Povrat:
-        <br />
-        {format(displayDate2, "PPP", { locale: srLatn })}
-      </p>
+      <div>
+        <p className="flex sm:flex-row flex-col items-center justify-center pb-5">
+          Preuzimanje{" "}
+          <BiSolidRightArrow className="text-sm my-2 sm:mx-2 rotate-90 sm:rotate-0" />
+          {format(displayDate1, "PPP", { locale: srLatn })}
+        </p>
+        <p className="flex sm:flex-row flex-col items-center justify-center">
+          Povrat{" "}
+          <BiSolidRightArrow className="text-sm my-2 sm:mx-2 rotate-90 sm:rotate-0" />
+          {format(displayDate2, "PPP", { locale: srLatn })}
+        </p>
+      </div>
     );
   }
 
@@ -244,7 +247,7 @@ const Form = () => {
                   : success == true
                     ? "outline-green-400"
                     : "outline-red-400"
-              } outline-1 text-center placeholder-neutral-500 w-full mb-2 duration-300 resize-none outline-none h-10 rounded-xl text-white`}
+              } outline-1 text-center placeholder-neutral-500 w-full mb-2 duration-300 resize-none outline-none py-2 rounded-xl text-white`}
               value={info}
               onChange={handleInfoChange}
               onInput={handleInfoChange}
@@ -281,7 +284,7 @@ const Form = () => {
                   : success == true
                     ? "outline-green-400"
                     : "outline-red-400"
-              } text-center placeholder-neutral-500 mb-2 w-full duration-300 resize-none outline-none h-10 rounded-xl text-white`}
+              } text-center placeholder-neutral-500 mb-2 w-full duration-300 resize-none outline-none py-2 rounded-xl text-white`}
               value={phone}
               onChange={handlePhoneChange}
               onInput={handlePhoneChange}
@@ -304,7 +307,7 @@ const Form = () => {
               }`}
             />
             <label
-              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 justify-center h-10 text-lg w-full text-center rounded-xl m-2 outline-dashed ${
+              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 justify-center py-2 text-lg w-full text-center rounded-xl m-2 outline-dashed ${
                 selectedOption == "Žični mikrofon"
                   ? success == null
                     ? "outline-purple-400"
@@ -332,7 +335,7 @@ const Form = () => {
               JBL Žični Mikrofon
             </label>
             <label
-              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 justify-center h-10 text-lg w-full text-center rounded-xl m-2 outline-dashed ${
+              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 justify-center py-2 text-lg w-full text-center rounded-xl m-2 outline-dashed ${
                 selectedOption == "Bežični mikrofon"
                   ? success == null
                     ? "outline-purple-400"
@@ -361,7 +364,7 @@ const Form = () => {
             </label>
 
             <label
-              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 justify-center h-10 text-lg w-full text-center rounded-xl m-2 outline-dashed ${
+              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 justify-center py-2 text-lg w-full text-center rounded-xl m-2 outline-dashed ${
                 selectedOption == "Bez mikrofona"
                   ? success == null
                     ? "outline-purple-400"
