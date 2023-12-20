@@ -114,14 +114,14 @@ const Form = () => {
 
     return (
       <div>
-        <p className="flex sm:flex-row flex-col items-center justify-center pb-5">
-          Preuzimanje{" "}
-          <BiSolidRightArrow className="text-sm my-2 sm:mx-2 rotate-90 sm:rotate-0" />
+        <p className="flex sm:flex-row flex-col items-center justify-center pb-8">
+          <p className="text-2xl">Preuzimanje</p>
+          <BiSolidRightArrow className="text-xs my-2 sm:mx-2 rotate-90 sm:rotate-0" />
           {format(displayDate1, "PPP", { locale: srLatn })}
         </p>
         <p className="flex sm:flex-row flex-col items-center justify-center">
-          Povrat{" "}
-          <BiSolidRightArrow className="text-sm my-2 sm:mx-2 rotate-90 sm:rotate-0" />
+          <p className="text-2xl">Povrat</p>
+          <BiSolidRightArrow className="text-xs my-2 sm:mx-2 rotate-90 sm:rotate-0" />
           {format(displayDate2, "PPP", { locale: srLatn })}
         </p>
       </div>
@@ -221,7 +221,7 @@ const Form = () => {
           >
             <FaReceipt className="text-white text-6xl font-montserrat mb-6" />
             <p className="text-3xl font-thin text-white m-2">{data.name}</p>
-            <span className="text-2xl font-thin text-white text-center m-5 mb-6">
+            <span className="text-xl font-thin text-white text-center m-5 mb-6">
               {displayDates(
                 dateRange.split("-to-")[0],
                 dateRange.split("-to-")[1]
@@ -307,7 +307,7 @@ const Form = () => {
               }`}
             />
             <label
-              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 justify-center py-2 text-lg w-full text-center rounded-xl m-2 outline-dashed ${
+              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 h-10 justify-center text-lg w-full text-center rounded-xl m-2 outline-dashed ${
                 selectedOption == "Žični mikrofon"
                   ? success == null
                     ? "outline-purple-400"
@@ -335,7 +335,7 @@ const Form = () => {
               JBL Žični Mikrofon
             </label>
             <label
-              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 justify-center py-2 text-lg w-full text-center rounded-xl m-2 outline-dashed ${
+              className={`font-thin flex flex-col items-center duration-300 text-white p-2 h-10 outline-1 justify-center text-lg w-full text-center rounded-xl m-2 outline-dashed ${
                 selectedOption == "Bežični mikrofon"
                   ? success == null
                     ? "outline-purple-400"
@@ -364,7 +364,7 @@ const Form = () => {
             </label>
 
             <label
-              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 justify-center py-2 text-lg w-full text-center rounded-xl m-2 outline-dashed ${
+              className={`font-thin flex flex-col items-center duration-300 text-white p-2 h-10 outline-1 justify-center text-lg w-full text-center rounded-xl m-2 outline-dashed ${
                 selectedOption == "Bez mikrofona"
                   ? success == null
                     ? "outline-purple-400"
