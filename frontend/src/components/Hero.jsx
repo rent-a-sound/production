@@ -28,19 +28,19 @@ const Hero = () => {
         className={`text-white m-8 -mb-10 md:mx-36 md:mb-0 flex flex-col items-center duration-300`}
       >
         <div>
-          <div className="w-fit font-bold p-4 text-3xl my-6 flex items-center text-white tracking-wide animate-fade-down bg-gradient-to-b from-neutral-900 outline-1 outline-neutral-500 outline rounded-md">
+          <div className="w-full md:w-fit font-bold p-4 text-3xl my-6 flex items-center justify-center text-white tracking-wide animate-fade-down bg-gradient-to-b from-neutral-900 outline-1 outline-neutral-500 outline rounded-md">
             RENT <CgMusicSpeaker className="mx-2 text-4xl text-purple-400" />{" "}
             SOUND
           </div>
           <div
             name="title"
-            className="font-bold text-4xl md:text-6xl mb-3 tracking-wide animate-fade-down animate-delay-100"
+            className="font-bold text-4xl text-center md:text-start md:text-6xl mb-3 tracking-wide animate-fade-down animate-delay-100"
           >
             NARUČI ONLINE
           </div>
           <div
             name="subtitle"
-            className="font-thin md:text-xl mb-6 animate-fade-down animate-delay-200"
+            className="font-thin text-center md:text-start md:text-xl mb-6 animate-fade-down animate-delay-200"
           >
             {lorem1}
           </div>

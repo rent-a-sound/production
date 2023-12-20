@@ -343,9 +343,9 @@ const Catalogue = () => {
                         style={{ animationDelay: `${index * 300}ms` }}
                         className={`${
                           isDateUnavailable || !selected
-                            ? "text-neutral-400 outline-neutral-500 from-neutral-800 to-neutral-900 shadow-[0_0_10px_black]"
-                            : "text-purple-200 outline-purple-400 from-purple-700 to-purple-800 shadow-[0_0_10px_#7e22ce]"
-                        } tracking-wider text-2xl font-thin duration-700 animate-fade-down outline outline-1 rounded-2xl py-2 px-4 bg-gradient-to-tl`}
+                            ? "text-neutral-400 outline-neutral-500 from-neutral-800 to-neutral-900"
+                            : "text-purple-200 outline-purple-400 from-purple-700 to-purple-800 shadow relative"
+                        } tracking-wider text-2xl font-thin duration-700 animate-fade-down outline outline-1 rounded-2xl py-2 px-4 bg-gradient-to-b`}
                       >
                         {isDateUnavailable
                           ? "Zauzet"
