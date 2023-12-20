@@ -240,14 +240,10 @@ const Form = () => {
               }}
               className={`bg-neutral-950 outline-dashed font-thin ${
                 success == null
-                  ? !info.trim()
-                    ? "outline-white"
-                    : "outline-purple-400"
+                  ? "outline-purple-400"
                   : success == true
                     ? "outline-green-400"
-                    : !info.trim()
-                      ? "outline-red-400"
-                      : "outline-purple-400"
+                    : "outline-red-400"
               } outline-1 text-center placeholder-neutral-500 w-full mb-2 duration-300 resize-none outline-none h-10 rounded-xl text-white`}
               value={info}
               onChange={handleInfoChange}
@@ -281,22 +277,10 @@ const Form = () => {
               type="tel"
               className={`bg-neutral-950 appearance-none m-0 outline-dashed font-thin outline-1 ${
                 success == null
-                  ? (
-                      phone.startsWith("+")
-                        ? phone.length < 12
-                        : phone.length < 9
-                    )
-                    ? "outline-white"
-                    : "outline-purple-400"
+                  ? "outline-purple-400"
                   : success == true
                     ? "outline-green-400"
-                    : (
-                          phone.startsWith("+")
-                            ? phone.length < 12
-                            : phone.length < 9
-                        )
-                      ? "outline-red-400"
-                      : "outline-purple-400"
+                    : "outline-red-400"
               } text-center placeholder-neutral-500 mb-2 w-full duration-300 resize-none outline-none h-10 rounded-xl text-white`}
               value={phone}
               onChange={handlePhoneChange}
@@ -326,9 +310,7 @@ const Form = () => {
                     ? "outline-purple-400"
                     : success == true
                       ? "outline-green-400"
-                      : !selectedOption
-                        ? "outline-red-400"
-                        : "outline-purple-400"
+                      : "outline-red-400"
                   : "outline-white"
               }`}
             >
@@ -356,9 +338,7 @@ const Form = () => {
                     ? "outline-purple-400"
                     : success == true
                       ? "outline-green-400"
-                      : !selectedOption
-                        ? "outline-red-400"
-                        : "outline-purple-400"
+                      : "outline-red-400"
                   : "outline-white"
               }`}
             >
@@ -387,9 +367,7 @@ const Form = () => {
                     ? "outline-purple-400"
                     : success == true
                       ? "outline-green-400"
-                      : !selectedOption
-                        ? "outline-red-400"
-                        : "outline-purple-400"
+                      : "outline-red-400"
                   : "outline-white"
               }`}
             >
@@ -434,9 +412,7 @@ const Form = () => {
               id="link"
               className={`text-white mt-10 font-thin text-xl py-3 px-5 duration-300 outline-dashed outline-1 rounded-xl tracking-wide ${
                 success == null
-                  ? !checkAllInputs()
-                    ? "outline-white"
-                    : "outline-purple-400"
+                  ? "outline-purple-400"
                   : success == true
                     ? "outline-green-400"
                     : "outline-red-400"
