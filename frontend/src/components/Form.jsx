@@ -208,9 +208,7 @@ const Form = () => {
         <div className="p-6 bg-neutral-950 rounded-3xl" id="receipt">
           <div
             className={`${
-              success == true
-                ? "animate-jump animate-duration-500"
-                : "animate-jump-in animate-duration-500"
+              success == true ? "animate-jump animate-duration-500" : ""
             } ${success == false ? "animate-shake animate-duration-300" : ""} ${
               success == null
                 ? "outline-purple-400"
