@@ -114,16 +114,16 @@ const Form = () => {
 
     return (
       <div>
-        <p className="flex sm:flex-row flex-col items-center justify-center pb-8">
+        <span className="flex sm:flex-row flex-col items-center justify-center pb-8">
           <p className="text-2xl">Preuzimanje</p>
           <BiSolidRightArrow className="text-xs my-2 sm:mx-2 rotate-90 sm:rotate-0" />
           {format(displayDate1, "PPP", { locale: srLatn })}
-        </p>
-        <p className="flex sm:flex-row flex-col items-center justify-center">
+        </span>
+        <span className="flex sm:flex-row flex-col items-center justify-center">
           <p className="text-2xl">Povrat</p>
           <BiSolidRightArrow className="text-xs my-2 sm:mx-2 rotate-90 sm:rotate-0" />
           {format(displayDate2, "PPP", { locale: srLatn })}
-        </p>
+        </span>
       </div>
     );
   }

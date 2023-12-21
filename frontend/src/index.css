@@ -383,12 +383,3 @@ input:-webkit-autofill {
 .rdp-day_range_middle {
   border-radius: 0;
 }
-
-@keyframes glow {
-  from {
-    box-shadow: 0 0 0px #7e22ce;
-  }
-  to {
-    box-shadow: 0 0 25px #7e22ce;
-  }
-}

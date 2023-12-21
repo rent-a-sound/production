@@ -29,7 +29,7 @@ export default {
             opacity: "0",
           },
           "55%": {
-            transform: "translateY(-700px)",
+            transform: "translateY(-1000px)",
             animationTimingFunction: "ease-in",
           },
           "72%": {
@@ -60,10 +60,7 @@ export default {
         },
       },
       animation: {
-        nilemation1: "nilemation 2s ease-in-out",
-        nilemation2: "nilemation 2s 0.2s ease-in-out",
-        nilemation3: "nilemation 2s 0.3s ease-in-out",
-        nilemation4: "nilemation 2s 0.1s ease-in-out",
+        nilemation: "nilemation 2s ease-in-out",
         spinle1: "spinle 6s 1.5s linear infinite",
         spinle2: "spinle 6s linear infinite",
       },

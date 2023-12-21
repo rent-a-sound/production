@@ -334,13 +334,14 @@ const Catalogue = () => {
                       </div>
                     </div>
                     <img
-                      className="max-h-56 my-6"
+                      style={{ animationDelay: `${index * 300}ms` }}
+                      className="max-h-56 my-6 animate-fade-down"
                       src={item.image}
                       alt={item.name}
                     />
                     <div className="w-full px-6 pb-6">
                       <div
-                        style={{ animationDelay: `${index * 300}ms` }}
+                        style={{ animationDelay: `${index * 400}ms` }}
                         className={`${
                           isDateUnavailable || !selected
                             ? "text-neutral-400 outline-neutral-500 from-neutral-800 to-neutral-900"
