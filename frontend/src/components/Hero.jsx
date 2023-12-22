@@ -10,6 +10,7 @@ import partybox310f from "../public/310.webp";
 import partybox310s from "../public/310.png";
 import partybox710 from "../public/710.webp";
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
 
 const lorem1 =
   "Iznajmljivanje JBL PartyBox zvučnika za nezaboravne trenutke u Novom Sadu i Beogradu. Vrhunski zvuk, jednostavno korišćenje i podrška za savršeno iskustvo. Rezervišite sada i uživajte u muzici!";
@@ -46,7 +47,7 @@ const Hero = () => {
           </div>
           <div
             name="tip-container"
-            className="font-extralight bg-gradient-to-b from-neutral-900 to-neutral-950 p-4 mb-16 text-sm rounded-lg outline-1 outline-neutral-500 outline text-neutral-400 flex flex-row items-center justify-between animate-fade-down animate-delay-300"
+            className="font-extralight bg-gradient-to-b from-neutral-900 to-neutral-950 p-4 text-sm mb-6 rounded-lg outline-1 outline-neutral-500 outline text-neutral-400 flex flex-row items-center justify-between animate-fade-down animate-delay-300"
           >
             <div name="tip-icon" className="text-3xl pr-4 text-purple-400">
               <BsLightningChargeFill />
@@ -54,9 +55,12 @@ const Hero = () => {
             <div name="tip-text">{lorem2}</div>
           </div>
         </div>
+        <div className="w-full flex items-center md:items-start justify-center md:justify-start mb-16">
+          <Footer />
+        </div>
         <div
           name="banner-container"
-          className="grid grid-cols-1 grid-rows-1 mb-12 lg:mb-0 mr-3 lg:mr-32 lg:mt-12 relative -mt-8"
+          className="grid grid-cols-1 grid-rows-1 mb-12 lg:mb-0 mr-3 lg:mr-32 relative -mt-8"
         >
           <img
             src={partybox110}
@@ -109,7 +113,7 @@ const Hero = () => {
           </Link>
         </div>
         <div
-          className={`flex items-center animate-fade-down animate-delay-700 justify-center flex-col bg-gradient-to-b from-neutral-900 p-4 rounded-2xl px-6 mb-12 duration-300 outline-1 outline-neutral-500 outline`}
+          className={`flex items-center animate-fade-down animate-delay-700 justify-center flex-col bg-gradient-to-b from-neutral-900 p-4 rounded-2xl mb-12 md:mb-0 px-6 duration-300 outline-1 outline-neutral-500 outline`}
         >
           <div
             name="contact-title"
