@@ -341,7 +341,7 @@ const Catalogue = () => {
                         className={`${
                           isDateUnavailable || !selected
                             ? "text-neutral-400 outline-neutral-700 bg-neutral-900"
-                            : "text-purple-200 outline-purple-500 bg-purple-600 shadow relative"
+                            : "text-purple-200 outline-purple-500 bg-purple-800 shadow relative"
                         } tracking-wider text-2xl font-thin duration-700 animate-fade-down outline outline-1 rounded-2xl py-2 px-4`}
                       >
                         {isDateUnavailable

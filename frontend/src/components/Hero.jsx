@@ -28,7 +28,7 @@ const Hero = () => {
         name="left-half"
         className={`text-white m-8 -mb-10 md:mx-36 md:mb-0 flex flex-col items-center duration-300`}
       >
-        <div className="outline outline-1 rounded-2xl outline-neutral-700 md:mt-10 pb-8 mt-8 mb-8 px-8 md:px-10">
+        <div className="outline outline-1 rounded-2xl outline-neutral-700 md:mt-10 pb-8 mt-2 mb-8 px-8 md:px-10 animate-fade-down">
           <div
             name="title"
             className="font-bold text-4xl mt-10 text-center md:text-start md:text-6xl mb-3 tracking-wide animate-fade-down animate-delay-100"
