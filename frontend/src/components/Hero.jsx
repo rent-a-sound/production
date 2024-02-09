@@ -1,8 +1,8 @@
-import { BsLightningChargeFill } from "react-icons/bs";
 import { RiInstagramFill } from "react-icons/ri";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { TbArrowBigRightFilled } from "react-icons/tb";
-import { CgMusicSpeaker } from "react-icons/cg";
+import { AiOutlineExclamation } from "react-icons/ai";
+import { BsExclamationLg } from "react-icons/bs";
 import { TbPhoneFilled } from "react-icons/tb";
 import { HiMail } from "react-icons/hi";
 import partybox110 from "../public/110.webp";
@@ -28,14 +28,10 @@ const Hero = () => {
         name="left-half"
         className={`text-white m-8 -mb-10 md:mx-36 md:mb-0 flex flex-col items-center duration-300`}
       >
-        <div>
-          <div className="w-full md:w-fit font-bold p-4 text-3xl my-6 flex items-center justify-center text-white tracking-wide animate-fade-down bg-gradient-to-b from-neutral-900 outline-1 outline-neutral-500 outline rounded-md">
-            RENT <CgMusicSpeaker className="mx-2 text-4xl text-purple-400" />{" "}
-            SOUND
-          </div>
+        <div className="outline outline-1 rounded-2xl outline-neutral-700 md:mt-10 pb-8 mt-8 mb-8 px-8 md:px-10">
           <div
             name="title"
-            className="font-bold text-4xl text-center md:text-start md:text-6xl mb-3 tracking-wide animate-fade-down animate-delay-100"
+            className="font-bold text-4xl mt-10 text-center md:text-start md:text-6xl mb-3 tracking-wide animate-fade-down animate-delay-100"
           >
             NARUČI ONLINE
           </div>
@@ -47,20 +43,20 @@ const Hero = () => {
           </div>
           <div
             name="tip-container"
-            className="font-extralight bg-gradient-to-b from-neutral-900 to-neutral-950 p-4 text-sm mb-6 rounded-lg outline-1 outline-neutral-500 outline text-neutral-400 flex flex-row items-center justify-between animate-fade-down animate-delay-300"
+            className="font-extralight bg-neutral-900 p-4 pl-1 text-sm mb-6 rounded-2xl outline-1 outline-neutral-700 outline text-neutral-400 flex flex-row items-center justify-between animate-fade-down animate-delay-300"
           >
-            <div name="tip-icon" className="text-3xl pr-4 text-purple-400">
-              <BsLightningChargeFill />
+            <div name="tip-icon" className="text-4xl text-purple-400">
+              <BsExclamationLg />
             </div>
             <div name="tip-text">{lorem2}</div>
           </div>
-        </div>
-        <div className="w-full flex items-center md:items-start justify-center md:justify-start mb-16">
-          <Footer />
+          <div className="w-full flex items-center md:items-start justify-center md:justify-start">
+            <Footer />
+          </div>
         </div>
         <div
           name="banner-container"
-          className="grid grid-cols-1 grid-rows-1 mb-12 lg:mb-0 mr-3 lg:mr-32 relative -mt-8"
+          className="grid grid-cols-1 grid-rows-1 mb-12 lg:mb-0 mr-3 lg:mr-32 relative"
         >
           <img
             src={partybox110}
@@ -87,12 +83,12 @@ const Hero = () => {
         name="right-half"
         className="text-white flex flex-col items-center justify-center md:mr-32 md:my-14"
       >
-        <div className="flex items-center justify-center flex-col bg-gradient-to-b from-neutral-900 outline-1 outline-neutral-500 outline p-4 rounded-2xl mb-10 px-6 animate-fade-down animate-delay-500">
+        <div className="flex items-center justify-center flex-col outline-1 outline-neutral-700 outline p-4 rounded-2xl mb-10 px-6 animate-fade-down animate-delay-500">
           <div className="text-4xl font-bold mt-3 tracking-wide">KATALOG</div>
           <Link
             to="/katalog/ns"
             name="novi-sad"
-            className="bg-gradient-to-b shadow-[0_0_10px_black] from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 animate-fade-down animate-delay-[600ms] outline w-72 h-24 my-6 rounded-3xl flex flex-col items-center justify-center tracking-wide"
+            className="bg-neutral-900 outline-1 outline-neutral-700 animate-fade-down animate-delay-[600ms] outline w-72 h-24 my-6 rounded-3xl flex flex-col items-center justify-center tracking-wide"
           >
             <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between">
               <FaMapMarkerAlt className="text-red-600 mr-2 animate-spinle2" />
@@ -103,7 +99,7 @@ const Hero = () => {
           <Link
             to="/katalog/bg"
             name="beograd"
-            className="bg-gradient-to-b shadow-[0_0_10px_black] from-neutral-800 to-neutral-900 w-72 h-24 outline-1 outline-neutral-500 animate-fade-down animate-delay-[700ms] outline rounded-3xl flex flex-col items-center justify-center tracking-wide mb-5"
+            className="bg-neutral-900 w-72 h-24 outline-1 outline-neutral-700 animate-fade-down animate-delay-[700ms] outline rounded-3xl flex flex-col items-center justify-center tracking-wide mb-5"
           >
             <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between">
               <FaMapMarkerAlt className="text-red-600 mr-2 animate-spinle1" />
@@ -113,7 +109,7 @@ const Hero = () => {
           </Link>
         </div>
         <div
-          className={`flex items-center animate-fade-down animate-delay-700 justify-center flex-col bg-gradient-to-b from-neutral-900 p-4 rounded-2xl mb-12 md:mb-0 px-6 duration-300 outline-1 outline-neutral-500 outline`}
+          className={`flex items-center animate-fade-down animate-delay-700 justify-center flex-col p-4 rounded-2xl mb-12 md:mb-0 px-6 duration-300 outline-1 outline-neutral-700 outline`}
         >
           <div
             name="contact-title"
@@ -127,7 +123,7 @@ const Hero = () => {
             target="_blank"
             rel="noopener noreferrer"
             name="instagram"
-            className="bg-gradient-to-b shadow-[0_0_10px_black] outline-1 outline-neutral-500 outline from-neutral-800 animate-fade-down animate-delay-[800ms] to-neutral-900 h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
+            className="bg-neutral-900 outline-1 outline-neutral-700 outline animate-fade-down animate-delay-[800ms] h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
           >
             <div className="flex flex-row items-center mt-4 ml-4">
               <RiInstagramFill className="text-2xl mr-2 text-pink-500" />
@@ -141,7 +137,7 @@ const Hero = () => {
           <a
             name="phone"
             href="tel:+381643478060"
-            className="bg-gradient-to-b shadow-[0_0_10px_black] from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 animate-fade-down animate-delay-[900ms] outline h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
+            className="bg-neutral-900 outline-1 outline-neutral-700 animate-fade-down animate-delay-[900ms] outline h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
           >
             <div className="flex flex-row items-center mt-4 ml-4">
               <TbPhoneFilled className="text-2xl mr-2 text-green-500" />
@@ -152,7 +148,7 @@ const Hero = () => {
           <a
             name="mail"
             href="mailto:zvucnici.i.ns@gmail.com"
-            className="bg-gradient-to-b shadow-[0_0_10px_black] from-neutral-800 to-neutral-900 outline-1 outline-neutral-500 outline h-24 w-72 rounded-3xl animate-fade-down animate-delay-[1000ms] flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
+            className="bg-neutral-900 outline-1 outline-neutral-700 outline h-24 w-72 rounded-3xl animate-fade-down animate-delay-[1000ms] flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
           >
             <div className="flex flex-row items-center mt-4 ml-4">
               <HiMail className="text-2xl mr-2 text-blue-500" />
