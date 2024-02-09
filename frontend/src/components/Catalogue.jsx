@@ -210,12 +210,12 @@ const Catalogue = () => {
         onClick={() => {
           setClicked(!clicked);
         }}
-        className={`flex flex-col items-center justify-start fixed duration-300 w-11/12 sm:w-fit bg-[rgba(0,0,0,0.1)] backdrop-filter rounded-b-3xl backdrop-blur-lg shadow-[0_0_30px_black] outline outline-1 outline-neutral-500 p-4 pb-1 z-10 ${
+        className={`flex flex-col items-center justify-start fixed duration-300 w-11/12 sm:w-fit bg-[rgba(0,0,0,0.1)] backdrop-filter rounded-b-3xl backdrop-blur-lg outline outline-1 outline-neutral-700 p-4 pb-1 z-10 ${
           !clicked ? "-translate-y-[26rem]" : "-translate-y-[1rem]"
         }`}
       >
         <div
-          className={`shadow-[0_0_5px_rgba(0,0,0,1) flex items-center w-11/12 justify-center my-4 outline-neutral-500 outline outline-1 bg-gradient-to-b rounded-md from-neutral-800 to-neutral-900`}
+          className={`flex items-center w-11/12 justify-center my-4 outline-neutral-700 outline outline-1 bg-neutral-900 rounded-md`}
           onClick={(e) => {
             e.stopPropagation();
           }}
@@ -236,7 +236,7 @@ const Catalogue = () => {
             numberOfMonths={screenWidth < 1280 ? 1 : 2}
           />
         </div>
-        <div className="flex flex-row items-center w-11/12 bg-gradient-to-b mb-5 from-neutral-800 to-neutral-900 py-2 px-4 outline outline-1 rounded-md shadow-[0_0_5px_rgba(0,0,0,1)] outline-neutral-500 justify-around">
+        <div className="flex flex-row items-center w-11/12 bg-neutral-900 mb-5 py-2 px-4 outline outline-1 rounded-md outline-neutral-700 justify-around">
           <div
             onClick={(e) => {
               e.stopPropagation();
@@ -267,20 +267,16 @@ const Catalogue = () => {
           </div>
         </div>
         <span
-          className={` text-lg mt-3 font-thin flex flex-row items-center justify-center bg-gradient-to-b shadow-[0_0_5px_rgba(0,0,0,1)] from-neutral-800 to-neutral-900 ${
-            selected
-              ? "text-neutral-200 outline outline-1 outline-neutral-500"
-              : "text-neutral-400 outline outline-1 outline-neutral-600"
+          className={` text-lg mt-3 font-thin flex flex-row items-center outline-neutral-700 outline outline-1 justify-center bg-neutral-900 ${
+            selected ? "text-neutral-200" : "text-neutral-400"
           } py-1 px-3 rounded-md md:w-11/12 w-11/12 duration-300`}
         >
           Preuzimanje <BiSolidRightArrow className="mx-2 text-xs" />
           {displayDate(selected)[0]}
         </span>
         <span
-          className={` text-lg mt-3 font-thin flex flex-row items-center justify-center bg-gradient-to-b shadow-[0_0_5px_rgba(0,0,0,1)] from-neutral-800 to-neutral-900 ${
-            selected
-              ? "text-neutral-200 outline outline-1 outline-neutral-500"
-              : "text-neutral-400 outline outline-1 outline-neutral-600"
+          className={` text-lg mt-3 font-thin flex flex-row outline-neutral-700 items-center  outline outline-1 justify-center bg-neutral-900 ${
+            selected ? "text-neutral-200" : "text-neutral-400"
           } py-1 px-3 rounded-md md:w-11/12 w-11/12 duration-300`}
         >
           Povrat <BiSolidRightArrow className="duration-300 mx-2 text-xs" />
@@ -313,12 +309,12 @@ const Catalogue = () => {
                     }}
                     key={index}
                     style={{ animationDelay: `${index * 100}ms` }}
-                    className={`flex flex-col items-center justify-start m-4 h-fit bg-gradient-to-b outline outline-1 outline-neutral-500 from-neutral-900 to-neutral-950 rounded-2xl duration-500 animate-fade-down`}
+                    className={`flex flex-col items-center justify-start m-4 h-fit outline outline-1 outline-neutral-700 rounded-2xl duration-500 animate-fade-down`}
                   >
                     <div className="px-6 pt-6 w-full">
                       <div
                         style={{ animationDelay: `${index * 200}ms` }}
-                        className="bg-gradient-to-b py-1 from-neutral-800 animate-fade-down to-neutral-900 w-full shadow-[0_0_10px_black] rounded-3xl outline outline-1 outline-neutral-500"
+                        className="bg-neutral-900 py-1 animate-fade-down w-full rounded-3xl outline outline-1 outline-neutral-700"
                       >
                         <h1 className="mb-3 mt-3 mx-4 text-2xl font-bold tracking-wider text-white">
                           {item.name}
@@ -344,9 +340,9 @@ const Catalogue = () => {
                         style={{ animationDelay: `${index * 400}ms` }}
                         className={`${
                           isDateUnavailable || !selected
-                            ? "text-neutral-400 outline-neutral-500 from-neutral-800 to-neutral-900"
-                            : "text-purple-200 outline-purple-400 from-purple-700 to-purple-800 shadow relative"
-                        } tracking-wider text-2xl font-thin duration-700 animate-fade-down outline outline-1 rounded-2xl py-2 px-4 bg-gradient-to-b`}
+                            ? "text-neutral-400 outline-neutral-700 bg-neutral-900"
+                            : "text-purple-200 outline-purple-500 bg-purple-600 shadow relative"
+                        } tracking-wider text-2xl font-thin duration-700 animate-fade-down outline outline-1 rounded-2xl py-2 px-4`}
                       >
                         {isDateUnavailable
                           ? "Zauzet"
