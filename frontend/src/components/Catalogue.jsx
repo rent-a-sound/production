@@ -296,10 +296,7 @@ const Catalogue = () => {
           sortedData.map((item, index) => {
             {
               const { dates, isDateUnavailable } = getAvailabilityInfo(item);
-              const toLink = `/rez/${item.id}/${dates[0]}-to-${
-                dates[dates.length - 1]
-              }`;
-              const toLink2 = {
+              const toLink = {
                 pathname: "/rez",
                 search:
                   "?id=" +
@@ -312,7 +309,7 @@ const Catalogue = () => {
               if (!taken || !isDateUnavailable)
                 return (
                   <Link
-                    to={selected && !isDateUnavailable ? toLink2 : null}
+                    to={selected && !isDateUnavailable ? toLink : null}
                     onClick={() => {
                       if (!(selected && !isDateUnavailable)) {
                         setClicked(!clicked);
