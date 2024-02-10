@@ -6,7 +6,7 @@ import { FaReceipt } from "react-icons/fa6";
 import { IoPersonSharp } from "react-icons/io5";
 import { TbPhoneFilled } from "react-icons/tb";
 import { IoMdMicrophone } from "react-icons/io";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
 import { BiSolidRightArrow } from "react-icons/bi";
@@ -20,6 +20,7 @@ const Form = () => {
   const [animatePhone, setAnimatePhone] = useState(false);
   const [animateMic, setAnimateMic] = useState(false);
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   const micMap = {
     "Bez mikrofona": 0,
@@ -406,20 +407,25 @@ const Form = () => {
                   ) + "din."
                 : ""}
             </p>
-            <a
+            <div
               id="link"
-              className={`text-white mt-10 bg-neutral-900 font-thin text-xl py-3 px-5 duration-300 outline outline-1 rounded-xl tracking-wide ${
+              className={`text-white mt-10 bg-neutral-900 cursor-pointer font-thin text-xl py-3 px-5 duration-300 outline outline-1 rounded-xl tracking-wide ${
                 success == null
                   ? "outline-neutral-700"
                   : success == true
                     ? "outline-emerald-800"
                     : "outline-rose-800"
               }`}
-              href={success === true ? `/` : null}
-              onClick={success === true ? null : handleSubmit}
+              onClick={
+                success === true
+                  ? () => {
+                      navigate("/");
+                    }
+                  : handleSubmit
+              }
             >
               {success == true ? "NAZAD NA POČETNU" : "POTVRDI"}
-            </a>
+            </div>
             <p
               className={`text-rose-800 text-md font-thin duration-300 ${
                 success === false && error
