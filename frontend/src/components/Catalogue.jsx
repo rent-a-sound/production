@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { format, addDays, subDays, parseISO } from "date-fns";
 import { DayPicker } from "react-day-picker";
-import { IoIosArrowUp } from "react-icons/io";
 import { srLatn } from "date-fns/locale";
 import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
 import { HiArrowDown } from "react-icons/hi2";
+import { PiCaretDownLight } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { BiSolidRightArrow } from "react-icons/bi";
 
@@ -282,9 +282,9 @@ const Catalogue = () => {
           Povrat <BiSolidRightArrow className="duration-300 mx-2 text-xs" />
           {displayDate(selected)[1]}
         </span>
-        <IoIosArrowUp
-          className={`text-neutral-500 text-3xl ${
-            clicked ? "" : "-translate-y-0 rotate-180"
+        <PiCaretDownLight
+          className={`text-neutral-400 text-3xl ${
+            clicked ? "-translate-y-0 rotate-180" : ""
           } duration-300 mt-2`}
         />
       </div>
