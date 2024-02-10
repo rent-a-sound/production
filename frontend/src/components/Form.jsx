@@ -30,6 +30,7 @@ const Form = () => {
 
   const [selectedOption, setSelectedOption] = useState(null);
 
+  //Get speaker id, from and to dates from query params
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id");
@@ -40,6 +41,7 @@ const Form = () => {
     setSelectedOption(event.target.value);
   };
 
+  //Allow only letters for name
   const handleInfoChange = (e) => {
     const formattedValue = e.target.value.replace(
       /[^a-zA-Z\u00C0-\u024F\u1E00-\u1EFF\s]/g,
@@ -48,11 +50,13 @@ const Form = () => {
     setInfo(formattedValue);
   };
 
+  //Allow only numbers & plus sign, limit number of digits
   const handlePhoneChange = (e) => {
     const formattedValue = e.target.value.replace(/[^\d+]/g, "");
     setPhone(formattedValue.slice(0, 14));
   };
 
+  //Manupulates DOM to take the link out and change the text, then downloads image of div and returns it original text/link
   const generateImage = () => {
     const linkElement = document.getElementById("link");
 
@@ -82,6 +86,7 @@ const Form = () => {
       });
   };
 
+  //Fetch data for a single speaker
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -98,13 +103,14 @@ const Form = () => {
     fetchData();
   }, []);
 
+  //Helper function, creates a list of all dates between date1 and date2 in dd-MM-yyyy format
   function getDatesBetween(date1, date2, dateFormat = "dd-MM-yyyy") {
     const parsedDate1 = date1
       ? parse(date1, dateFormat, new Date())
-      : new Date();
+      : new Date(0);
     const parsedDate2 = date2
       ? parse(date2, dateFormat, new Date())
-      : new Date();
+      : new Date(0);
 
     const datesBetween = eachDayOfInterval({
       start: parsedDate1,
@@ -116,13 +122,14 @@ const Form = () => {
     return formattedDates;
   }
 
+  //Formats dates in readable format
   function displayDates(date1, date2) {
     const displayDate1 = date1
       ? parse(date1, "dd-MM-yyyy", new Date())
-      : new Date();
+      : new Date(0);
     const displayDate2 = date2
       ? parse(date2, "dd-MM-yyyy", new Date())
-      : new Date();
+      : new Date(0);
 
     return (
       <div>
@@ -140,6 +147,7 @@ const Form = () => {
     );
   }
 
+  //Calculate price based on speaker, how many days rented and what microphone option is selected
   const calculatePrice = (speaker, days) => {
     const priceObject =
       days > speaker.price.length
@@ -154,6 +162,7 @@ const Form = () => {
         : priceObject.price + (selectedOption ? micMap[selectedOption] : 0);
   };
 
+  //Helper function, checks if name has anything, number is valid length and is any mic option selected
   function checkAllInputs() {
     if (
       !info.trim() ||
@@ -165,6 +174,7 @@ const Form = () => {
     return true;
   }
 
+  //Checks for inputs, then uses telegram bot API to send an order to admin
   const handleSubmit = async () => {
     try {
       if (!checkAllInputs()) {
