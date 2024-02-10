@@ -8,7 +8,7 @@ import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
 import { HiArrowDown } from "react-icons/hi2";
 import { PiCaretDownLight } from "react-icons/pi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BiSolidRightArrow } from "react-icons/bi";
 
 const Catalogue = () => {
@@ -19,6 +19,9 @@ const Catalogue = () => {
   const [taken, setTaken] = useState(true);
   const [priceLowHigh, setPriceLowHigh] = useState(true);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const city = queryParams.get("city");
 
   const updateScreenWidth = () => {
     setScreenWidth(window.innerWidth);
@@ -75,9 +78,7 @@ const Catalogue = () => {
   }, [selected]);
 
   useEffect(() => {
-    const apiUrl = `https://niledragomirovic.pythonanywhere.com/data?city=${
-      window.location.href.split("/")[6]
-    }`;
+    const apiUrl = `https://niledragomirovic.pythonanywhere.com/data?city=${city}`;
     axios
       .get(apiUrl)
       .then((response) => {
@@ -298,10 +299,20 @@ const Catalogue = () => {
               const toLink = `/rez/${item.id}/${dates[0]}-to-${
                 dates[dates.length - 1]
               }`;
+              const toLink2 = {
+                pathname: "/rez",
+                search:
+                  "?id=" +
+                  item.id +
+                  "&from=" +
+                  dates[0] +
+                  "&to=" +
+                  dates[dates.length - 1],
+              };
               if (!taken || !isDateUnavailable)
                 return (
                   <Link
-                    to={selected && !isDateUnavailable ? toLink : null}
+                    to={selected && !isDateUnavailable ? toLink2 : null}
                     onClick={() => {
                       if (!(selected && !isDateUnavailable)) {
                         setClicked(!clicked);

@@ -6,7 +6,7 @@ import { FaReceipt } from "react-icons/fa6";
 import { IoPersonSharp } from "react-icons/io5";
 import { TbPhoneFilled } from "react-icons/tb";
 import { IoMdMicrophone } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
 import { BiSolidRightArrow } from "react-icons/bi";
@@ -29,8 +29,10 @@ const Form = () => {
 
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const id = window.location.href.split("/")[6];
-  const dateRange = window.location.href.split("/")[7];
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const id = queryParams.get("id");
+  const dateRange = [queryParams.get("from"), queryParams.get("to")];
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -167,20 +169,15 @@ const Form = () => {
             "\n" +
             id +
             "\n" +
-            (dateRange.split("-to-")[0] === dateRange.split("-to-")[1]
-              ? dateRange.split("-to-")[0]
-              : dateRange.split("-to-")[0] +
-                " do " +
-                dateRange.split("-to-")[1]) +
+            (dateRange[0] === dateRange[1]
+              ? dateRange[0]
+              : dateRange[0] + " do " + dateRange[1]) +
             "\n" +
             selectedOption +
             "\n" +
             calculatePrice(
               data,
-              getDatesBetween(
-                dateRange.split("-to-")[0],
-                dateRange.split("-to-")[1]
-              ).length
+              getDatesBetween(dateRange[0], dateRange[1]).length
             ) +
             "din."
         )}`,
@@ -222,10 +219,7 @@ const Form = () => {
             <FaReceipt className="text-white text-6xl font-montserrat mb-6" />
             <p className="text-3xl font-thin text-white m-2">{data.name}</p>
             <span className="text-xl font-thin text-white text-center m-5 mb-6">
-              {displayDates(
-                dateRange.split("-to-")[0],
-                dateRange.split("-to-")[1]
-              )}
+              {displayDates(dateRange[0], dateRange[1])}
             </span>
             <IoPersonSharp
               className={`${
@@ -404,14 +398,11 @@ const Form = () => {
               {data.price
                 ? calculatePrice(
                     data,
-                    getDatesBetween(
-                      dateRange.split("-to-")[0],
-                      dateRange.split("-to-")[1]
-                    ).length
+                    getDatesBetween(dateRange[0], dateRange[1]).length
                   ) + "din."
                 : ""}
             </p>
-            <Link
+            <a
               id="link"
               className={`text-white mt-10 bg-neutral-900 font-thin text-xl py-3 px-5 duration-300 outline outline-1 rounded-xl tracking-wide ${
                 success == null
@@ -420,11 +411,11 @@ const Form = () => {
                     ? "outline-emerald-800"
                     : "outline-rose-800"
               }`}
-              to={success == true ? "/" : null}
+              href={success === true ? `/` : null}
               onClick={success === true ? null : handleSubmit}
             >
               {success == true ? "NAZAD NA POČETNU" : "POTVRDI"}
-            </Link>
+            </a>
             <p
               className={`text-rose-800 text-md font-thin duration-300 ${
                 success === false && error
