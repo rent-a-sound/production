@@ -11,7 +11,7 @@ DATA_PATH: Final = './config.json'
 
 async def rez(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
-        valueArray = update.message.text.lstrip('/rez ').split(';')
+        valueArray = update.message.text.lstrip('/rez ').split(' ')
         object_id = valueArray[0]
         start_date = valueArray[1]
         if len(valueArray) > 2:
@@ -53,7 +53,7 @@ async def rez(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def otkazi(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
-        valueArray = update.message.text.lstrip('/otkazi ').split(';')
+        valueArray = update.message.text.lstrip('/otkazi ').split(' ')
         object_id = valueArray[0]
         start_date = valueArray[1]
         if len(valueArray) > 2:
@@ -113,28 +113,8 @@ async def remove_speaker(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def add_speaker(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
-        id, name, desc, battery, city, price, overdraft, image = update.message.text.lstrip('/add ').split(';')
-
-        new_speaker = {
-            "id": id,
-            "name": name,
-            "desc": desc,
-            "battery": bool(battery),
-            "city": city,
-            "unavailable": [],
-            "price": [
-                {"day": 0, "price": 2000},
-                {"day": 1, "price": 2100},
-                {"day": 2, "price": 2200},
-                {"day": 3, "price": 2300},
-                {"day": 4, "price": 2400},
-                {"day": 5, "price": 2500},
-                {"day": 6, "price": 2600}
-            ],
-            "overdraft": overdraft,
-            "image": image
-        }
-
+        new_speaker = json.loads(update.message.text.lstrip('/add '))
+        
         with open(DATA_PATH, 'r') as file:
             json_data = json.load(file)
 
@@ -143,7 +123,7 @@ async def add_speaker(update: Update, context: ContextTypes.DEFAULT_TYPE):
         with open(DATA_PATH, 'w') as file:
             json.dump(json_data, file, indent=2)
 
-        await context.bot.send_message(chat_id=update.message.chat_id, text="Speaker id:" + id + " added.")
+        await context.bot.send_message(chat_id=update.message.chat_id, text="Speaker added.")
     
     except ValueError as ve:
         await context.bot.send_message(chat_id=update.message.chat_id, text=f"Error parsing input: {str(ve)}")
@@ -169,7 +149,7 @@ async def clean_dates(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def move_speaker(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    speaker_id, new_city = update.message.text.lstrip('/move ').split(';')
+    speaker_id, new_city = update.message.text.lstrip('/move ').split(' ')
     success = False
 
     with open(DATA_PATH, 'r') as file:
