@@ -6,7 +6,7 @@ import { FaReceipt } from "react-icons/fa6";
 import { IoPersonSharp } from "react-icons/io5";
 import { TbPhoneFilled } from "react-icons/tb";
 import { IoMdMicrophone } from "react-icons/io";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
 import { BiSolidRightArrow } from "react-icons/bi";
@@ -98,8 +98,12 @@ const Form = () => {
   }, []);
 
   function getDatesBetween(date1, date2, dateFormat = "dd-MM-yyyy") {
-    const parsedDate1 = parse(date1, dateFormat, new Date());
-    const parsedDate2 = parse(date2, dateFormat, new Date());
+    const parsedDate1 = date1
+      ? parse(date1, dateFormat, new Date())
+      : new Date();
+    const parsedDate2 = date2
+      ? parse(date2, dateFormat, new Date())
+      : new Date();
 
     const datesBetween = eachDayOfInterval({
       start: parsedDate1,
@@ -112,8 +116,12 @@ const Form = () => {
   }
 
   function displayDates(date1, date2) {
-    const displayDate1 = parse(date1, "dd-MM-yyyy", new Date());
-    const displayDate2 = parse(date2, "dd-MM-yyyy", new Date());
+    const displayDate1 = date1
+      ? parse(date1, "dd-MM-yyyy", new Date())
+      : new Date();
+    const displayDate2 = date2
+      ? parse(date2, "dd-MM-yyyy", new Date())
+      : new Date();
 
     return (
       <div>
