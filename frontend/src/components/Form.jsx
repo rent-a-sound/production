@@ -213,11 +213,11 @@ const Form = () => {
                 : "animate-jump-in animate-duration-500"
             } ${success == false ? "animate-shake animate-duration-300" : ""} ${
               success == null
-                ? "outline-purple-400"
+                ? "outline-neutral-700"
                 : success == true
-                  ? "outline-green-400"
-                  : "outline-red-400"
-            } flex flex-col items-center justify-start outline-dashed duration-300 outline-1 p-10 rounded-xl`}
+                  ? "outline-emerald-800"
+                  : "outline-rose-800"
+            } flex flex-col items-center justify-start outline duration-300 outline-1 p-10 rounded-xl`}
           >
             <FaReceipt className="text-white text-6xl font-montserrat mb-6" />
             <p className="text-3xl font-thin text-white m-2">{data.name}</p>
@@ -241,12 +241,12 @@ const Form = () => {
                   setAnimatePerson(true);
                 }, 0);
               }}
-              className={`bg-neutral-950 outline-dashed font-thin ${
+              className={`bg-neutral-900 outline font-thin ${
                 success == null
-                  ? "outline-purple-400"
+                  ? "outline-neutral-700"
                   : success == true
-                    ? "outline-green-400"
-                    : "outline-red-400"
+                    ? "outline-emerald-800"
+                    : "outline-rose-800"
               } outline-1 text-center placeholder-neutral-500 w-full mb-2 duration-300 resize-none outline-none py-2 rounded-xl text-white`}
               value={info}
               onChange={handleInfoChange}
@@ -255,7 +255,7 @@ const Form = () => {
               placeholder="Vaše ime i prezime..."
             ></input>
             <p
-              className={`text-red-400 text-md font-thin duration-300 ${
+              className={`text-rose-800 text-md font-thin duration-300 ${
                 success === false && !info.trim()
                   ? "opacity-100"
                   : "opacity-0 -mb-5"
@@ -278,12 +278,12 @@ const Form = () => {
                 }, 0);
               }}
               type="tel"
-              className={`bg-neutral-950 appearance-none m-0 outline-dashed font-thin outline-1 ${
+              className={`bg-neutral-900 appearance-none m-0 outline font-thin outline-1 ${
                 success == null
-                  ? "outline-purple-400"
+                  ? "outline-neutral-700"
                   : success == true
-                    ? "outline-green-400"
-                    : "outline-red-400"
+                    ? "outline-emerald-800"
+                    : "outline-rose-800"
               } text-center placeholder-neutral-500 mb-2 w-full duration-300 resize-none outline-none py-2 rounded-xl text-white`}
               value={phone}
               onChange={handlePhoneChange}
@@ -292,7 +292,7 @@ const Form = () => {
               placeholder="Vaš broj telefona..."
             ></input>
             <p
-              className={`text-red-400 text-md font-thin duration-300 ${
+              className={`text-rose-800 text-md font-thin duration-300 ${
                 success === false &&
                 (phone.startsWith("+") ? phone.length < 12 : phone.length < 9)
                   ? "opacity-100 mb-1"
@@ -307,14 +307,14 @@ const Form = () => {
               }`}
             />
             <label
-              className={`font-thin flex flex-col items-center duration-300 text-white p-2 outline-1 h-10 justify-center text-lg w-full text-center rounded-xl m-2 outline-dashed ${
+              className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 text-white p-2 outline-1 h-10 justify-center text-lg w-full text-center rounded-xl m-2 outline ${
                 selectedOption == "Žični mikrofon"
                   ? success == null
-                    ? "outline-purple-400"
+                    ? "outline-neutral-500"
                     : success == true
-                      ? "outline-green-400"
-                      : "outline-red-400"
-                  : "outline-white"
+                      ? "outline-emerald-800"
+                      : "outline-rose-800"
+                  : "outline-neutral-700"
               }`}
             >
               <input
@@ -335,14 +335,14 @@ const Form = () => {
               JBL Žični Mikrofon
             </label>
             <label
-              className={`font-thin flex flex-col items-center duration-300 text-white p-2 h-10 outline-1 justify-center text-lg w-full text-center rounded-xl m-2 outline-dashed ${
+              className={`font-thin flex bg-neutral-900 flex-col items-center duration-300 text-white p-2 h-10 outline-1 justify-center text-lg w-full text-center rounded-xl m-2 outline ${
                 selectedOption == "Bežični mikrofon"
                   ? success == null
-                    ? "outline-purple-400"
+                    ? "outline-neutral-500"
                     : success == true
-                      ? "outline-green-400"
-                      : "outline-red-400"
-                  : "outline-white"
+                      ? "outline-emerald-800"
+                      : "outline-rose-800"
+                  : "outline-neutral-700"
               }`}
             >
               <input
@@ -364,14 +364,14 @@ const Form = () => {
             </label>
 
             <label
-              className={`font-thin flex flex-col items-center duration-300 text-white p-2 h-10 outline-1 justify-center text-lg w-full text-center rounded-xl m-2 outline-dashed ${
+              className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 text-white p-2 h-10 outline-1 justify-center text-lg w-full text-center rounded-xl m-2 outline ${
                 selectedOption == "Bez mikrofona"
                   ? success == null
-                    ? "outline-purple-400"
+                    ? "outline-neutral-500"
                     : success == true
-                      ? "outline-green-400"
-                      : "outline-red-400"
-                  : "outline-white"
+                      ? "outline-emerald-800"
+                      : "outline-rose-800"
+                  : "outline-neutral-700"
               }`}
             >
               <input
@@ -392,7 +392,7 @@ const Form = () => {
               Bez Mikrofona
             </label>
             <p
-              className={`text-red-400 text-md font-thin duration-300 ${
+              className={`text-rose-800 text-md font-thin duration-300 ${
                 success === false && !selectedOption
                   ? "opacity-100"
                   : "opacity-0 -mb-4"
@@ -413,12 +413,12 @@ const Form = () => {
             </p>
             <Link
               id="link"
-              className={`text-white mt-10 font-thin text-xl py-3 px-5 duration-300 outline-dashed outline-1 rounded-xl tracking-wide ${
+              className={`text-white mt-10 bg-neutral-900 font-thin text-xl py-3 px-5 duration-300 outline outline-1 rounded-xl tracking-wide ${
                 success == null
-                  ? "outline-purple-400"
+                  ? "outline-neutral-700"
                   : success == true
-                    ? "outline-green-400"
-                    : "outline-red-400"
+                    ? "outline-emerald-800"
+                    : "outline-rose-800"
               }`}
               to={success == true ? "/" : null}
               onClick={success === true ? null : handleSubmit}
@@ -426,7 +426,7 @@ const Form = () => {
               {success == true ? "NAZAD NA POČETNU" : "POTVRDI"}
             </Link>
             <p
-              className={`text-red-400 text-md font-thin duration-300 ${
+              className={`text-rose-800 text-md font-thin duration-300 ${
                 success === false && error
                   ? "opacity-100 mt-2"
                   : "opacity-0 -mb-5"
