@@ -11,6 +11,7 @@ import { PiCaretDownLight } from "react-icons/pi";
 import { Link, useLocation } from "react-router-dom";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { RiBattery2Fill } from "react-icons/ri";
+import { LuText } from "react-icons/lu";
 
 const Catalogue = () => {
   const [data, setData] = useState(null);
@@ -354,9 +355,21 @@ const Catalogue = () => {
                               : "Bez Ugradjene Baterije"}
                           </p>
                         </div>
-                        <p className="font-thin text-white text-xl m-3 mt-0">
-                          {item.desc}
-                        </p>
+                        <Link
+                          to={item.info}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          name="info"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                          className="flex flex-row items-center m-3 justify-center"
+                        >
+                          <LuText className="min-h-[1.5rem] min-w-[1.5rem] text-neutral-400" />
+                          <p className="font-thin text-white text-xl ml-2">
+                            Specifikacije
+                          </p>
+                        </Link>
                       </div>
                     </div>
                     <img
