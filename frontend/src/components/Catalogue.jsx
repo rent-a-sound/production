@@ -10,6 +10,7 @@ import { HiArrowDown } from "react-icons/hi2";
 import { PiCaretDownLight } from "react-icons/pi";
 import { Link, useLocation } from "react-router-dom";
 import { BiSolidRightArrow } from "react-icons/bi";
+import { RiBattery2Fill } from "react-icons/ri";
 
 const Catalogue = () => {
   const [data, setData] = useState(null);
@@ -339,11 +340,20 @@ const Catalogue = () => {
                         <h1 className="mb-3 mt-3 mx-4 text-2xl font-bold tracking-wider text-white">
                           {item.name}
                         </h1>
-                        <p className="font-thin text-white text-xl mb-3 mx-4 mt-0">
-                          {item.battery
-                            ? "Ugradjena Baterija"
-                            : "Bez Ugradjene Baterije"}
-                        </p>
+                        <div className="flex flex-row items-center mb-3 mx-6 justify-center">
+                          <RiBattery2Fill
+                            className={`min-h-[1.5rem] min-w-[1.5rem] ${
+                              item.battery
+                                ? "text-green-500"
+                                : "text-neutral-400"
+                            }`}
+                          />
+                          <p className="font-thin text-white text-xl ml-2 mt-0">
+                            {item.battery
+                              ? "Ugradjena Baterija"
+                              : "Bez Ugradjene Baterije"}
+                          </p>
+                        </div>
                         <p className="font-thin text-white text-xl m-3 mt-0">
                           {item.desc}
                         </p>
