@@ -194,7 +194,14 @@ const Form = () => {
             selectedOption +
             "\n" +
             calculatePrice(data, getDatesBetween(fromDate, toDate).length) +
-            "din."
+            "din." +
+            "\n\n" +
+            "/rez " +
+            id +
+            " " +
+            fromDate +
+            " " +
+            (fromDate == toDate ? "" : toDate)
         )}`,
         {
           headers: {
