@@ -4,7 +4,7 @@ import { HiMail } from "react-icons/hi";
 import { RiInstagramFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
-const Contact = () => {
+const ContactContainer = () => {
   return (
     <div
       className={`flex items-center animate-fade-down animate-delay-700 justify-center flex-col p-4 rounded-2xl mb-12 md:mb-0 px-6 duration-300 outline-1 outline-neutral-700 outline`}
@@ -58,4 +58,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactContainer;
