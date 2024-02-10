@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { eachDayOfInterval, format, parse } from "date-fns";
+import { eachDayOfInterval, format, parse, addDays } from "date-fns";
 import { srLatn } from "date-fns/locale";
 import { FaReceipt } from "react-icons/fa6";
 import { IoPersonSharp } from "react-icons/io5";
@@ -141,7 +141,7 @@ const Form = () => {
         <span className="flex sm:flex-row flex-col items-center justify-center">
           <p className="text-2xl">Povrat</p>
           <BiSolidRightArrow className="text-xs my-2 sm:mx-2 rotate-90 sm:rotate-0" />
-          {format(displayDate2, "PPP", { locale: srLatn })}
+          {format(addDays(displayDate2, 1), "PPP", { locale: srLatn })}
         </span>
       </div>
     );
