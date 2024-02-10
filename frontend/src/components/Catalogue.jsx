@@ -19,6 +19,8 @@ const Catalogue = () => {
   const [taken, setTaken] = useState(true);
   const [priceLowHigh, setPriceLowHigh] = useState(true);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  //Get city from query parameters
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const city = queryParams.get("city");
@@ -34,8 +36,10 @@ const Catalogue = () => {
     };
   }, []);
 
+  //Disable days that passed
   const disabledDays = [{ from: new Date(0), to: subDays(new Date(), 1) }];
 
+  //Pull dropdown menu back up when scroll starts
   useEffect(() => {
     const handleScroll = () => {
       setClicked(false);
@@ -48,6 +52,7 @@ const Catalogue = () => {
     };
   }, []);
 
+  //Save previously selected dates in cookies
   useEffect(() => {
     const savedSelected = localStorage.getItem("selected");
     if (savedSelected) {
@@ -73,10 +78,12 @@ const Catalogue = () => {
     }
   }, []);
 
+  //Update cookies when selected dates changed
   useEffect(() => {
     localStorage.setItem("selected", JSON.stringify(selected));
   }, [selected]);
 
+  //Get all speakers in a particular city
   useEffect(() => {
     const apiUrl = `https://niledragomirovic.pythonanywhere.com/data?city=${city}`;
     axios
@@ -89,6 +96,7 @@ const Catalogue = () => {
       });
   }, [selected]);
 
+  //Returns list of dates from starting to ending date in dd-MM-yyyy format
   const formatDate = (date) => {
     if (!date || !date.from) {
       return [];
@@ -123,6 +131,7 @@ const Catalogue = () => {
     return dateList;
   };
 
+  //Formats selected dates in readable format, uses placeholder text when no dates selected
   const displayDate = (date) => {
     if (!date || !date.from) {
       return ["Nije izabran", "Nije izabran"];
@@ -153,6 +162,7 @@ const Catalogue = () => {
     ];
   };
 
+  //Calculate price based on speaker and rent length
   const calculatePrice = (speaker, dates) => {
     const priceObject =
       dates.length > speaker.price.length
@@ -166,6 +176,7 @@ const Catalogue = () => {
         : priceObject.price;
   };
 
+  //Check if one of the selected dates overlaps with dates in "unavailable" field for each speaker
   const getAvailabilityInfo = (item) => {
     const unavailableDates = item.unavailable || [];
     const dates = formatDate(selected);
@@ -176,6 +187,7 @@ const Catalogue = () => {
     return { dates, isDateUnavailable };
   };
 
+  //Sorts speakers by price low/high
   const sortedData = data
     ? data.slice().sort((a, b) => {
         const availabilityInfoA = getAvailabilityInfo(a);
