@@ -32,7 +32,8 @@ const Form = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id");
-  const dateRange = [queryParams.get("from"), queryParams.get("to")];
+  const fromDate = queryParams.get("from");
+  const toDate = queryParams.get("to");
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -169,16 +170,11 @@ const Form = () => {
             "\n" +
             id +
             "\n" +
-            (dateRange[0] === dateRange[1]
-              ? dateRange[0]
-              : dateRange[0] + " do " + dateRange[1]) +
+            (fromDate === toDate ? fromDate : fromDate + " do " + toDate) +
             "\n" +
             selectedOption +
             "\n" +
-            calculatePrice(
-              data,
-              getDatesBetween(dateRange[0], dateRange[1]).length
-            ) +
+            calculatePrice(data, getDatesBetween(fromDate, toDate).length) +
             "din."
         )}`,
         {
@@ -219,7 +215,7 @@ const Form = () => {
             <FaReceipt className="text-white text-6xl font-montserrat mb-6" />
             <p className="text-3xl font-thin text-white m-2">{data.name}</p>
             <span className="text-xl font-thin text-white text-center m-5 mb-6">
-              {displayDates(dateRange[0], dateRange[1])}
+              {displayDates(fromDate, toDate)}
             </span>
             <IoPersonSharp
               className={`${
@@ -398,7 +394,7 @@ const Form = () => {
               {data.price
                 ? calculatePrice(
                     data,
-                    getDatesBetween(dateRange[0], dateRange[1]).length
+                    getDatesBetween(fromDate, toDate).length
                   ) + "din."
                 : ""}
             </p>
