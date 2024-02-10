@@ -4,10 +4,10 @@ import CityContainer from "./CityContainer";
 import Banner from "./Banner";
 import Badge from "./Badge";
 
-const lorem1 =
+const subtitleText =
   "Iznajmljivanje JBL PartyBox zvučnika za nezaboravne trenutke u Novom Sadu i Beogradu. Vrhunski zvuk, jednostavno korišćenje i podrška za savršeno iskustvo. Rezervišite sada i uživajte u muzici!";
 
-const lorem2 =
+const tipText =
   "Nakon ispune forme za naručivanje bićete kontaktirani radi potvrde porudžbine, dogovora o tačnom vremenu i mestu preuzimanja i povrata, kao i dodatnim informacijama.";
 
 const Hero = () => {
@@ -31,7 +31,7 @@ const Hero = () => {
             name="subtitle"
             className="font-thin text-center md:text-start md:text-xl mb-6 animate-fade-down animate-delay-200"
           >
-            {lorem1}
+            {subtitleText}
           </div>
           <div
             name="tip-container"
@@ -40,7 +40,7 @@ const Hero = () => {
             <div name="tip-icon" className="text-4xl text-purple-400">
               <BsExclamationLg />
             </div>
-            <div name="tip-text">{lorem2}</div>
+            <div name="tip-text">{tipText}</div>
           </div>
           <div className="w-full flex items-center md:items-start justify-center md:justify-start">
             <Badge />
