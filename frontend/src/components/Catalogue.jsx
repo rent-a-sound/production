@@ -320,13 +320,7 @@ const Catalogue = () => {
               };
               if (!taken || !isDateUnavailable)
                 return (
-                  <Link
-                    to={selected && !isDateUnavailable ? toLink : null}
-                    onClick={() => {
-                      if (!(selected && !isDateUnavailable)) {
-                        setClicked(!clicked);
-                      }
-                    }}
+                  <div
                     key={index}
                     style={{ animationDelay: `${index * 100}ms` }}
                     className={`flex flex-col items-center justify-start m-4 h-fit outline outline-1 outline-neutral-700 rounded-2xl duration-500 animate-fade-down`}
@@ -376,7 +370,15 @@ const Catalogue = () => {
                       src={item.image}
                       alt={item.name}
                     />
-                    <div className="w-full px-6 pb-6">
+                    <Link
+                      to={selected && !isDateUnavailable ? toLink : null}
+                      onClick={() => {
+                        if (!(selected && !isDateUnavailable)) {
+                          setClicked(!clicked);
+                        }
+                      }}
+                      className="w-full px-6 pb-6"
+                    >
                       <div
                         style={{ animationDelay: `${index * 400}ms` }}
                         className={`${
@@ -391,8 +393,8 @@ const Catalogue = () => {
                             ? "Izaberi datum"
                             : `Rezerviši - ${calculatePrice(item, dates)} RSD`}
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+                  </div>
                 );
               return null;
             }
