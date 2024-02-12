@@ -262,7 +262,9 @@ const Form = () => {
                   ? "outline-neutral-700"
                   : success == true
                     ? "outline-emerald-800"
-                    : "outline-rose-800"
+                    : success == false && !info.trim()
+                      ? "outline-rose-800"
+                      : "outline-neutral-700"
               } outline-1 text-center placeholder-neutral-500 w-full mb-2 duration-300 resize-none outline-none py-2 rounded-xl text-white`}
               value={info}
               onChange={handleInfoChange}
@@ -299,7 +301,12 @@ const Form = () => {
                   ? "outline-neutral-700"
                   : success == true
                     ? "outline-emerald-800"
-                    : "outline-rose-800"
+                    : success === false &&
+                        (phone.startsWith("+")
+                          ? phone.length < 12
+                          : phone.length < 9)
+                      ? "outline-rose-800"
+                      : "outline-neutral-700"
               } text-center placeholder-neutral-500 mb-2 w-full duration-300 resize-none outline-none py-2 rounded-xl text-white`}
               value={phone}
               onChange={handlePhoneChange}
@@ -323,14 +330,16 @@ const Form = () => {
               }`}
             />
             <label
-              className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 text-white p-2 outline-1 h-10 justify-center text-lg w-full text-center rounded-xl m-2 outline ${
+              className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 text-white p-2 outline-1 h-10 justify-center text-md w-full text-center rounded-xl m-2 outline ${
                 selectedOption == "Žični mikrofon"
                   ? success == null
-                    ? "outline-neutral-500"
+                    ? "outline-neutral-500 bg-neutral-800"
                     : success == true
                       ? "outline-emerald-800"
-                      : "outline-rose-800"
-                  : "outline-neutral-700"
+                      : "outline-neutral-500 bg-neutral-800"
+                  : success === false && !selectedOption
+                    ? "outline-rose-800 text-neutral-500"
+                    : "outline-neutral-700 text-neutral-500"
               }`}
             >
               <input
@@ -348,17 +357,19 @@ const Form = () => {
                 disabled={success == true}
                 className="appearance-none"
               />
-              JBL Žični Mikrofon
+              JBL Žični Mikrofon + 500din.
             </label>
             <label
-              className={`font-thin flex bg-neutral-900 flex-col items-center duration-300 text-white p-2 h-10 outline-1 justify-center text-lg w-full text-center rounded-xl m-2 outline ${
+              className={`font-thin flex bg-neutral-900 flex-col items-center duration-300 text-white p-2 h-10 outline-1 justify-center text-md w-full text-center rounded-xl m-2 outline ${
                 selectedOption == "Bežični mikrofon"
                   ? success == null
-                    ? "outline-neutral-500"
+                    ? "outline-neutral-500 bg-neutral-800"
                     : success == true
                       ? "outline-emerald-800"
-                      : "outline-rose-800"
-                  : "outline-neutral-700"
+                      : "outline-neutral-500 bg-neutral-800"
+                  : success === false && !selectedOption
+                    ? "outline-rose-800 text-neutral-500"
+                    : "outline-neutral-700 text-neutral-500"
               }`}
             >
               <input
@@ -376,18 +387,20 @@ const Form = () => {
                 disabled={success == true}
                 className="appearance-none"
               />
-              JBL Bežični Mikrofon
+              JBL Bežični Mikrofon + 700din.
             </label>
 
             <label
-              className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 text-white p-2 h-10 outline-1 justify-center text-lg w-full text-center rounded-xl m-2 outline ${
+              className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 text-white p-2 h-10 outline-1 justify-center text-md w-full text-center rounded-xl m-2 outline ${
                 selectedOption == "Bez mikrofona"
                   ? success == null
-                    ? "outline-neutral-500"
+                    ? "outline-neutral-500 bg-neutral-800"
                     : success == true
                       ? "outline-emerald-800"
-                      : "outline-rose-800"
-                  : "outline-neutral-700"
+                      : "outline-neutral-500 bg-neutral-800"
+                  : success === false && !selectedOption
+                    ? "outline-rose-800 text-neutral-500"
+                    : "outline-neutral-700 text-neutral-500"
               }`}
             >
               <input
