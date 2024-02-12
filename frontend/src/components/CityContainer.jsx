@@ -8,10 +8,7 @@ const CityContainer = () => {
     <div className="flex items-center justify-center flex-col outline-1 outline-neutral-700 outline p-4 rounded-2xl mb-10 px-6 animate-fade-down animate-delay-500">
       <div className="text-4xl font-bold mt-3 tracking-wide">KATALOG</div>
       <Link
-        to={{
-          pathname: "/katalog",
-          search: "?city=ns",
-        }}
+        to={"/katalog/ns"}
         className="bg-neutral-900 outline-1 outline-neutral-700 animate-fade-down animate-delay-[600ms] outline w-72 h-24 my-6 rounded-3xl flex flex-col items-center justify-center tracking-wide"
       >
         <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between">
@@ -21,10 +18,7 @@ const CityContainer = () => {
         </div>
       </Link>
       <Link
-        to={{
-          pathname: "/katalog",
-          search: "?city=bg",
-        }}
+        to={"/katalog/bg"}
         className="bg-neutral-900 w-72 h-24 outline-1 outline-neutral-700 animate-fade-down animate-delay-[700ms] outline rounded-3xl flex flex-col items-center justify-center tracking-wide mb-5"
       >
         <div className="m-5 font-bold text-2xl flex flex-row items-center justify-between">

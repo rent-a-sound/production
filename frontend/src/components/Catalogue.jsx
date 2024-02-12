@@ -8,7 +8,7 @@ import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
 import { HiArrowDown } from "react-icons/hi2";
 import { PiCaretDownLight } from "react-icons/pi";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { RiBattery2Fill } from "react-icons/ri";
 import { LuText } from "react-icons/lu";
@@ -22,10 +22,7 @@ const Catalogue = () => {
   const [priceLowHigh, setPriceLowHigh] = useState(true);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  //Get city from query parameters
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const city = queryParams.get("city");
+  const city = window.location.href.split("/")[5];
 
   const updateScreenWidth = () => {
     setScreenWidth(window.innerWidth);
