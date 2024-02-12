@@ -6,10 +6,11 @@ import { FaReceipt } from "react-icons/fa6";
 import { IoPersonSharp } from "react-icons/io5";
 import { TbPhoneFilled } from "react-icons/tb";
 import { IoMdMicrophone } from "react-icons/io";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
 import { BiSolidRightArrow } from "react-icons/bi";
+import { RxCross2 } from "react-icons/rx";
 
 const Form = () => {
   const [info, setInfo] = useState("");
@@ -265,7 +266,7 @@ const Form = () => {
                     : success == false && !info.trim()
                       ? "outline-rose-800"
                       : "outline-neutral-700"
-              } outline-1 text-center placeholder-neutral-500 w-full mb-2 duration-300 resize-none outline-none py-2 rounded-xl text-white`}
+              } outline-1 text-center placeholder-neutral-500 w-full mb-3 duration-300 resize-none outline-none py-2 rounded-xl text-white`}
               value={info}
               onChange={handleInfoChange}
               onInput={handleInfoChange}
@@ -307,7 +308,7 @@ const Form = () => {
                           : phone.length < 9)
                       ? "outline-rose-800"
                       : "outline-neutral-700"
-              } text-center placeholder-neutral-500 mb-2 w-full duration-300 resize-none outline-none py-2 rounded-xl text-white`}
+              } text-center placeholder-neutral-500 mb-3 w-full duration-300 resize-none outline-none py-2 rounded-xl text-white`}
               value={phone}
               onChange={handlePhoneChange}
               onInput={handlePhoneChange}
@@ -391,7 +392,7 @@ const Form = () => {
             </label>
 
             <label
-              className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 text-white p-2 h-10 outline-1 justify-center text-md w-full text-center rounded-xl m-2 outline ${
+              className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 text-white p-2 h-10 outline-1 justify-center text-md w-full text-center rounded-xl m-2 mb-3 outline ${
                 selectedOption == "Bez mikrofona"
                   ? success == null
                     ? "outline-neutral-500"
@@ -459,8 +460,8 @@ const Form = () => {
             <p
               className={`text-rose-800 text-md font-thin duration-300 ${
                 success === false && error
-                  ? "opacity-100 mt-2"
-                  : "opacity-0 -mb-5"
+                  ? "opacity-100 mt-3"
+                  : "opacity-0 -mb-6"
               }`}
             >
               Greška, pokušajte ponovo
@@ -468,12 +469,20 @@ const Form = () => {
             {success == true ? (
               <p
                 onClick={generateImage}
-                className="text-white text-lg font-thin mt-8 underline underline-offset-2 duration-300"
+                className="text-white text-lg font-thin mt-10 underline underline-offset-2 duration-300"
               >
                 Sačuvaj Račun
               </p>
             ) : (
-              <></>
+              <Link
+                to={`/katalog/${data.city}`}
+                className={`${
+                  success ? "hidden" : ""
+                } mt-10 flex flex-row items-center justify-center font-thin text-lg text-neutral-400`}
+              >
+                <RxCross2 className={`text-neutral-500 text-2xl mr-1`} />
+                NAZAD
+              </Link>
             )}
           </div>
         </div>
