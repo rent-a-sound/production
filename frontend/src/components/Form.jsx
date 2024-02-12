@@ -331,13 +331,13 @@ const Form = () => {
               }`}
             />
             <label
-              className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 text-white p-2 outline-1 h-10 justify-center text-md w-full text-center rounded-xl m-2 outline ${
+              className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 px-2 py-4 outline-1 h-10 justify-center text-md w-full text-center rounded-xl m-2 outline ${
                 selectedOption == "Žični mikrofon"
                   ? success == null
-                    ? "outline-neutral-500"
+                    ? "outline-neutral-500 text-white"
                     : success == true
-                      ? "outline-emerald-800"
-                      : "outline-neutral-500"
+                      ? "outline-emerald-800  text-white"
+                      : "outline-neutral-500 text-white"
                   : success === false && !selectedOption
                     ? "outline-rose-800 text-neutral-500"
                     : "outline-neutral-700 text-neutral-500"
@@ -361,13 +361,13 @@ const Form = () => {
               JBL Žični Mikrofon + 500din.
             </label>
             <label
-              className={`font-thin flex bg-neutral-900 flex-col items-center duration-300 text-white p-2 h-10 outline-1 justify-center text-md w-full text-center rounded-xl m-2 outline ${
+              className={`font-thin flex bg-neutral-900 flex-col items-center duration-300 px-2 py-4 h-10 outline-1 justify-center text-md w-full text-center rounded-xl m-2 outline ${
                 selectedOption == "Bežični mikrofon"
                   ? success == null
-                    ? "outline-neutral-500"
+                    ? "outline-neutral-500 text-white"
                     : success == true
-                      ? "outline-emerald-800"
-                      : "outline-neutral-500"
+                      ? "outline-emerald-800 text-white"
+                      : "outline-neutral-500 text-white"
                   : success === false && !selectedOption
                     ? "outline-rose-800 text-neutral-500"
                     : "outline-neutral-700 text-neutral-500"
@@ -392,13 +392,13 @@ const Form = () => {
             </label>
 
             <label
-              className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 text-white p-2 h-10 outline-1 justify-center text-md w-full text-center rounded-xl m-2 mb-3 outline ${
+              className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 px-2 py-4 h-10 outline-1 justify-center text-md w-full text-center rounded-xl m-2 mb-3 outline ${
                 selectedOption == "Bez mikrofona"
                   ? success == null
-                    ? "outline-neutral-500"
+                    ? "outline-neutral-500 text-white"
                     : success == true
-                      ? "outline-emerald-800"
-                      : "outline-neutral-500"
+                      ? "outline-emerald-800 text-white"
+                      : "outline-neutral-500 text-white"
                   : success === false && !selectedOption
                     ? "outline-rose-800 text-neutral-500"
                     : "outline-neutral-700 text-neutral-500"
