@@ -64,10 +64,7 @@ const Catalogue = () => {
 
         parsedSelected.from = parseISO(parsedSelected.from);
 
-        if (parsedSelected.from < new Date()) {
-          parsedSelected.from = undefined;
-          parsedSelected.to = undefined;
-        }
+        if (parsedSelected.from < subDays(new Date(), 1)) return;
 
         parsedSelected.to = parseISO(parsedSelected.to);
 
