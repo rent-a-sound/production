@@ -358,7 +358,9 @@ const Form = () => {
                 disabled={success == true}
                 className="appearance-none"
               />
-              JBL Žični Mikrofon + 500din.
+              {success == true
+                ? "JBL Žični Mikrofon"
+                : "JBL Žični Mikrofon + 500 RSD"}
             </label>
             <label
               className={`font-thin flex bg-neutral-900 flex-col items-center duration-300 px-2 py-4 h-10 outline-1 justify-center text-md w-full text-center rounded-xl m-2 outline ${
@@ -388,7 +390,9 @@ const Form = () => {
                 disabled={success == true}
                 className="appearance-none"
               />
-              JBL Bežični Mikrofon + 700din.
+              {success == true
+                ? "JBL Bežični Mikrofon"
+                : "JBL Bežični Mikrofon + 700 RSD"}
             </label>
 
             <label
@@ -430,12 +434,15 @@ const Form = () => {
             >
               Izaberi jednu od opcija!
             </p>
-            <p className="text-3xl text-white font-thin mt-10">
+            <p
+              key={selectedOption}
+              className="text-3xl text-white font-thin mt-10 animate-jump"
+            >
               {data.price
                 ? calculatePrice(
                     data,
                     getDatesBetween(fromDate, toDate).length
-                  ) + "din."
+                  ) + " RSD"
                 : ""}
             </p>
             <div
