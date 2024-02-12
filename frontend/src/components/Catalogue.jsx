@@ -221,7 +221,9 @@ const Catalogue = () => {
           setClicked(!clicked);
         }}
         className={`flex flex-col items-center justify-start fixed duration-300 w-11/12 sm:w-fit bg-[rgba(0,0,0,0.1)] backdrop-filter rounded-b-3xl backdrop-blur-lg outline outline-1 outline-neutral-700 p-4 pb-1 z-10 ${
-          !clicked ? "-translate-y-[26rem]" : "-translate-y-[1rem]"
+          !clicked
+            ? "md:-translate-y-[26rem] -translate-y-[33rem]"
+            : "-translate-y-[1rem]"
         }`}
       >
         <div
@@ -295,11 +297,11 @@ const Catalogue = () => {
         <PiCaretDownLight
           className={`text-neutral-400 text-3xl ${
             clicked ? "-translate-y-0 rotate-180" : ""
-          } duration-300 mt-2`}
+          } duration-300 mt-5 mb-2 md:mt-2 md:mb-0`}
         />
       </div>
       <div
-        className={`w-full min-h-screen bg-neutral-950 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 pt-40 pb-8 px-2 md:px-10 font-montserrat text-center`}
+        className={`w-full min-h-screen bg-neutral-950 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 pt-16 md:pt-40 pb-8 px-2 md:px-10 font-montserrat text-center`}
       >
         {sortedData &&
           sortedData.map((item, index) => {
