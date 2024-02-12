@@ -333,10 +333,10 @@ const Form = () => {
               className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 text-white p-2 outline-1 h-10 justify-center text-md w-full text-center rounded-xl m-2 outline ${
                 selectedOption == "Žični mikrofon"
                   ? success == null
-                    ? "outline-neutral-500 bg-neutral-800"
+                    ? "outline-neutral-500"
                     : success == true
                       ? "outline-emerald-800"
-                      : "outline-neutral-500 bg-neutral-800"
+                      : "outline-neutral-500"
                   : success === false && !selectedOption
                     ? "outline-rose-800 text-neutral-500"
                     : "outline-neutral-700 text-neutral-500"
@@ -363,10 +363,10 @@ const Form = () => {
               className={`font-thin flex bg-neutral-900 flex-col items-center duration-300 text-white p-2 h-10 outline-1 justify-center text-md w-full text-center rounded-xl m-2 outline ${
                 selectedOption == "Bežični mikrofon"
                   ? success == null
-                    ? "outline-neutral-500 bg-neutral-800"
+                    ? "outline-neutral-500"
                     : success == true
                       ? "outline-emerald-800"
-                      : "outline-neutral-500 bg-neutral-800"
+                      : "outline-neutral-500"
                   : success === false && !selectedOption
                     ? "outline-rose-800 text-neutral-500"
                     : "outline-neutral-700 text-neutral-500"
@@ -394,10 +394,10 @@ const Form = () => {
               className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 text-white p-2 h-10 outline-1 justify-center text-md w-full text-center rounded-xl m-2 outline ${
                 selectedOption == "Bez mikrofona"
                   ? success == null
-                    ? "outline-neutral-500 bg-neutral-800"
+                    ? "outline-neutral-500"
                     : success == true
                       ? "outline-emerald-800"
-                      : "outline-neutral-500 bg-neutral-800"
+                      : "outline-neutral-500"
                   : success === false && !selectedOption
                     ? "outline-rose-800 text-neutral-500"
                     : "outline-neutral-700 text-neutral-500"
