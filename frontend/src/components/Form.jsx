@@ -133,14 +133,14 @@ const Form = () => {
       : new Date(0);
 
     return (
-      <div>
+      <div className="py-6">
         <span className="flex sm:flex-row flex-col items-center justify-center pb-8">
-          <p className="text-2xl">Preuzimanje</p>
+          <p className="text-xl">Preuzimanje</p>
           <BiSolidRightArrow className="text-xs my-2 sm:mx-2 rotate-90 sm:rotate-0" />
           {format(displayDate1, "PPP", { locale: srLatn })}
         </span>
         <span className="flex sm:flex-row flex-col items-center justify-center">
-          <p className="text-2xl">Povrat</p>
+          <p className="text-xl">Povrat</p>
           <BiSolidRightArrow className="text-xs my-2 sm:mx-2 rotate-90 sm:rotate-0" />
           {format(addDays(displayDate2, 1), "PPP", { locale: srLatn })}
         </span>
@@ -237,9 +237,9 @@ const Form = () => {
                 : success == true
                   ? "outline-emerald-800"
                   : "outline-rose-800"
-            } flex flex-col items-center justify-start outline duration-300 outline-1 p-10 rounded-xl`}
+            } flex flex-col items-center justify-start outline duration-300 outline-1 p-8 rounded-xl`}
           >
-            <FaReceipt className="text-white text-6xl font-montserrat mb-6" />
+            <FaReceipt className="text-white text-6xl font-montserrat mt-6 mb-10" />
             <p className="text-3xl font-thin text-white m-2">{data.name}</p>
             <span className="text-xl font-thin text-white text-center m-5 mb-6">
               {displayDates(fromDate, toDate)}
@@ -436,7 +436,7 @@ const Form = () => {
             </p>
             <p
               key={selectedOption}
-              className="text-3xl text-white font-thin mt-10 animate-jump"
+              className="text-3xl text-white font-thin mt-11 animate-jump"
             >
               {data.price
                 ? calculatePrice(
@@ -447,7 +447,7 @@ const Form = () => {
             </p>
             <div
               id="link"
-              className={`text-white mt-10 bg-neutral-900 cursor-pointer font-thin text-xl py-3 px-5 duration-300 outline outline-1 rounded-xl tracking-wide ${
+              className={`text-white mt-14 bg-neutral-900 cursor-pointer font-thin text-lg py-3 px-5 duration-300 outline outline-1 rounded-xl tracking-wide ${
                 success == null
                   ? "outline-neutral-700"
                   : success == true
@@ -476,7 +476,7 @@ const Form = () => {
             {success == true ? (
               <p
                 onClick={generateImage}
-                className="text-white text-lg font-thin mt-10 underline underline-offset-2 duration-300"
+                className="text-white text-lg font-thin mt-10 mb-3 underline underline-offset-2 duration-300"
               >
                 Sačuvaj Račun
               </p>
@@ -485,9 +485,9 @@ const Form = () => {
                 to={`/katalog/${data.city}`}
                 className={`${
                   success ? "hidden" : ""
-                } mt-10 flex flex-row items-center justify-center font-thin text-lg text-neutral-400`}
+                } mt-10 mb-1 flex flex-row items-center justify-center font-thin text-md text-neutral-400`}
               >
-                <RxCross2 className={`text-neutral-500 text-2xl mr-1`} />
+                <RxCross2 className={`text-neutral-500 text-xl mr-1`} />
                 NAZAD
               </Link>
             )}
