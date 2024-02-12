@@ -64,8 +64,9 @@ const Catalogue = () => {
 
         parsedSelected.from = parseISO(parsedSelected.from);
 
-        if (parsedSelected.from == subDays(new Date(), 1)) {
-          parsedSelected.from == new Date();
+        if (parsedSelected.from < new Date()) {
+          parsedSelected.from = undefined;
+          parsedSelected.to = undefined;
         }
 
         parsedSelected.to = parseISO(parsedSelected.to);
