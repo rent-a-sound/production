@@ -22,7 +22,7 @@ const Catalogue = () => {
   const [priceLowHigh, setPriceLowHigh] = useState(true);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  const city = window.location.href.split("/")[5];
+  const city = window.location.href.split("/")[4];
 
   const updateScreenWidth = () => {
     setScreenWidth(window.innerWidth);
