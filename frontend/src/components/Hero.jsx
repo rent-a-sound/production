@@ -29,13 +29,13 @@ const Hero = () => {
           </div>
           <div
             name="subtitle"
-            className="font-thin text-center md:text-start md:text-xl mb-6 animate-fade-down animate-delay-200"
+            className="font-thin text-center md:text-start text-lg md:text-xl mb-6 animate-fade-down animate-delay-200"
           >
             {subtitleText}
           </div>
           <div
             name="tip-container"
-            className="font-extralight bg-neutral-900 p-4 pl-1 text-sm mb-6 rounded-2xl outline-1 outline-neutral-700 outline text-neutral-400 flex flex-row items-center justify-between animate-fade-down animate-delay-300"
+            className="font-extralight bg-neutral-900 p-4 pl-1 text-md mb-6 rounded-2xl outline-1 outline-neutral-700 outline text-neutral-400 flex flex-row items-center justify-between animate-fade-down animate-delay-300"
           >
             <div name="tip-icon" className="text-4xl text-purple-400">
               <BsExclamationLg />
