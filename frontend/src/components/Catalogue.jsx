@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { RiBattery2Fill } from "react-icons/ri";
 import { LuText } from "react-icons/lu";
+import { PiArrowUpRightThin } from "react-icons/pi";
 
 const Catalogue = () => {
   const [data, setData] = useState(null);
@@ -329,7 +330,7 @@ const Catalogue = () => {
                         style={{ animationDelay: `${index * 200}ms` }}
                         className="bg-neutral-900 py-1 animate-fade-down w-full rounded-3xl outline outline-1 outline-neutral-700"
                       >
-                        <h1 className="mb-3 mt-3 mx-4 text-2xl font-semibold text-white">
+                        <h1 className="mb-3 mt-3 mx-4 text-2xl font-bold tracking-wider text-white">
                           {item.name}
                         </h1>
                         <div className="flex flex-row items-center mb-3 mx-6 justify-center">
@@ -340,7 +341,7 @@ const Catalogue = () => {
                                 : "text-neutral-400"
                             }`}
                           />
-                          <p className="font-thin text-white text-md ml-2 mt-0">
+                          <p className="font-thin text-white text-lg ml-2 mt-0">
                             {item.battery
                               ? "Ugradjena Baterija"
                               : "Bez Ugradjene Baterije"}
@@ -357,9 +358,10 @@ const Catalogue = () => {
                           className="flex flex-row items-center m-3 justify-center"
                         >
                           <LuText className="min-h-[1.5rem] min-w-[1.5rem] text-neutral-400" />
-                          <p className="font-thin text-white text-md ml-2">
+                          <p className="font-thin text-white text-lg ml-2">
                             Specifikacije
                           </p>
+                          <PiArrowUpRightThin className="text-white ml-0.5" />
                         </Link>
                       </div>
                     </div>
@@ -384,7 +386,7 @@ const Catalogue = () => {
                           isDateUnavailable || !selected
                             ? "text-neutral-400"
                             : "text-white shadow relative"
-                        } tracking-wider text-lg font-thin duration-700 animate-fade-down outline outline-1 rounded-2xl py-2 px-4 outline-neutral-700 bg-neutral-900`}
+                        } tracking-wider text-xl font-thin duration-700 animate-fade-down outline outline-1 rounded-2xl py-3 px-4 outline-neutral-700 bg-neutral-900`}
                       >
                         {isDateUnavailable
                           ? "Zauzet"
