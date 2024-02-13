@@ -29,7 +29,7 @@ const Form = () => {
     "Bežični mikrofon": 700,
   };
 
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState("");
 
   //Get speaker id, from and to dates from query params
   const location = useLocation();
@@ -329,109 +329,62 @@ const Form = () => {
               Unesi validan broj telefona!
             </p>
             <IoMdMicrophone
-              className={`text-white text-4xl font-montserrat mt-8 mb-1 ${
+              className={`text-white text-4xl font-montserrat mt-5 mb-1 ${
                 animateMic ? "animate-shake" : ""
               }`}
             />
-            <label
-              className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 px-2 py-4 outline-1 h-10 justify-center text-md w-full text-center rounded-xl m-2 outline ${
-                selectedOption == "Žični mikrofon"
-                  ? success == null
-                    ? "outline-neutral-500 text-white"
-                    : success == true
-                      ? "outline-emerald-800  text-white"
-                      : "outline-neutral-500 text-white"
-                  : success === false && !selectedOption
-                    ? "outline-rose-800 text-neutral-500"
-                    : "outline-neutral-700 text-neutral-500"
+            <select
+              className={`appearance-none bg-neutral-900 w-full py-2 rounded-xl text-center mt-2 outline outline-1 outline-offset-2 font-thin ${
+                success == null
+                  ? !selectedOption
+                    ? "outline-neutral-700 text-neutral-500"
+                    : "outline-neutral-700 text-white"
+                  : success == true
+                    ? "outline-emerald-800 text-white"
+                    : !selectedOption
+                      ? "outline-rose-800 text-neutral-500"
+                      : "outline-neutral-700 text-white"
+              }
               }`}
+              value={selectedOption}
+              onChange={handleOptionChange}
+              onClick={() => {
+                setAnimateMic(false);
+
+                setTimeout(() => {
+                  setAnimateMic(true);
+                }, 0);
+              }}
             >
-              <input
-                type="radio"
-                value="Žični mikrofon"
-                onClick={() => {
-                  setAnimateMic(false);
+              <option hidden>Izaberi mikrofon</option>
 
-                  setTimeout(() => {
-                    setAnimateMic(true);
-                  }, 0);
-                }}
-                checked={selectedOption === "Žični mikrofon"}
-                onChange={handleOptionChange}
-                disabled={success == true}
-                className="appearance-none"
-              />
-              {success == true
-                ? "JBL Žični Mikrofon"
-                : "JBL Žični Mikrofon + 500 RSD"}
-            </label>
-            <label
-              className={`font-thin flex bg-neutral-900 flex-col items-center duration-300 px-2 py-4 h-10 outline-1 justify-center text-md w-full text-center rounded-xl m-2 outline ${
-                selectedOption == "Bežični mikrofon"
-                  ? success == null
-                    ? "outline-neutral-500 text-white"
-                    : success == true
-                      ? "outline-emerald-800 text-white"
-                      : "outline-neutral-500 text-white"
-                  : success === false && !selectedOption
-                    ? "outline-rose-800 text-neutral-500"
-                    : "outline-neutral-700 text-neutral-500"
-              }`}
-            >
-              <input
-                onClick={() => {
-                  setAnimateMic(false);
-
-                  setTimeout(() => {
-                    setAnimateMic(true);
-                  }, 0);
-                }}
-                type="radio"
-                value="Bežični mikrofon"
-                checked={selectedOption === "Bežični mikrofon"}
-                onChange={handleOptionChange}
-                disabled={success == true}
-                className="appearance-none"
-              />
-              {success == true
-                ? "JBL Bežični Mikrofon"
-                : "JBL Bežični Mikrofon + 700 RSD"}
-            </label>
-
-            <label
-              className={`font-thin flex flex-col items-center bg-neutral-900 duration-300 px-2 py-4 h-10 outline-1 justify-center text-md w-full text-center rounded-xl m-2 mb-3 outline ${
-                selectedOption == "Bez mikrofona"
-                  ? success == null
-                    ? "outline-neutral-500 text-white"
-                    : success == true
-                      ? "outline-emerald-800 text-white"
-                      : "outline-neutral-500 text-white"
-                  : success === false && !selectedOption
-                    ? "outline-rose-800 text-neutral-500"
-                    : "outline-neutral-700 text-neutral-500"
-              }`}
-            >
-              <input
-                onClick={() => {
-                  setAnimateMic(false);
-
-                  setTimeout(() => {
-                    setAnimateMic(true);
-                  }, 0);
-                }}
-                type="radio"
+              <option
+                disabled={success == true && selectedOption != "Bez mikrofona"}
                 value="Bez mikrofona"
-                checked={selectedOption === "Bez mikrofona"}
-                disabled={success == true}
-                onChange={handleOptionChange}
-                className="appearance-none"
-              />
-              Bez Mikrofona
-            </label>
+              >
+                Bez mikrofona
+              </option>
+
+              <option
+                disabled={
+                  success == true && selectedOption != "Bežični mikrofon"
+                }
+                value="Bežični mikrofon"
+              >
+                Bežični mikrofon
+              </option>
+
+              <option
+                disabled={success == true && selectedOption != "Žični mikrofon"}
+                value="Žični mikrofon"
+              >
+                Žični mikrofon
+              </option>
+            </select>
             <p
               className={`text-rose-800 text-md font-thin duration-300 ${
                 success === false && !selectedOption
-                  ? "opacity-100"
+                  ? "opacity-100 mt-3"
                   : "opacity-0 -mb-4"
               }`}
             >
