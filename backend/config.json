@@ -1,0 +1,490 @@
+[
+  {
+    "id": "ns-pb100-1",
+    "name": "JBL PartyBox 100",
+    "info": "https://www.jbl.com/party-speakers/JBLPARTYBOX100.html",
+    "battery": true,
+    "city": "ns",
+    "unavailable": [],
+    "price": [
+      {
+        "day": 1,
+        "price": 1500
+      },
+      {
+        "day": 2,
+        "price": 2500
+      },
+      {
+        "day": 3,
+        "price": 3500
+      },
+      {
+        "day": 4,
+        "price": 4000
+      },
+      {
+        "day": 5,
+        "price": 4500
+      },
+      {
+        "day": 6,
+        "price": 5000
+      }
+    ],
+    "overdraft": 500,
+    "image": "https://i.ibb.co/zm424Mr/JBL-Party-Box-100-Hero-0057-1.webp"
+  },
+  {
+    "id": "ns-pb100-2",
+    "name": "JBL PartyBox 100",
+    "info": "https://www.jbl.com/party-speakers/JBLPARTYBOX100.html",
+    "battery": true,
+    "city": "ns",
+    "unavailable": ["13-03-2024"],
+    "price": [
+      {
+        "day": 1,
+        "price": 1500
+      },
+      {
+        "day": 2,
+        "price": 2500
+      },
+      {
+        "day": 3,
+        "price": 3500
+      },
+      {
+        "day": 4,
+        "price": 4000
+      },
+      {
+        "day": 5,
+        "price": 4500
+      },
+      {
+        "day": 6,
+        "price": 5000
+      }
+    ],
+    "overdraft": 500,
+    "image": "https://i.ibb.co/zm424Mr/JBL-Party-Box-100-Hero-0057-1.webp"
+  },
+  {
+    "id": "ns-pb110-1",
+    "name": "JBL PartyBox 110",
+    "info": "https://mm.jbl.com/bluetooth-portables/PARTYBOX-110-.html",
+    "battery": true,
+    "city": "ns",
+    "unavailable": [],
+    "price": [
+      {
+        "day": 1,
+        "price": 1800
+      },
+      {
+        "day": 2,
+        "price": 3000
+      },
+      {
+        "day": 3,
+        "price": 4000
+      },
+      {
+        "day": 4,
+        "price": 4500
+      },
+      {
+        "day": 5,
+        "price": 5000
+      },
+      {
+        "day": 6,
+        "price": 5500
+      }
+    ],
+    "overdraft": 500,
+    "image": "https://www.jbl.com/dw/image/v2/BFND_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw41368c09/1_JBL_PARTYBOX_110_HERO_x2.png?sw=1605&sh=1605"
+  },
+  {
+    "id": "bg-pb110-1",
+    "name": "JBL PartyBox 110",
+    "info": "https://mm.jbl.com/bluetooth-portables/PARTYBOX-110-.html",
+    "battery": true,
+    "city": "bg",
+    "unavailable": [],
+    "price": [
+      {
+        "day": 1,
+        "price": 2000
+      },
+      {
+        "day": 2,
+        "price": 3500
+      },
+      {
+        "day": 3,
+        "price": 4500
+      },
+      {
+        "day": 4,
+        "price": 5500
+      },
+      {
+        "day": 5,
+        "price": 6000
+      },
+      {
+        "day": 6,
+        "price": 6500
+      }
+    ],
+    "overdraft": 500,
+    "image": "https://www.jbl.com/dw/image/v2/BFND_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw41368c09/1_JBL_PARTYBOX_110_HERO_x2.png?sw=1605&sh=1605"
+  },
+  {
+    "id": "ns-pb310-1",
+    "name": "JBL PartyBox 310",
+    "info": "https://www.jbl.com/party-speakers/PARTYBOX310-.html",
+    "battery": true,
+    "city": "ns",
+    "unavailable": ["15-02-2024", "17-02-2024"],
+    "price": [
+      {
+        "day": 1,
+        "price": 2500
+      },
+      {
+        "day": 2,
+        "price": 4000
+      },
+      {
+        "day": 3,
+        "price": 5500
+      },
+      {
+        "day": 4,
+        "price": 6500
+      },
+      {
+        "day": 5,
+        "price": 7500
+      },
+      {
+        "day": 6,
+        "price": 8000
+      }
+    ],
+    "overdraft": 500,
+    "image": "https://www.jbl.com/dw/image/v2/BFND_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw5c882674/JBL_PartyBox_310_Hero_0176_x3.png?sw=535&sh=535"
+  },
+  {
+    "id": "ns-pb310-2",
+    "name": "JBL PartyBox 310",
+    "info": "https://www.jbl.com/party-speakers/PARTYBOX310-.html",
+    "battery": true,
+    "city": "ns",
+    "unavailable": [],
+    "price": [
+      {
+        "day": 1,
+        "price": 2500
+      },
+      {
+        "day": 2,
+        "price": 4000
+      },
+      {
+        "day": 3,
+        "price": 5500
+      },
+      {
+        "day": 4,
+        "price": 6500
+      },
+      {
+        "day": 5,
+        "price": 7500
+      },
+      {
+        "day": 6,
+        "price": 8000
+      }
+    ],
+    "overdraft": 500,
+    "image": "https://www.jbl.com/dw/image/v2/BFND_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw5c882674/JBL_PartyBox_310_Hero_0176_x3.png?sw=535&sh=535"
+  },
+  {
+    "id": "ns-pb310-3",
+    "name": "JBL PartyBox 310",
+    "info": "https://www.jbl.com/party-speakers/PARTYBOX310-.html",
+    "battery": true,
+    "city": "ns",
+    "unavailable": [],
+    "price": [
+      {
+        "day": 1,
+        "price": 2500
+      },
+      {
+        "day": 2,
+        "price": 4000
+      },
+      {
+        "day": 3,
+        "price": 5500
+      },
+      {
+        "day": 4,
+        "price": 6500
+      },
+      {
+        "day": 5,
+        "price": 7500
+      },
+      {
+        "day": 6,
+        "price": 8000
+      }
+    ],
+    "overdraft": 500,
+    "image": "https://www.jbl.com/dw/image/v2/BFND_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw5c882674/JBL_PartyBox_310_Hero_0176_x3.png?sw=535&sh=535"
+  },
+  {
+    "id": "bg-pb310-1",
+    "name": "JBL PartyBox 310",
+    "info": "https://www.jbl.com/party-speakers/PARTYBOX310-.html",
+    "battery": true,
+    "city": "bg",
+    "unavailable": [],
+    "price": [
+      {
+        "day": 1,
+        "price": 2800
+      },
+      {
+        "day": 2,
+        "price": 4500
+      },
+      {
+        "day": 3,
+        "price": 6000
+      },
+      {
+        "day": 4,
+        "price": 7000
+      },
+      {
+        "day": 5,
+        "price": 8000
+      },
+      {
+        "day": 6,
+        "price": 8500
+      }
+    ],
+    "overdraft": 500,
+    "image": "https://www.jbl.com/dw/image/v2/BFND_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw5c882674/JBL_PartyBox_310_Hero_0176_x3.png?sw=535&sh=535"
+  },
+  {
+    "id": "ns-pb710-1",
+    "name": "JBL PartyBox 710",
+    "info": "https://www.jbl.com/party-speakers/PARTYBOX-710-.html",
+    "battery": false,
+    "city": "ns",
+    "unavailable": ["20-02-2024"],
+    "price": [
+      {
+        "day": 1,
+        "price": 3000
+      },
+      {
+        "day": 2,
+        "price": 5000
+      },
+      {
+        "day": 3,
+        "price": 7000
+      },
+      {
+        "day": 4,
+        "price": 8500
+      },
+      {
+        "day": 5,
+        "price": 10000
+      },
+      {
+        "day": 6,
+        "price": 11000
+      },
+      {
+        "day": 7,
+        "price": 12000
+      }
+    ],
+    "overdraft": 1000,
+    "image": "https://www.jbl.com/dw/image/v2/BFND_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw5c5c592a/1_JBL_PARTYBOX_710_HERO_0031_x8.png?sw=535&sh=535"
+  },
+  {
+    "id": "bg-pb710-1",
+    "name": "JBL PartyBox 710",
+    "info": "https://www.jbl.com/party-speakers/PARTYBOX-710-.html",
+    "battery": false,
+    "city": "bg",
+    "unavailable": [],
+    "price": [
+      {
+        "day": 1,
+        "price": 3500
+      },
+      {
+        "day": 2,
+        "price": 6000
+      },
+      {
+        "day": 3,
+        "price": 8000
+      },
+      {
+        "day": 4,
+        "price": 9500
+      },
+      {
+        "day": 5,
+        "price": 11000
+      },
+      {
+        "day": 6,
+        "price": 12000
+      },
+      {
+        "day": 7,
+        "price": 13000
+      }
+    ],
+    "overdraft": 1000,
+    "image": "https://www.jbl.com/dw/image/v2/BFND_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw5c5c592a/1_JBL_PARTYBOX_710_HERO_0031_x8.png?sw=535&sh=535"
+  },
+  {
+    "id": "ns-eon715-1",
+    "name": "JBL Eon 715",
+    "info": "https://mm.jbl.com/professional/EON715.html",
+    "battery": false,
+    "city": "ns",
+    "unavailable": [],
+    "price": [
+      {
+        "day": 1,
+        "price": 3000
+      },
+      {
+        "day": 2,
+        "price": 5000
+      },
+      {
+        "day": 3,
+        "price": 7000
+      },
+      {
+        "day": 4,
+        "price": 8500
+      },
+      {
+        "day": 5,
+        "price": 10000
+      },
+      {
+        "day": 6,
+        "price": 11000
+      },
+      {
+        "day": 7,
+        "price": 12000
+      }
+    ],
+    "overdraft": 1000,
+    "image": "https://www.jbl.com/dw/image/v2/BFND_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw41735881/JBL_EON712_3-4_Extreme_1605x1605.png?sw=535&sh=535"
+  },
+  {
+    "id": "ns-pb1000-1",
+    "name": "JBL PartyBox 1000",
+    "info": "https://www.jbl.com/party-speakers/JBLPARTYBOX1000.html",
+    "battery": false,
+    "city": "ns",
+    "unavailable": [],
+    "price": [
+      {
+        "day": 1,
+        "price": 3500
+      },
+      {
+        "day": 2,
+        "price": 6000
+      },
+      {
+        "day": 3,
+        "price": 8500
+      },
+      {
+        "day": 4,
+        "price": 10500
+      },
+      {
+        "day": 5,
+        "price": 12500
+      },
+      {
+        "day": 6,
+        "price": 14000
+      },
+      {
+        "day": 7,
+        "price": 15500
+      }
+    ],
+    "overdraft": 1500,
+    "image": "https://i.ibb.co/WFssyZb/JBL-Party-Box-1000-Hero-344-fire-x2-1.webp"
+  },
+  {
+    "id": "ns-pbultimate-1",
+    "name": "JBL PartyBox Ultimate",
+    "info": "https://www.jbl.com/partybox-speakers/PARTYBOX-ULTIMATE.html",
+    "battery": false,
+    "city": "ns",
+    "unavailable": [],
+    "price": [
+      {
+        "day": 1,
+        "price": 4000
+      },
+      {
+        "day": 2,
+        "price": 7000
+      },
+      {
+        "day": 3,
+        "price": 10000
+      },
+      {
+        "day": 4,
+        "price": 12500
+      },
+      {
+        "day": 5,
+        "price": 14500
+      },
+      {
+        "day": 6,
+        "price": 16500
+      },
+      {
+        "day": 7,
+        "price": 18000
+      }
+    ],
+    "overdraft": 1000,
+    "image": "https://www.jbl.com/dw/image/v2/BFND_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwd6b5634d/JBL_PARTYBOX_ULTIMATE_HERO_42638_x9.png?sw=535&sh=535"
+  }
+]
