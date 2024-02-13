@@ -22,6 +22,10 @@
   );
 }
 
+.safari-text-center {
+  text-align-last: center;
+}
+
 .shadow:before,
 .shadow:after {
   content: "";

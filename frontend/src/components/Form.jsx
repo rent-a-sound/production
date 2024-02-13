@@ -334,7 +334,7 @@ const Form = () => {
               }`}
             />
             <select
-              className={`appearance-none bg-neutral-900 w-full py-2 rounded-xl text-center mt-2 outline outline-1 outline-offset-2 font-thin ${
+              className={`appearance-none bg-neutral-900 w-full py-2 rounded-xl safari-text-center text-center mt-2 outline outline-1 outline-offset-2 font-thin ${
                 success == null
                   ? !selectedOption
                     ? "outline-neutral-700 text-neutral-500"
@@ -356,7 +356,9 @@ const Form = () => {
                 }, 0);
               }}
             >
-              <option hidden>Izaberi mikrofon</option>
+              <option disabled hidden value="">
+                Izaberi mikrofon
+              </option>
 
               <option
                 disabled={success == true && selectedOption != "Bez mikrofona"}
