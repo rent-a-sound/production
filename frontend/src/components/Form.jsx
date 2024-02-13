@@ -89,6 +89,7 @@ const Form = () => {
 
   //Fetch data for a single speaker
   useEffect(() => {
+    window.scrollTo(0, 0);
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -224,8 +225,8 @@ const Form = () => {
 
   return (
     <>
-      <div className="bg-neutral-950 w-full min-h-screen flex flex-col items-center justify-center duration-300 text-center">
-        <div className="p-6 bg-neutral-950 rounded-3xl" id="receipt">
+      <div className="bg-neutral-950 w-full h-full flex flex-col items-center justify-start duration-300 text-center">
+        <div className="p-8 bg-neutral-950 rounded-3xl" id="receipt">
           <div
             className={`${
               success == true
@@ -237,10 +238,12 @@ const Form = () => {
                 : success == true
                   ? "outline-emerald-800"
                   : "outline-rose-800"
-            } flex flex-col items-center justify-start outline duration-300 outline-1 p-8 rounded-xl`}
+            } flex flex-col items-center justify-start outline duration-300 outline-1 p-12 rounded-xl`}
           >
             <FaReceipt className="text-white text-6xl font-montserrat mt-6 mb-10" />
-            <p className="text-3xl font-thin text-white m-2">{data.name}</p>
+            <p className="text-3xl font-thin text-white m-2 animate-jump-in">
+              {data.name}
+            </p>
             <span className="text-xl font-thin text-white text-center m-5 mb-6">
               {displayDates(fromDate, toDate)}
             </span>
