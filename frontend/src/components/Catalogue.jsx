@@ -82,7 +82,7 @@ const Catalogue = () => {
 
   //Get all speakers in a particular city
   useEffect(() => {
-    const apiUrl = `https://api.zvucnici.com/data?city=${city}`;
+    const apiUrl = `http://api.zvucnici.com/data?city=${city}`;
     axios
       .get(apiUrl)
       .then((response) => {

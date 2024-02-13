@@ -92,7 +92,7 @@ const Form = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://api.zvucnici.com/single?id=" + id
+          "http://api.zvucnici.com/single?id=" + id
         );
         setData(response.data);
       } catch (error) {
