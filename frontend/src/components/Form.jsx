@@ -54,7 +54,6 @@ const Form = () => {
     setSelectedOptionTemp(newSelectedOption);
     setTimeout(() => {
       setSelectedOption(newSelectedOption);
-      setAnimatePrice(newSelectedOption + "price");
     }, 1250);
   };
 
