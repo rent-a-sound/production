@@ -21,12 +21,23 @@ const Form = () => {
   const [animatePhone, setAnimatePhone] = useState(false);
   const [animateMic, setAnimateMic] = useState(false);
   const [error, setError] = useState(false);
+  const [selectedOptionTemp, setSelectedOptionTemp] = useState("");
   const navigate = useNavigate();
 
   const micMap = {
-    "Bez mikrofona": 0,
-    "Žični mikrofon": 500,
-    "Bežični mikrofon": 700,
+    nomic: [0],
+    mic: [500, 800, 1000, 1200, 1300],
+    wmic: [700, 1000, 1300, 1500, 1700],
+    mic2: [800, 1200, 1500, 1800, 2000, 2200],
+    wmic2: [1200, 1800, 2100, 2400, 2600, 2800],
+  };
+
+  const micOverdraft = {
+    nomic: 0,
+    mic: 100,
+    wmic: 100,
+    mic2: 100,
+    wmic2: 100,
   };
 
   const [selectedOption, setSelectedOption] = useState("");
@@ -39,7 +50,12 @@ const Form = () => {
   const toDate = queryParams.get("to");
 
   const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
+    const newSelectedOption = event.target.value;
+    setSelectedOptionTemp(newSelectedOption);
+    setTimeout(() => {
+      setSelectedOption(newSelectedOption);
+      setAnimatePrice(newSelectedOption + "price");
+    }, 1250);
   };
 
   //Allow only letters for name
@@ -66,7 +82,7 @@ const Form = () => {
     linkElement.textContent = "POTVRDJENO";
 
     const receiptDiv = document.getElementById("receipt");
-    const paragraphElement = receiptDiv.querySelector("p.text-lg");
+    const paragraphElement = receiptDiv.querySelector("p.underline");
 
     const originalDisplayStyle = paragraphElement.style.display;
 
@@ -160,8 +176,21 @@ const Form = () => {
       : days > speaker.price.length
         ? priceObject.price +
           speaker.overdraft * (days - speaker.price.length) +
-          (selectedOption ? micMap[selectedOption] : 0)
-        : priceObject.price + (selectedOption ? micMap[selectedOption] : 0);
+          (selectedOption
+            ? micMap[selectedOption][days - 1]
+              ? micMap[selectedOption][days - 1]
+              : micMap[selectedOption][micMap[selectedOption].length - 1] +
+                micOverdraft[selectedOption] *
+                  (days - micMap[selectedOption].length)
+            : 0)
+        : priceObject.price +
+          (selectedOption
+            ? micMap[selectedOption][days - 1]
+              ? micMap[selectedOption][days - 1]
+              : micMap[selectedOption][micMap[selectedOption].length - 1] +
+                micOverdraft[selectedOption] *
+                  (days - micMap[selectedOption].length)
+            : 0);
   };
 
   //Helper function, checks if name has anything, number is valid length and is any mic option selected
@@ -250,7 +279,7 @@ const Form = () => {
             <IoPersonSharp
               className={`${
                 animatePerson ? "animate-shake" : ""
-              } text-white text-3xl font-montserrat mt-2 mb-3`}
+              } text-white text-3xl font-montserrat mt-8 mb-3`}
             />
             <input
               autoComplete="off"
@@ -361,26 +390,38 @@ const Form = () => {
               </option>
 
               <option
-                disabled={success == true && selectedOption != "Bez mikrofona"}
-                value="Bez mikrofona"
+                disabled={success == true && selectedOption != "nomic"}
+                value="nomic"
               >
                 Bez mikrofona
               </option>
 
               <option
-                disabled={
-                  success == true && selectedOption != "Bežični mikrofon"
-                }
-                value="Bežični mikrofon"
+                disabled={success == true && selectedOption != "mic"}
+                value="mic"
+              >
+                Žični mikrofon
+              </option>
+
+              <option
+                disabled={success == true && selectedOption != "wmic"}
+                value="wmic"
               >
                 Bežični mikrofon
               </option>
 
               <option
-                disabled={success == true && selectedOption != "Žični mikrofon"}
-                value="Žični mikrofon"
+                disabled={success == true && selectedOption != "mic2"}
+                value="mic2"
               >
-                Žični mikrofon
+                Žični mikrofon x 2
+              </option>
+
+              <option
+                disabled={success == true && selectedOption != "wmic2"}
+                value="wmic2"
+              >
+                Bežični mikrofon x 2
               </option>
             </select>
             <p
@@ -391,6 +432,26 @@ const Form = () => {
               }`}
             >
               Izaberi jednu od opcija!
+            </p>
+            <p
+              key={selectedOptionTemp + "option"}
+              className="text-white font-thin text-lg mt-2 animate-money"
+            >
+              {selectedOptionTemp
+                ? micMap[selectedOptionTemp][
+                    getDatesBetween(fromDate, toDate).length - 1
+                  ]
+                  ? micMap[selectedOptionTemp][
+                      getDatesBetween(fromDate, toDate).length - 1
+                    ] + " RSD"
+                  : micMap[selectedOptionTemp][
+                      micMap[selectedOptionTemp].length - 1
+                    ] +
+                    micOverdraft[selectedOptionTemp] *
+                      (getDatesBetween(fromDate, toDate).length -
+                        micMap[selectedOptionTemp].length) +
+                    " RSD"
+                : "ㅤ"}
             </p>
             <p
               key={selectedOption}

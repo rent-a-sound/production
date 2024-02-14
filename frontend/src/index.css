@@ -22,6 +22,29 @@
   );
 }
 
+@keyframes moneyAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(90px);
+  }
+}
+
+.animate-money {
+  animation: moneyAnimation 2s forwards;
+}
+
 .safari-text-center {
   text-align-last: center;
 }

@@ -20,7 +20,7 @@ const Hero = () => {
         name="left-half"
         className={`text-white m-8 -mb-10 md:mx-36 md:mb-0 flex flex-col items-center duration-300`}
       >
-        <div className="outline outline-1 rounded-2xl outline-neutral-700 md:mt-10 pb-8 mt-2 mb-8 px-8 md:px-10 animate-fade-down">
+        <div className="outline outline-1 rounded-2xl outline-neutral-700 md:mt-10 pb-8 mt-2 mb-8 md:mb-4 px-8 md:px-10 animate-fade-down">
           <div
             name="title"
             className="font-bold text-4xl mt-10 text-center md:text-start md:text-6xl mb-3 tracking-wide animate-fade-down animate-delay-100"
@@ -35,7 +35,7 @@ const Hero = () => {
           </div>
           <div
             name="tip-container"
-            className="font-extralight bg-neutral-900 p-4 pl-1 text-md mb-6 rounded-2xl outline-1 outline-neutral-700 outline text-neutral-400 flex flex-row items-center justify-between animate-fade-down animate-delay-300"
+            className="font-extralight bg-neutral-900 p-4 pl-1 text-md mb-5 rounded-2xl outline-1 outline-neutral-700 outline text-neutral-400 flex flex-row items-center justify-between animate-fade-down animate-delay-300"
           >
             <div name="tip-icon" className="text-4xl text-purple-400">
               <BsExclamationLg />
