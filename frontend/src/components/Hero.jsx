@@ -14,7 +14,7 @@ const Hero = () => {
   return (
     <div
       name="container"
-      className="w-full md:h-screen overflow-hidden md:overflow-scroll bg-neutral-950 flex flex-col md:flex-row items-center md:items-start md:justify-between font-montserrat"
+      className="w-full md:h-screen overflow-hidden bg-neutral-950 flex flex-col md:flex-row items-center md:items-start md:justify-between font-montserrat"
     >
       <div
         name="left-half"
