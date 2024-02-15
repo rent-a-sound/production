@@ -14,35 +14,35 @@ const Hero = () => {
   return (
     <div
       name="container"
-      className="w-full md:h-screen bg-neutral-950 flex flex-col md:flex-row items-center md:items-start md:justify-between font-montserrat"
+      className="flex w-full flex-col items-center bg-neutral-950 font-montserrat md:h-screen md:flex-row md:items-start md:justify-between"
     >
       <div
         name="left-half"
-        className={`text-white m-8 -mb-10 md:mx-36 md:mb-0 flex flex-col items-center duration-300`}
+        className={`m-8 -mb-10 flex flex-col items-center text-white duration-300 md:mx-36 md:mb-0`}
       >
-        <div className="outline outline-1 rounded-2xl outline-neutral-700 md:mt-10 pb-8 mt-2 mb-8 md:mb-4 px-8 md:px-10 animate-fade-down">
+        <div className="mb-8 mt-2 animate-fade-down rounded-2xl px-8 pb-8 outline outline-1 outline-neutral-700 md:mb-4 md:mt-10 md:px-10">
           <div
             name="title"
-            className="font-bold text-4xl mt-10 text-center md:text-start md:text-6xl mb-3 tracking-wide animate-fade-down animate-delay-100"
+            className="mb-3 mt-10 animate-fade-down text-center text-4xl font-bold tracking-wide animate-delay-100 md:text-start md:text-6xl"
           >
             NARUČI ONLINE
           </div>
           <div
             name="subtitle"
-            className="font-thin text-center md:text-start text-lg md:text-xl mb-6 animate-fade-down animate-delay-200"
+            className="mb-6 animate-fade-down text-center text-lg font-thin animate-delay-200 md:text-start md:text-xl"
           >
             {subtitleText}
           </div>
           <div
             name="tip-container"
-            className="font-extralight bg-neutral-900 p-4 pl-1 text-md mb-5 rounded-2xl outline-1 outline-neutral-700 outline text-neutral-400 flex flex-row items-center justify-between animate-fade-down animate-delay-300"
+            className="text-md mb-5 flex animate-fade-down flex-row items-center justify-between rounded-2xl bg-neutral-900 p-4 pl-1 font-extralight text-neutral-400 outline outline-1 outline-neutral-700 animate-delay-300"
           >
             <div name="tip-icon" className="text-4xl text-purple-400">
               <BsExclamationLg />
             </div>
             <div name="tip-text">{tipText}</div>
           </div>
-          <div className="w-full flex items-center md:items-start justify-center md:justify-start">
+          <div className="flex w-full items-center justify-center md:items-start md:justify-start">
             <Badge />
           </div>
         </div>
@@ -50,7 +50,7 @@ const Hero = () => {
       </div>
       <div
         name="right-half"
-        className="text-white flex flex-col items-center justify-center md:mr-32 md:my-14"
+        className="flex flex-col items-center justify-center text-white md:my-14 md:mr-32"
       >
         <CityContainer />
         <ContactContainer />

@@ -8,7 +8,7 @@ const Footer = () => {
       target="_blank"
       rel="noopener noreferrer"
       name="linkedin"
-      className="text-neutral-400 font-extralight p-4 bg-neutral-900 text-center text-sm rounded-xl outline outline-1 outline-neutral-700 animate-fade-down animate-delay-500"
+      className="animate-fade-down rounded-xl bg-neutral-900 p-4 text-center text-sm font-extralight text-neutral-400 outline outline-1 outline-neutral-700 animate-delay-500"
     >
       Developed by Nikola Dragomirović
     </Link>

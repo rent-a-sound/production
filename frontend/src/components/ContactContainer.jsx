@@ -7,11 +7,11 @@ import { Link } from "react-router-dom";
 const ContactContainer = () => {
   return (
     <div
-      className={`flex items-center animate-fade-down animate-delay-700 justify-center flex-col p-4 rounded-2xl mb-12 md:mb-0 px-6 duration-300 outline-1 outline-neutral-700 outline`}
+      className={`mb-12 flex animate-fade-down flex-col items-center justify-center rounded-2xl p-4 px-6 outline outline-1 outline-neutral-700 duration-300 animate-delay-700 md:mb-0`}
     >
       <div
         name="contact-title"
-        className="text-4xl font-bold mb-6 mt-3 tracking-wide"
+        className="mb-6 mt-3 text-4xl font-bold tracking-wide"
       >
         KONTAKT
       </div>
@@ -20,37 +20,37 @@ const ContactContainer = () => {
         target="_blank"
         rel="noopener noreferrer"
         name="instagram"
-        className="bg-neutral-900 outline-1 outline-neutral-700 outline animate-fade-down animate-delay-[800ms] h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
+        className="mb-6 h-24 w-72 animate-fade-down flex-col items-center justify-center rounded-3xl bg-neutral-900 text-2xl font-bold tracking-wide outline outline-1 outline-neutral-700 animate-delay-[800ms]"
       >
-        <div className="flex flex-row items-center mt-4 ml-4">
-          <RiInstagramFill className="text-2xl mr-2 text-pink-500" />
+        <div className="ml-4 mt-4 flex flex-row items-center">
+          <RiInstagramFill className="mr-2 text-2xl text-pink-500" />
           INSTAGRAM
         </div>
-        <div className="text-lg font-thin ml-4 mt-2">
+        <div className="ml-4 mt-2 text-lg font-thin">
           @zvucnici_iznajmljivanje
         </div>
       </Link>
       <a
         name="phone"
         href="tel:+381643478060"
-        className="bg-neutral-900 outline-1 outline-neutral-700 animate-fade-down animate-delay-[900ms] outline h-24 w-72 rounded-3xl flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
+        className="mb-6 h-24 w-72 animate-fade-down flex-col items-center justify-center rounded-3xl bg-neutral-900 text-2xl font-bold tracking-wide outline outline-1 outline-neutral-700 animate-delay-[900ms]"
       >
-        <div className="flex flex-row items-center mt-4 ml-4">
-          <TbPhoneFilled className="text-2xl mr-2 text-green-500" />
+        <div className="ml-4 mt-4 flex flex-row items-center">
+          <TbPhoneFilled className="mr-2 text-2xl text-green-500" />
           TELEFON
         </div>
-        <div className="text-lg font-thin ml-4 mt-2">+381 64 3478 060</div>
+        <div className="ml-4 mt-2 text-lg font-thin">+381 64 3478 060</div>
       </a>
       <a
         name="mail"
         href="mailto:zvucnici.i.ns@gmail.com"
-        className="bg-neutral-900 outline-1 outline-neutral-700 outline h-24 w-72 rounded-3xl animate-fade-down animate-delay-[1000ms] flex-col items-center justify-center font-bold text-2xl tracking-wide mb-6"
+        className="mb-6 h-24 w-72 animate-fade-down flex-col items-center justify-center rounded-3xl bg-neutral-900 text-2xl font-bold tracking-wide outline outline-1 outline-neutral-700 animate-delay-[1000ms]"
       >
-        <div className="flex flex-row items-center mt-4 ml-4">
-          <HiMail className="text-2xl mr-2 text-blue-500" />
+        <div className="ml-4 mt-4 flex flex-row items-center">
+          <HiMail className="mr-2 text-2xl text-blue-500" />
           MAIL
         </div>
-        <div className="text-lg font-thin ml-4 mt-2">
+        <div className="ml-4 mt-2 text-lg font-thin">
           zvucnici.i.ns@gmail.com
         </div>
       </a>

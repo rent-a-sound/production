@@ -179,7 +179,7 @@ const Catalogue = () => {
     const unavailableDates = item.unavailable || [];
     const dates = formatDate(selected);
     const isDateUnavailable = dates.some((date) =>
-      unavailableDates.includes(date)
+      unavailableDates.includes(date),
     );
 
     return { dates, isDateUnavailable };
@@ -221,14 +221,14 @@ const Catalogue = () => {
         onClick={() => {
           setClicked(!clicked);
         }}
-        className={`flex flex-col items-center justify-start fixed duration-300 w-11/12 sm:w-fit bg-[rgba(0,0,0,0.1)] backdrop-filter rounded-b-3xl backdrop-blur-lg outline outline-1 outline-neutral-700 p-4 pb-1 z-10 ${
+        className={`fixed z-10 flex w-11/12 flex-col items-center justify-start rounded-b-3xl bg-[rgba(0,0,0,0.1)] p-4 pb-1 outline outline-1 outline-neutral-700 backdrop-blur-lg backdrop-filter duration-300 sm:w-fit ${
           !clicked
-            ? "md:-translate-y-[26rem] -translate-y-[33rem]"
+            ? "-translate-y-[33rem] md:-translate-y-[26rem]"
             : "-translate-y-[1rem]"
         }`}
       >
         <div
-          className={`flex items-center w-11/12 justify-center my-4 outline-neutral-700 outline outline-1 bg-neutral-900 rounded-md`}
+          className={`my-4 flex w-11/12 items-center justify-center rounded-md bg-neutral-900 outline outline-1 outline-neutral-700`}
           onClick={(e) => {
             e.stopPropagation();
           }}
@@ -238,7 +238,7 @@ const Catalogue = () => {
             locale={srLatn}
             selected={selected}
             onSelect={setSelected}
-            className={`text-neutral-200 z-10 px-10 font-thin duration-300 ${
+            className={`z-10 px-10 font-thin text-neutral-200 duration-300 ${
               screenWidth < 400
                 ? screenWidth < 360
                   ? "scale-75"
@@ -249,18 +249,18 @@ const Catalogue = () => {
             numberOfMonths={screenWidth < 1280 ? 1 : 2}
           />
         </div>
-        <div className="flex flex-row items-center w-11/12 bg-neutral-900 mb-5 py-2.5 px-4 outline outline-1 rounded-md outline-neutral-700 justify-around">
+        <div className="mb-5 flex w-11/12 flex-row items-center justify-around rounded-md bg-neutral-900 px-4 py-2.5 outline outline-1 outline-neutral-700">
           <div
             onClick={(e) => {
               e.stopPropagation();
               setTaken(!taken);
             }}
-            className="flex flex-row items-center justify-center text-white text-md font-thin"
+            className="text-md flex flex-row items-center justify-center font-thin text-white"
           >
             {!taken ? (
-              <VscEye className="mr-2 text-xl animate-jump-in" />
+              <VscEye className="mr-2 animate-jump-in text-xl" />
             ) : (
-              <VscEyeClosed className="mr-2 text-xl animate-jump-in" />
+              <VscEyeClosed className="mr-2 animate-jump-in text-xl" />
             )}
             ZAUZETI
           </div>
@@ -269,10 +269,10 @@ const Catalogue = () => {
               e.stopPropagation();
               setPriceLowHigh(!priceLowHigh);
             }}
-            className="flex flex-row items-center justify-center text-white text-md font-thin"
+            className="text-md flex flex-row items-center justify-center font-thin text-white"
           >
             <HiArrowDown
-              className={`mr-2 text-md duration-300 ${
+              className={`text-md mr-2 duration-300 ${
                 !priceLowHigh ? "" : "rotate-180"
               }`}
             />{" "}
@@ -280,29 +280,29 @@ const Catalogue = () => {
           </div>
         </div>
         <span
-          className={`text-md mt-3 font-thin flex flex-row items-center outline-neutral-700 outline outline-1 justify-center bg-neutral-900 ${
+          className={`text-md mt-3 flex flex-row items-center justify-center bg-neutral-900 font-thin outline outline-1 outline-neutral-700 ${
             selected ? "text-neutral-200" : "text-neutral-400"
-          } py-1.5 px-3 rounded-md md:w-11/12 w-11/12 duration-300`}
+          } w-11/12 rounded-md px-3 py-1.5 duration-300 md:w-11/12`}
         >
           Preuzimanje <BiSolidRightArrow className="mx-2 text-xs" />
           {displayDate(selected)[0]}
         </span>
         <span
-          className={` text-md mt-3 font-thin flex flex-row outline-neutral-700 items-center  outline outline-1 justify-center bg-neutral-900 ${
+          className={` text-md mt-3 flex flex-row items-center justify-center bg-neutral-900  font-thin outline outline-1 outline-neutral-700 ${
             selected ? "text-neutral-200" : "text-neutral-400"
-          } py-1.5 px-3 rounded-md md:w-11/12 w-11/12 duration-300`}
+          } w-11/12 rounded-md px-3 py-1.5 duration-300 md:w-11/12`}
         >
-          Povrat <BiSolidRightArrow className="duration-300 mx-2 text-xs" />
+          Povrat <BiSolidRightArrow className="mx-2 text-xs duration-300" />
           {displayDate(selected)[1]}
         </span>
         <PiCaretDownLight
-          className={`text-neutral-400 text-3xl ${
+          className={`text-3xl text-neutral-400 ${
             clicked ? "-translate-y-0 rotate-180" : ""
-          } duration-300 mt-5 mb-2 md:mt-2 md:mb-0`}
+          } mb-2 mt-5 duration-300 md:mb-0 md:mt-2`}
         />
       </div>
       <div
-        className={`w-full min-h-screen bg-neutral-950 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 pt-16 md:pt-40 pb-8 px-2 md:px-10 font-montserrat text-center`}
+        className={`grid min-h-screen w-full grid-cols-1 bg-neutral-950 px-2 pb-8 pt-16 text-center font-montserrat md:grid-cols-2 md:px-10 md:pt-40 lg:grid-cols-3`}
       >
         {sortedData &&
           sortedData.map((item, index) => {
@@ -323,17 +323,17 @@ const Catalogue = () => {
                   <div
                     key={index}
                     style={{ animationDelay: `${index * 100}ms` }}
-                    className={`flex flex-col items-center justify-start m-4 h-fit outline outline-1 outline-neutral-700 rounded-2xl duration-500 animate-fade-down`}
+                    className={`m-4 flex h-fit animate-fade-down flex-col items-center justify-start rounded-2xl outline outline-1 outline-neutral-700 duration-500`}
                   >
-                    <div className="px-6 pt-6 w-full">
+                    <div className="w-full px-6 pt-6">
                       <div
                         style={{ animationDelay: `${index * 200}ms` }}
-                        className="bg-neutral-900 py-1 animate-fade-down w-full rounded-3xl outline outline-1 outline-neutral-700"
+                        className="w-full animate-fade-down rounded-3xl bg-neutral-900 py-1 outline outline-1 outline-neutral-700"
                       >
-                        <h1 className="mb-3 mt-3 mx-4 text-2xl font-bold tracking-wider text-white">
+                        <h1 className="mx-4 mb-3 mt-3 text-2xl font-bold tracking-wider text-white">
                           {item.name}
                         </h1>
-                        <div className="flex flex-row items-center mb-3 mx-6 justify-center">
+                        <div className="mx-6 mb-3 flex flex-row items-center justify-center">
                           <RiBattery2Fill
                             className={`min-h-[1.5rem] min-w-[1.5rem] ${
                               item.battery
@@ -341,7 +341,7 @@ const Catalogue = () => {
                                 : "text-neutral-400"
                             }`}
                           />
-                          <p className="font-thin text-white text-lg ml-2 mt-0">
+                          <p className="ml-2 mt-0 text-lg font-thin text-white">
                             {item.battery
                               ? "Ugradjena Baterija"
                               : "Bez Ugradjene Baterije"}
@@ -355,19 +355,19 @@ const Catalogue = () => {
                           onClick={(e) => {
                             e.stopPropagation();
                           }}
-                          className="flex flex-row items-center m-3 justify-center"
+                          className="m-3 flex flex-row items-center justify-center"
                         >
                           <LuText className="min-h-[1.5rem] min-w-[1.5rem] text-neutral-400" />
-                          <p className="font-thin text-white text-lg ml-2">
+                          <p className="ml-2 text-lg font-thin text-white">
                             Specifikacije
                           </p>
-                          <PiArrowUpRightThin className="text-white ml-0.5" />
+                          <PiArrowUpRightThin className="ml-0.5 text-white" />
                         </Link>
                       </div>
                     </div>
                     <img
                       style={{ animationDelay: `${index * 300}ms` }}
-                      className="max-h-56 my-6 animate-fade-down"
+                      className="my-6 max-h-56 animate-fade-down"
                       src={item.image}
                       alt={item.name}
                     />
@@ -385,8 +385,8 @@ const Catalogue = () => {
                         className={`${
                           isDateUnavailable || !selected
                             ? "text-neutral-400"
-                            : "text-white shadow relative"
-                        } tracking-wider text-xl font-thin duration-700 animate-fade-down outline outline-1 rounded-2xl py-3 px-4 outline-neutral-700 bg-neutral-900`}
+                            : "relative text-white shadow"
+                        } animate-fade-down rounded-2xl bg-neutral-900 px-4 py-3 text-xl font-thin tracking-wider outline outline-1 outline-neutral-700 duration-700`}
                       >
                         {isDateUnavailable
                           ? "Zauzet"

@@ -61,7 +61,7 @@ const Form = () => {
   const handleInfoChange = (e) => {
     const formattedValue = e.target.value.replace(
       /[^a-zA-Z\u00C0-\u024F\u1E00-\u1EFF\s]/g,
-      ""
+      "",
     );
     setInfo(formattedValue);
   };
@@ -108,7 +108,7 @@ const Form = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://api.zvucnici.com/single?id=" + id
+          "https://api.zvucnici.com/single?id=" + id,
         );
         setData(response.data);
       } catch (error) {
@@ -150,14 +150,14 @@ const Form = () => {
 
     return (
       <div className="py-6">
-        <span className="flex sm:flex-row flex-col items-center justify-center pb-8">
+        <span className="flex flex-col items-center justify-center pb-8 sm:flex-row">
           <p className="text-xl">Preuzimanje</p>
-          <BiSolidRightArrow className="text-xs my-2 sm:mx-2 rotate-90 sm:rotate-0" />
+          <BiSolidRightArrow className="my-2 rotate-90 text-xs sm:mx-2 sm:rotate-0" />
           {format(displayDate1, "PPP", { locale: srLatn })}
         </span>
-        <span className="flex sm:flex-row flex-col items-center justify-center">
+        <span className="flex flex-col items-center justify-center sm:flex-row">
           <p className="text-xl">Povrat</p>
-          <BiSolidRightArrow className="text-xs my-2 sm:mx-2 rotate-90 sm:rotate-0" />
+          <BiSolidRightArrow className="my-2 rotate-90 text-xs sm:mx-2 sm:rotate-0" />
           {format(addDays(displayDate2, 1), "PPP", { locale: srLatn })}
         </span>
       </div>
@@ -231,13 +231,13 @@ const Form = () => {
             " " +
             fromDate +
             " " +
-            (fromDate == toDate ? "" : toDate)
+            (fromDate == toDate ? "" : toDate),
         )}`,
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
-        }
+        },
       );
 
       setSuccess(true);
@@ -253,8 +253,8 @@ const Form = () => {
 
   return (
     <>
-      <div className="bg-neutral-950 w-full h-full flex flex-col items-center justify-start duration-300 text-center">
-        <div className="p-8 bg-neutral-950 rounded-3xl" id="receipt">
+      <div className="flex h-full w-full flex-col items-center justify-start bg-neutral-950 text-center duration-300">
+        <div className="rounded-3xl bg-neutral-950 p-8" id="receipt">
           <div
             className={`${
               success == true
@@ -266,19 +266,19 @@ const Form = () => {
                 : success == true
                   ? "outline-emerald-800"
                   : "outline-rose-800"
-            } flex flex-col items-center justify-start outline duration-300 outline-1 p-12 rounded-xl`}
+            } flex flex-col items-center justify-start rounded-xl p-12 outline outline-1 duration-300`}
           >
-            <FaReceipt className="text-white text-6xl font-montserrat mt-6 mb-10" />
-            <p className="text-3xl font-thin text-white m-2 animate-jump-in">
+            <FaReceipt className="mb-10 mt-6 font-montserrat text-6xl text-white" />
+            <p className="m-2 animate-jump-in text-3xl font-thin text-white">
               {data.name}
             </p>
-            <span className="text-xl font-thin text-white text-center m-5 mb-6">
+            <span className="m-5 mb-6 text-center text-xl font-thin text-white">
               {displayDates(fromDate, toDate)}
             </span>
             <IoPersonSharp
               className={`${
                 animatePerson ? "animate-shake" : ""
-              } text-white text-3xl font-montserrat mt-8 mb-3`}
+              } mb-3 mt-8 font-montserrat text-3xl text-white`}
             />
             <input
               autoComplete="off"
@@ -289,7 +289,7 @@ const Form = () => {
                   setAnimatePerson(true);
                 }, 0);
               }}
-              className={`bg-neutral-900 outline font-thin ${
+              className={`bg-neutral-900 font-thin outline ${
                 success == null
                   ? "outline-neutral-700"
                   : success == true
@@ -297,7 +297,7 @@ const Form = () => {
                     : success == false && !info.trim()
                       ? "outline-rose-800"
                       : "outline-neutral-700"
-              } outline-1 text-center placeholder-neutral-500 w-full mb-3 duration-300 resize-none outline-none py-2 rounded-xl text-white`}
+              } mb-3 w-full resize-none rounded-xl py-2 text-center text-white placeholder-neutral-500 outline-none outline-1 duration-300`}
               value={info}
               onChange={handleInfoChange}
               onInput={handleInfoChange}
@@ -305,10 +305,10 @@ const Form = () => {
               placeholder="Vaše ime i prezime..."
             ></input>
             <p
-              className={`text-rose-800 text-md font-thin duration-300 ${
+              className={`text-md font-thin text-rose-800 duration-300 ${
                 success === false && !info.trim()
                   ? "opacity-100"
-                  : "opacity-0 -mb-5"
+                  : "-mb-5 opacity-0"
               }`}
             >
               Unesi ime i prezime!
@@ -316,7 +316,7 @@ const Form = () => {
             <TbPhoneFilled
               className={`${
                 animatePhone ? "animate-shake" : ""
-              } text-white text-3xl font-montserrat mt-5 mb-3`}
+              } mb-3 mt-5 font-montserrat text-3xl text-white`}
             />
             <input
               autoComplete="off"
@@ -328,7 +328,7 @@ const Form = () => {
                 }, 0);
               }}
               type="tel"
-              className={`bg-neutral-900 appearance-none m-0 outline font-thin outline-1 ${
+              className={`m-0 appearance-none bg-neutral-900 font-thin outline outline-1 ${
                 success == null
                   ? "outline-neutral-700"
                   : success == true
@@ -339,7 +339,7 @@ const Form = () => {
                           : phone.length < 9)
                       ? "outline-rose-800"
                       : "outline-neutral-700"
-              } text-center placeholder-neutral-500 mb-3 w-full duration-300 resize-none outline-none py-2 rounded-xl text-white`}
+              } mb-3 w-full resize-none rounded-xl py-2 text-center text-white placeholder-neutral-500 outline-none duration-300`}
               value={phone}
               onChange={handlePhoneChange}
               onInput={handlePhoneChange}
@@ -347,31 +347,31 @@ const Form = () => {
               placeholder="Vaš broj telefona..."
             ></input>
             <p
-              className={`text-rose-800 text-md font-thin duration-300 ${
+              className={`text-md font-thin text-rose-800 duration-300 ${
                 success === false &&
                 (phone.startsWith("+") ? phone.length < 12 : phone.length < 9)
-                  ? "opacity-100 mb-1"
-                  : "opacity-0 -mb-5"
+                  ? "mb-1 opacity-100"
+                  : "-mb-5 opacity-0"
               }`}
             >
               Unesi validan broj telefona!
             </p>
             <IoMdMicrophone
-              className={`text-white text-4xl font-montserrat mt-5 mb-1 ${
+              className={`mb-1 mt-5 font-montserrat text-4xl text-white ${
                 animateMic ? "animate-shake" : ""
               }`}
             />
             <select
-              className={`appearance-none bg-neutral-900 w-full py-2 rounded-xl safari-text-center text-center mt-2 outline outline-1 outline-offset-2 font-thin ${
+              className={`safari-text-center mt-2 w-full appearance-none rounded-xl bg-neutral-900 py-2 text-center font-thin outline outline-1 outline-offset-2 ${
                 success == null
                   ? !selectedOption
-                    ? "outline-neutral-700 text-neutral-500"
-                    : "outline-neutral-700 text-white"
+                    ? "text-neutral-500 outline-neutral-700"
+                    : "text-white outline-neutral-700"
                   : success == true
-                    ? "outline-emerald-800 text-white"
+                    ? "text-white outline-emerald-800"
                     : !selectedOption
-                      ? "outline-rose-800 text-neutral-500"
-                      : "outline-neutral-700 text-white"
+                      ? "text-neutral-500 outline-rose-800"
+                      : "text-white outline-neutral-700"
               }
               }`}
               value={selectedOption}
@@ -424,17 +424,17 @@ const Form = () => {
               </option>
             </select>
             <p
-              className={`text-rose-800 text-md font-thin duration-300 ${
+              className={`text-md font-thin text-rose-800 duration-300 ${
                 success === false && !selectedOption
-                  ? "opacity-100 mt-3"
-                  : "opacity-0 -mb-4"
+                  ? "mt-3 opacity-100"
+                  : "-mb-4 opacity-0"
               }`}
             >
               Izaberi jednu od opcija!
             </p>
             <p
               key={selectedOptionTemp + "option"}
-              className="text-white font-thin text-lg mt-2 animate-money"
+              className="animate-money mt-2 text-lg font-thin text-white"
             >
               {selectedOptionTemp
                 ? micMap[selectedOptionTemp][
@@ -454,18 +454,18 @@ const Form = () => {
             </p>
             <p
               key={selectedOption}
-              className="text-3xl text-white font-thin mt-11 animate-jump"
+              className="mt-11 animate-jump text-3xl font-thin text-white"
             >
               {data.price
                 ? calculatePrice(
                     data,
-                    getDatesBetween(fromDate, toDate).length
+                    getDatesBetween(fromDate, toDate).length,
                   ) + " RSD"
                 : ""}
             </p>
             <div
               id="link"
-              className={`text-white mt-14 bg-neutral-900 cursor-pointer font-thin text-lg py-3 px-5 duration-300 outline outline-1 rounded-xl tracking-wide ${
+              className={`mt-14 cursor-pointer rounded-xl bg-neutral-900 px-5 py-3 text-lg font-thin tracking-wide text-white outline outline-1 duration-300 ${
                 success == null
                   ? "outline-neutral-700"
                   : success == true
@@ -483,10 +483,10 @@ const Form = () => {
               {success == true ? "NAZAD NA POČETNU" : "POTVRDI"}
             </div>
             <p
-              className={`text-rose-800 text-md font-thin duration-300 ${
+              className={`text-md font-thin text-rose-800 duration-300 ${
                 success === false && error
-                  ? "opacity-100 mt-3"
-                  : "opacity-0 -mb-6"
+                  ? "mt-3 opacity-100"
+                  : "-mb-6 opacity-0"
               }`}
             >
               Greška, pokušajte ponovo
@@ -494,7 +494,7 @@ const Form = () => {
             {success == true ? (
               <p
                 onClick={generateImage}
-                className="text-white text-lg font-thin mt-10 mb-3 underline underline-offset-2 duration-300"
+                className="mb-3 mt-10 text-lg font-thin text-white underline underline-offset-2 duration-300"
               >
                 Sačuvaj Račun
               </p>
@@ -503,9 +503,9 @@ const Form = () => {
                 to={`/katalog/${data.city}`}
                 className={`${
                   success ? "hidden" : ""
-                } mt-10 mb-1 flex flex-row items-center justify-center font-thin text-md text-neutral-400`}
+                } text-md mb-1 mt-10 flex flex-row items-center justify-center font-thin text-neutral-400`}
               >
-                <RxCross2 className={`text-neutral-500 text-xl mr-1`} />
+                <RxCross2 className={`mr-1 text-xl text-neutral-500`} />
                 NAZAD
               </Link>
             )}
