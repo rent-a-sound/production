@@ -108,7 +108,7 @@ const Form = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://api.zvucnici.com/single?id=" + id,
+          "http://api.zvucnici.com/single?id=" + id,
         );
         setData(response.data);
       } catch (error) {
@@ -211,8 +211,7 @@ const Form = () => {
         throw new Error("Wrong Inputs");
       }
       const response = await axios.post(
-        "https://api.telegram.org/bot6461461088:AAGWeqWqbFZzLaRsWasiMsR8xNZ3bx2pmXM/sendMessage",
-        `chat_id=${encodeURIComponent(6569148589)}&text=${encodeURIComponent(
+        `http://api.zvucnici.com/order?text=${encodeURIComponent(
           info +
             "\n" +
             phone +
