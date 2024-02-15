@@ -108,7 +108,7 @@ const Form = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://api.zvucnici.com/single?id=" + id,
+          "https://api.zvucnici.com/single?id=" + id,
         );
         setData(response.data);
       } catch (error) {
@@ -211,7 +211,7 @@ const Form = () => {
         throw new Error("Wrong Inputs");
       }
       const response = await axios.post(
-        `http://api.zvucnici.com/order?text=${encodeURIComponent(
+        `https://api.zvucnici.com/order?text=${encodeURIComponent(
           info +
             "\n" +
             phone +
