@@ -6,7 +6,7 @@ import json
 
 app = Flask(__name__)
 
-CORS(app, origins="https://zvucnici.com")
+CORS(app, origins="https://www.zvucnici.com")
 DATA_PATH: Final = '../backend/config.json'
 
 def load_config():
