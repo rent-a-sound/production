@@ -22,6 +22,7 @@ const Catalogue = () => {
   const [taken, setTaken] = useState(true);
   const [priceLowHigh, setPriceLowHigh] = useState(true);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [specialDates, setSpecialDates] = useState([]);
 
   const city = window.location.href.split("/")[4];
 
@@ -79,6 +80,10 @@ const Catalogue = () => {
   //Update cookies when selected dates changed
   useEffect(() => {
     localStorage.setItem("selected", JSON.stringify(selected));
+
+    const regex = /^(01-05|31-12)-202\d$/;
+    const dates = formatDate(selected);
+    setSpecialDates(dates.filter((items) => regex.test(items)));
   }, [selected]);
 
   //Get all speakers in a particular city
@@ -395,6 +400,13 @@ const Catalogue = () => {
                             : `Rezerviši - ${calculatePrice(item, dates)} RSD`}
                       </div>
                     </Link>
+                    <p
+                      className={`text-sm font-extralight text-neutral-400 duration-300 ${specialDates.length > 0 ? "px-8 pb-5 opacity-100" : "h-0 opacity-0"}`}
+                    >
+                      Cena za
+                      {" " + specialDates + " "}
+                      obračunava se duplo
+                    </p>
                   </div>
                 );
               return null;
