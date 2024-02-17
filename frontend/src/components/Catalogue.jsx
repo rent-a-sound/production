@@ -167,6 +167,8 @@ const Catalogue = () => {
 
   //Calculate price based on speaker and rent length
   const calculatePrice = (speaker, dates) => {
+    const doublePrice = specialDates.length > 0 ? speaker.price[0].price : 0;
+
     const priceObject =
       dates.length > speaker.price.length
         ? speaker.price.find((item) => item.day === speaker.price.length)
@@ -175,8 +177,9 @@ const Catalogue = () => {
       ? 0
       : dates.length > speaker.price.length
         ? priceObject.price +
-          speaker.overdraft * (dates.length - speaker.price.length)
-        : priceObject.price;
+          speaker.overdraft * (dates.length - speaker.price.length) +
+          doublePrice
+        : priceObject.price + doublePrice;
   };
 
   //Check if one of the selected dates overlaps with dates in "unavailable" field for each speaker
@@ -372,7 +375,7 @@ const Catalogue = () => {
                     </div>
                     <img
                       style={{ animationDelay: `${index * 300}ms` }}
-                      className="my-6 max-h-56 animate-fade-down"
+                      className="mb-4 mt-6 max-h-56 animate-fade-down"
                       src={item.image}
                       alt={item.name}
                     />
@@ -401,7 +404,7 @@ const Catalogue = () => {
                       </div>
                     </Link>
                     <p
-                      className={`text-sm font-extralight text-neutral-400 duration-300 ${specialDates.length > 0 ? "px-8 pb-5 opacity-100" : "h-0 opacity-0"}`}
+                      className={`text-sm font-extralight text-neutral-400 duration-500 ${specialDates.length > 0 ? "-translate-y-3 opacity-100" : "h-0 opacity-0"}`}
                     >
                       Cena za
                       {" " + specialDates + " "}

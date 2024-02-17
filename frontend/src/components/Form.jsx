@@ -22,6 +22,7 @@ const Form = () => {
   const [animateMic, setAnimateMic] = useState(false);
   const [error, setError] = useState(false);
   const [selectedOptionTemp, setSelectedOptionTemp] = useState("");
+  const [specialDates, setSpecialDates] = useState([]);
   const navigate = useNavigate();
 
   const micMap = {
@@ -105,6 +106,11 @@ const Form = () => {
   //Fetch data for a single speaker
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const regex = /^(01-05|31-12)-202\d$/;
+    const dates = getDatesBetween(fromDate, toDate);
+    setSpecialDates(dates.filter((items) => regex.test(items)));
+
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -166,6 +172,8 @@ const Form = () => {
 
   //Calculate price based on speaker, how many days rented and what microphone option is selected
   const calculatePrice = (speaker, days) => {
+    const doublePrice = specialDates.length > 0 ? speaker.price[0].price : 0;
+
     const priceObject =
       days > speaker.price.length
         ? speaker.price.find((item) => item.day === speaker.price.length)
@@ -181,7 +189,8 @@ const Form = () => {
               : micMap[selectedOption][micMap[selectedOption].length - 1] +
                 micOverdraft[selectedOption] *
                   (days - micMap[selectedOption].length)
-            : 0)
+            : 0) +
+          doublePrice
         : priceObject.price +
           (selectedOption
             ? micMap[selectedOption][days - 1]
@@ -189,7 +198,8 @@ const Form = () => {
               : micMap[selectedOption][micMap[selectedOption].length - 1] +
                 micOverdraft[selectedOption] *
                   (days - micMap[selectedOption].length)
-            : 0);
+            : 0) +
+          doublePrice;
   };
 
   //Helper function, checks if name has anything, number is valid length and is any mic option selected
