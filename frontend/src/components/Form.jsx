@@ -107,7 +107,7 @@ const Form = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const regex = /^(01-05|31-12)-202\d$/;
+    const regex = /^(01-05|31-12)-20\d{2}$/;
     const dates = getDatesBetween(fromDate, toDate);
     setSpecialDates(dates.filter((items) => regex.test(items)));
 
@@ -172,8 +172,6 @@ const Form = () => {
 
   //Calculate price based on speaker, how many days rented and what microphone option is selected
   const calculatePrice = (speaker, days) => {
-    const doublePrice = specialDates.length > 0 ? speaker.price[0].price : 0;
-
     const priceObject =
       days > speaker.price.length
         ? speaker.price.find((item) => item.day === speaker.price.length)
@@ -190,7 +188,7 @@ const Form = () => {
                 micOverdraft[selectedOption] *
                   (days - micMap[selectedOption].length)
             : 0) +
-          doublePrice
+          speaker.price[0].price * specialDates.length
         : priceObject.price +
           (selectedOption
             ? micMap[selectedOption][days - 1]
@@ -199,7 +197,7 @@ const Form = () => {
                 micOverdraft[selectedOption] *
                   (days - micMap[selectedOption].length)
             : 0) +
-          doublePrice;
+          speaker.price[0].price * specialDates.length;
   };
 
   //Helper function, checks if name has anything, number is valid length and is any mic option selected

@@ -81,7 +81,7 @@ const Catalogue = () => {
   useEffect(() => {
     localStorage.setItem("selected", JSON.stringify(selected));
 
-    const regex = /^(01-05|31-12)-202\d$/;
+    const regex = /^(01-05|31-12)-20\d{2}$/;
     const dates = formatDate(selected);
     setSpecialDates(dates.filter((items) => regex.test(items)));
   }, [selected]);
@@ -167,8 +167,6 @@ const Catalogue = () => {
 
   //Calculate price based on speaker and rent length
   const calculatePrice = (speaker, dates) => {
-    const doublePrice = specialDates.length > 0 ? speaker.price[0].price : 0;
-
     const priceObject =
       dates.length > speaker.price.length
         ? speaker.price.find((item) => item.day === speaker.price.length)
@@ -178,8 +176,8 @@ const Catalogue = () => {
       : dates.length > speaker.price.length
         ? priceObject.price +
           speaker.overdraft * (dates.length - speaker.price.length) +
-          doublePrice
-        : priceObject.price + doublePrice;
+          speaker.price[0].price * specialDates.length
+        : priceObject.price + speaker.price[0].price * specialDates.length;
   };
 
   //Check if one of the selected dates overlaps with dates in "unavailable" field for each speaker
