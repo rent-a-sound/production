@@ -229,12 +229,12 @@ const Catalogue = () => {
         }}
         className={`fixed z-10 flex w-11/12 flex-col items-center justify-start rounded-b-3xl bg-[rgba(0,0,0,0.1)] p-4 pb-1 outline outline-1 outline-neutral-700 backdrop-blur-lg backdrop-filter duration-300 sm:w-fit ${
           !clicked
-            ? "-translate-y-[33rem] md:-translate-y-[26rem]"
+            ? "-translate-y-[35.5rem] md:-translate-y-[28rem]"
             : "-translate-y-[1rem]"
         }`}
       >
         <div
-          className={`my-4 flex w-11/12 items-center justify-center rounded-md bg-neutral-900 outline outline-1 outline-neutral-700`}
+          className={`my-4 flex w-11/12 items-center justify-center rounded-md bg-neutral-900 outline outline-1 outline-neutral-700 min-h-[352px]`}
           onClick={(e) => {
             e.stopPropagation();
           }}
